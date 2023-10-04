@@ -10,4 +10,4 @@ We do provide minimal support, you can reach us on [Discord](https://discord.aga
 
 
 
-*The compose files stored here are not our production files and may need to be tweaked for your use-case. They may also not be current vs our infrastructure.
+* *The compose files stored here are not our production files and may need to be tweaked for your use-case. They may also not be current vs our infrastructure.*
