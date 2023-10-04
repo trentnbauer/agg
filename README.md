@@ -8,5 +8,4 @@ Our main GitHub is private but there are some files we wish to share with the pu
 ## Support
 We do provide minimal support, you can reach us on [Discord](https://discord.agamersgrind.com)
 
-### Please note:
-* * *The compose files stored here are not our production files and may need to be tweaked for your use-case. They may also not be current vs our infrastructure.*
+**The compose files stored here are not our production files and may need to be tweaked for your use-case. They may also not be current vs our infrastructure.*
