@@ -1,0 +1,10 @@
+version: "3"
+services:
+  play:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - API_KEY=$CLOUDFLARE_APIKEY
+      - ZONE=$PUBLICWEBSITE
+      - SUBDOMAIN=$SUBDOMAIN
+      - PROXIED=$PROXY
