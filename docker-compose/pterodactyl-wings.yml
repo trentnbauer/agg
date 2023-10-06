@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  wings:
+    image: ghcr.io/pterodactyl/wings:v1.11.7
+    restart: always
+    networks:
+      - wings
+    ports:
+      - $PORT_SFTP:2022
+      - $PORT:443
+      - 8080:8080
+    tty: true
+    environment:
+      - TZ=$TZ
+      - WINGS_UID=988
+      - WINGS_GID=988
+      - WINGS_USERNAME=pterodactyl
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/containers/:/var/lib/docker/containers/
+      - config:/etc/pterodactyl/  #config file from Panel
+      - /var/lib/pterodactyl/:/var/lib/pterodactyl/ #game server files
+      - logs:/var/log/pterodactyl/
+      - /tmp/pterodactyl/:/tmp/pterodactyl/
+      - /srv/daemon-data/:/srv/daemon-data/
+
+  db:
+    image: mariadb:10.11
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - $PORT_DB:3306
+    networks:
+      - wings
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE="servers"
+      - MYSQL_USER="pterodactyl"
+      - MYSQL_PASSWORD=$SQL_PASS
+      - MYSQL_ROOT_PASSWORD=$SQL_PASS_ROOT
+
+networks:
+  wings:
+    name: wings
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: wings
+  pterodactyl_nw:
+    driver: bridge
+
+
+volumes:
+  config: 
+  lib:
+  logs:
+  daemon:
+  db:
