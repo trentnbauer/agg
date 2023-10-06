@@ -1,7 +1,7 @@
 # Welcome, friends!
 To A Gamers Grind: Public Files
 ### Useful links
-[Our Documentation](https://docs.xfgn.dev)
+[Our Documentation](https://docs.agamersgrind.com)
 
 ## What is this repo?
 This repo was created to house internal documents and knowledge alongside our [GitBooks site](https://docs.xfgn.dev)
