@@ -29,6 +29,6 @@ jobs:
           MERGE_LABELS: ""
           MERGE_METHOD_LABEL_REQUIRED: false
           MERGE_FORKS: true
-          UPDATE_LABELS: ""
+          UPDATE_LABELS: "!x"
           LOG: DEBUG
           
