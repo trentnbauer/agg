@@ -6,7 +6,7 @@ body:
 - type: input
   id: affected
   attributes:
-    label: App Affected
+    label: Link to Incorrect Doco
     description: "Provide a link to the page that needs correcting"
   validations:
     required: true
