@@ -151,25 +151,10 @@ Now that Portainer is installed, we can behind configuring it
 1. On the left, click on 'Edge Stacks' and click on 'Create'
    1. Name your stage 'WatchTower'
    2. Click on Edge Groups and select all your groups
-   3.  In the web editor, provide the below compose file
+   3. In the web editor, provide the below compose file and hit deploy
 
-       <pre class="language-yaml"><code class="lang-yaml">version: '3'
-       services:
-       <strong>    app:
-       </strong>    image: ghcr.io/containrrr/watchtower:latest
-           restart: always
-           volumes:
-             - /var/run/docker.sock:/var/run/docker.sock
-           environment:
-             - TZ=Australia/Melbourne
-             - WATCHTOWER_ROLLING_RESTART=true
-             - WATCHTOWER_CLEANUP=true
-             - WATCHTOWER_INCLUDE_STOPPED=true
-             - WATCHTOWER_POLL_INTERVAL=259200 #3days
-             - WATCHTOWER_LABEL_ENABLE=true
+{% @github-files/github-code-block url="https://github.com/trentnbauer/agg/blob/main/docker-compose/watchtower-label.yml" %}
 
-       </code></pre>
-   4. Click on 'Deploy Stack'
 2. Take note of the state of your stacks\
    ![](<../../.gitbook/assets/image (44).png>)
 3. Click on 'WatchTower' and you will be shown the same screen as step 1. You can make any adjustments to the stack here, such as removing groups or editing the compose file
@@ -177,5 +162,5 @@ Now that Portainer is installed, we can behind configuring it
 
 This stack will enable auto-updates for anything with the `com.centurylinklabs.watchtower.enable=true` label
 
-_Please note: This is NOT a recommended solution for updating containers. This guide will only assist you with updating Portainer, as it is a public facing resource and needs to be patched. The WatchTower auto update may (and probably will) break Portainer at some stage. Keep backups._
+_Please note: This is NOT a recommended solution for updating containers. This guide will only assist you with updating Portainer, as it is potentially a public facing resource and needs to be patched. The WatchTower auto update may (and probably will) break Portainer at some stage. Keep backups._
 

@@ -10,8 +10,8 @@
 4. Click on 'Create a tunnel'
 5. Name the tunnel and click on 'save tunnel'
 6. Scroll down on the next page and locate the connector command,\
-   `cloudflared.exe service install R4nd0mStr1ng0fCh4ract3rs`
-7. Take note of the unique key after 'install'; save this in your password vault
+   `cloudflared.exe service install`` `**`R4nd0mStr1ng0fCh4ract3rs`**
+7. Take note of the unique key after 'install' (bolded above); save this in your password vault
 8. Click on Next
 9.  We're now forced to create a public hostname (reverse proxy), as we already have Portainer set up, we will create a public host for this\
 
@@ -34,11 +34,11 @@
 
 1. Create a new compose file in your GitHub repo using the below compose template
 
-{% embed url="https://gist.github.com/trentnbauer/349afde93884dce6d85822c58ec799ce" %}
+{% @github-files/github-code-block url="https://github.com/trentnbauer/agg/blob/main/docker-compose/cloudflared.yml" %}
 
 2. Create a new GitOps stack using the tunnel compose file
 3. Under Environmental variables
-   1. add a variable "KEY", using the key noted earlier
+   1. add a variable "CLOUDFLARE\_UUID", using the key noted in step 6 above
 4. Deploy your stack
 5. Refresh the Cloudflare tunnel page, it will now state 'active'
 

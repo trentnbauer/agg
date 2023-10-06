@@ -116,7 +116,7 @@ php artisan p:user:mak
 
 ## Set up your Proxy
 
-1. Refer to the [Cloudflare Proxy](../cloudflare/tunnel/create-a-proxy-public-hostname.md) and [Authentication ](../cloudflare/tunnel/enable-authentication.md)guides
+1. Refer to the [Cloudflare Proxy](../cloudflare/tunnel/create-a-proxy-public-hostname.md) and [Authentication ](broken-reference)guides
 
 * Your subdomain and domain needs to match the PTERO\_PANEL\_URL variable set above
 * Type is HTTP, pointing at yourserver:port

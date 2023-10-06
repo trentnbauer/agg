@@ -21,7 +21,7 @@ It depends on the use-case, and if you want to be! If you or someone else will n
 * What is the potential risk if the app is breached?
   * What damage can be done? (eg deleting all VM's in Proxmox
 
-If the app needs to be externally available but has some risk associated with it, it could be made available with [Cloudflare Authentication](../guides/cloudflare/tunnel/enable-authentication.md) in front of it
+If the app needs to be externally available but has some risk associated with it, it could be made available with [Cloudflare Authentication](broken-reference) in front of it
 
 
 

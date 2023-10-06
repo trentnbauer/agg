@@ -22,4 +22,4 @@ _Unfortunately the Cloudflare doco for this is rubbish, or non-existent. Hopeful
    2. Expand TLS
    3. Enable 'No TLS Verify'&#x20;
 7. Click on Save Hostname
-8. Your service will now be publicly accessible at subdomain.domain/path
+8. Your service will now be publicly accessible at subdomain.domain.com/path

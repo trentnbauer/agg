@@ -10,33 +10,4 @@ Your domains DNS will need to be managed by Cloudflare, per [domains.md](domains
 
 You will be able to use the [portainer-and-gitops](../../service-overviews/portainer-and-gitops/ "mention") guide to put these compose files into production
 
-{% code title="Subdomain" lineNumbers="true" %}
-```yaml
-version: "3"
-services:
-  play:
-    image: oznu/cloudflare-ddns:latest
-    restart: always
-    environment:
-      - API_KEY=$APIKEY
-      - ZONE=$DOMAIN #website.com
-      - SUBDOMAIN=$SUBDOMAIN
-      - PROXIED=$PROXY #true or false
-```
-{% endcode %}
-
-{% code title="Root domain" lineNumbers="true" %}
-```yaml
-version: "3"
-services:
-  play:
-    image: oznu/cloudflare-ddns:latest
-    restart: always
-    environment:
-      - API_KEY=$APIKEY
-      - ZONE=$DOMAIN #website.com
-      - PROXIED=$PROXY #true or false
-```
-{% endcode %}
-
-_I've broken one of my own rules with these 2 compose files - they both are using the 'tatest' tag. This is due to the container being depreciated - it will not receive anymore updates. The author hasn't done the best tagging either, and 'latest' is the best for x86 and ARM compatibility_
+{% @github-files/github-code-block url="https://github.com/trentnbauer/agg/blob/main/docker-compose/ddns.yml" %}

@@ -57,18 +57,18 @@ The Renovate Bot watches for dependancies and automatically creates merge reques
 
 
 
-    ```json5
-    {
-        "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-        "extends": [
-            "config:base",
-            ":disableRateLimiting"
-        ],
-        "docker-compose": {
-            "fileMatch": ["docker-compose/.+\\.ya?ml$"]
-        }
-    }
-    ```
+```json5
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:base",
+        ":disableRateLimiting"
+    ],
+    "docker-compose": {
+        "fileMatch": ["docker-compose/.+\\.ya?ml$"]
+    }
+}
+```
 
 _This code block tells the bot to watch any '.yml' or '.yaml' file in the 'docker-compose' folder_
 
