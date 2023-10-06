@@ -1,20 +1,15 @@
 version: "3"
 services:
   cloudflare-ddns:
-    image: favonia/cloudflare-ddns:1.10.1
+    image: favonia/cloudflare-ddns:sha256-93dfb73f7f6182864523c1c57121dfd16ec3d2a83999553b8305c1c3c12397a4.sig
     network_mode: host
     restart: always
-    cap_add:
-      - SETUID
-      - SETGID
     cap_drop:
       - all
-    #read_only: true
+    read_only: true
     security_opt:
       - no-new-privileges:true
     environment:
-      - PUID=1000
-      - PGID=1000
       - CF_API_TOKEN=$CLOUDFLARE_APIKEY
       - DOMAINS=$URL
       - PROXIED=$PROXIED
