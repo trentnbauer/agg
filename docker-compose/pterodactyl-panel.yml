@@ -3,6 +3,8 @@ services:
   database:
     image: mariadb:10.5
     restart: always
+    ports:
+      $PORT_DB:3306
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - db:/var/lib/mysql
