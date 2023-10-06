@@ -32,7 +32,7 @@
 * [Pterodactyl](guides/pterodactyl/README.md)
   * [Creating a new Panel](guides/pterodactyl/creating-a-new-panel.md)
   * [Creating a new Wings node](guides/pterodactyl/creating-a-new-wings-node.md)
-  * [❔ DDNS for joining servers](guides/pterodactyl/ddns-for-joining-servers.md)
+  * [DDNS for joining servers](guides/pterodactyl/ddns-for-joining-servers.md)
   * [Configuring your Database](guides/pterodactyl/configuring-your-database.md)
   * [Server Best Practices & Suggestions](guides/pterodactyl/server-best-practices-and-suggestions.md)
 
