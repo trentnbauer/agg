@@ -27,3 +27,8 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: ""
+          MERGE_METHOD_LABEL_REQUIRED: false
+          MERGE_FORKS: true
+          UPDATE_LABELS: ""
+          LOG: DEBUG
+          
