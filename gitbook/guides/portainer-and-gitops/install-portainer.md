@@ -67,7 +67,7 @@ Now that Portainer is installed, we can behind configuring it
 ### Account Creation
 
 1. Browse to https://YOURSERVERIP:9443
-2. Create your credentials, I would suggest following [this guide](../../policies-and-procedures/authentication-access-and-accounts.md)
+2. Create your credentials, I would suggest following [this guide](../../policies/authentication-access-and-accounts.md)
 
 ### (Optional) Install Portainer Edge Agents&#x20;
 

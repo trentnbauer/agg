@@ -4,7 +4,7 @@
 
 The Cloudflare tunnel is a port-forwarding-less reverse proxy. The traffic is tunneled through Cloudflare servers reducing the risk of DDOS  and other malicious attacks. Another advantage is that Cloudflare handles authentication, so its harder to brute force one of our internal services.
 
-Refer to [external access to systems](../../policies-and-procedures/external-access-to-systems.md) for documentation on creating a proxy
+Refer to [external access to systems](../../policies/external-access-to-systems.md) for documentation on creating a proxy
 
 ### Flowchart <a href="#bkmrk-flowchart" id="bkmrk-flowchart"></a>
 

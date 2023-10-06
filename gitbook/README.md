@@ -18,23 +18,14 @@ layout:
 
 # 👋 Welcome, friends
 
-Hey, welcome to our Homelab Wiki – the place where all the magic happens! We're hosting two awesome projects here: XFGN (our cool internal hobby thing) and A Gamers Grind (the place where gaming dreams come true).
+Step into the open doors of the AGG / XFGN / LM documentation site, your go-to destination for all things homelab and gaming! Here, we've meticulously crafted a treasure trove of knowledge to assist you in setting up services within the cozy confines of your homelab. From the intricacies of Pterodactyl and Cloudflare to the fine art of configuring hardware like UniFi gear, consider this space your tech sanctuary.
 
-Ready for the grand tour? Here's what you'll find in our wiki:
+In our virtual library, you'll discover a plethora of resources, including example config files and expert-backed tweaks, tailor-made for gamers passionate about optimizing their game servers. We encourage you to roam freely, explore our diverse offerings, and delve into the nuances of homelab services.
 
-1. **Policies and Procedures:** We got rules, man! Check out how we handle passwords, create and delete services – all the important stuff to keep things running smooth and safe.
-2. **Service Overviews:** Geek alert! Get ready to dive into the nitty-gritty of the services we're hosting. Config files, ports, and techy goodness await!
-3. **Game Server Documentation:** Gamers, this one's for you! We've got tips and templates to help you rock those game servers like a pro.
-4. **Processes:** Curious about how we do stuff around here? Learn how we create new virtual machines and handle patch days with ease.
-5. **Troubleshooting:** Tech gremlins, beware! We've battled them too, and we've got guides to help you kick their pixelated butts.
-6. **Guides:** Wanna be like us? Our guides will show you how to set up your own awesome homelab. Let's build it together! Oh, and here's the best part: you can also submit your own changes and improvements to the documentation. We're all ears for your genius ideas!
+We believe in the power of community, and your voice matters here. If you stumble upon any documentation that seems amiss or outdated, fear not! Your feedback is invaluable. You can directly contribute by submitting changes on [GitBooks](https://app.gitbook.com/invite/9JJ7mwvgQ4C75V2ngGDc/Og7Lqv2QEHYFdmXTFaCD), or engage with us on [GitHub](https://github.com/trentnbauer/agg/issues/new?assignees=\&labels=documentation\&projects=\&template=gitbook\_change.yaml\&title=%5Bdoc%5D%3A+) or [Discord](https://discord.agamersgrind.com). Your insights keep our digital home lively and up-to-date.
 
-We're stoked to have you here. This wiki is all about sharing knowledge, so feel free to explore, contribute, and have a blast!
+But that's not all—venture further down the page, and you'll encounter our internal documentation, not intended for general viewing. However, we've chosen to share this knowledge with you, enriching your homelab experience. Inside, find detailed information about setting up commonly used homelab services like Plex and the Arr apps.
 
-Time to geek out and have some fun! 🚀
+So, welcome, friends, to a world where knowledge knows no bounds. Together, let's embark on a journey of tech exploration and homelab mastery. Happy browsing! 🌟
 
-∼ChatGPT
-
-
-
-_Yes, I got chatGPT to write this. We're about efficiency here!_
+> _ChatGPT makes me sound a loooot better than I am_

@@ -1,4 +1,4 @@
-# Disaster Recovery
+# ❔ Disaster Recovery
 
 As much as we don't want it to happen, somethings things die. Sometimes power runs out.
 
@@ -26,4 +26,4 @@ This documentation can be followed for the below scenarios
 
 ### Confirm Software has loaded
 
-Follow the [patch-day.md](patch-day.md "mention") documentation
+???

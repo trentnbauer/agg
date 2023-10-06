@@ -1,6 +1,6 @@
 # ❔ Create new Virtual Machine
 
-_Please read_ [creation-and-managment-of-servers-or-services.md](../policies-and-procedures/creation-and-managment-of-servers-or-services.md "mention") _documentation for policies around naming schemes etc before following this guide_
+_Please read_ [creation-and-managment-of-servers-or-services.md](../policies/creation-and-managment-of-servers-or-services.md "mention") _documentation for policies around naming schemes etc before following this guide_
 
 ## Process
 

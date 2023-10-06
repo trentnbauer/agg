@@ -32,9 +32,9 @@ Wings hosts the game server compute (CPU) and storage. As this machines job is t
     * Lots of RAM
     * High single thread passmark CPUs
     * SSD storage
-* [A Domain that's managed by Cloudflare](../cloudflare-guides/domains.md)
-* A [Cloudflare Tunnel](../cloudflare-guides/tunnel/)&#x20;
-* A [Cloudflare DDNS container with proxy turned off](../cloudflare-guides/dynamic-dns.md) (this address will be your game server IP. Eg play.yourdomain.com)
+* [A Domain that's managed by Cloudflare](../cloudflare/domains.md)
+* A [Cloudflare Tunnel](../cloudflare/tunnel/)&#x20;
+* A [Cloudflare DDNS container with proxy turned off](../cloudflare/dynamic-dns.md) (this address will be your game server IP. Eg play.yourdomain.com)
 
 ### Recommended
 

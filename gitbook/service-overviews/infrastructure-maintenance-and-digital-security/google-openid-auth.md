@@ -1,6 +1,6 @@
 # Google OpenID Auth
 
-Where possible, all services should be set up to use the Google OAuth client. If the service automatically creates accounts and grants permissions when logging in, the service must be behind a [Cloudflare Application](../../guides/cloudflare-guides/tunnel/enable-authentication.md) with the [Bypass & Email Auth rules](cloudflare-tunnel.md#authentication) applied
+Where possible, all services should be set up to use the Google OAuth client. If the service automatically creates accounts and grants permissions when logging in, the service must be behind a [Cloudflare Application](../../guides/cloudflare/tunnel/enable-authentication.md) with the [Bypass & Email Auth rules](cloudflare-tunnel.md#authentication) applied
 
 ## How to get the Client ID and Client Secret
 
@@ -32,5 +32,5 @@ These URLs were current as of 11/06/2023
 
 Log out of the app and try logging in with your Google account. If you have issues, refer to the applications documentation.
 
-_**If signing in with a new Google account automatically creates an account, ensure the app is secured behind a**_ [_**Cloudflare Application**_](../../guides/cloudflare-guides/tunnel/enable-authentication.md) _**to reduce the risk of unwanted access**_
+_**If signing in with a new Google account automatically creates an account, ensure the app is secured behind a**_ [_**Cloudflare Application**_](../../guides/cloudflare/tunnel/enable-authentication.md) _**to reduce the risk of unwanted access**_
 

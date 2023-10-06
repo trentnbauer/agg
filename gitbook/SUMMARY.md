@@ -1,25 +1,69 @@
 # Table of contents
 
+## 🏙 --- Public Files ---
+
 * [👋 Welcome, friends](README.md)
 * [⚔ Discord](https://discord.xfgn.dev)
-* [⏰ Server Uptime](https://netdata.xfgn.dev)
-* [🗻 NetData](https://netdata.xfgn.dev)
-* [📊 Trello](https://trello.xfgn.dev)
 * [📋 Public GitHub](https://github.com/trentnbauer/agg)
-* [📋 Internal GitHub](https://github.com/trentnbauer/agg.local)
 * [🎯 Submit Change](https://app.gitbook.com/invite/9JJ7mwvgQ4C75V2ngGDc/Og7Lqv2QEHYFdmXTFaCD)
 
-## 📐 Policies & Procedures
+## 📚 Guides
 
-* [A few things to note...](policies-and-procedures/a-few-things-to-note....md)
-* [Authentication, Access and Accounts](policies-and-procedures/authentication-access-and-accounts.md)
-* [Creation and Managment of Servers or Services](policies-and-procedures/creation-and-managment-of-servers-or-services.md)
-* [Server and Service Monitoring](policies-and-procedures/server-and-service-monitoring.md)
-* [External Access to Systems](policies-and-procedures/external-access-to-systems.md)
-* [Issue and Project Tracking](policies-and-procedures/issue-and-project-tracking.md)
-* [Initiatives](policies-and-procedures/initiatives.md)
-* [Disaster Recovery](policies-and-procedures/disaster-recovery.md)
-* [Patch Day](policies-and-procedures/patch-day.md)
+* [Mini Guides](guides/mini-guides/README.md)
+  * ['All' Compose File](guides/mini-guides/all-compose-file.md)
+* [❔ UniFi](guides/unifi/README.md)
+  * [❔ Set up a new Dream Machine](guides/unifi/set-up-a-new-dream-machine.md)
+  * [❔ Assign a DHCP Reservation](guides/unifi/assign-a-dhcp-reservation.md)
+  * [❔ Port Forwarding](guides/unifi/port-forwarding.md)
+* [Portainer and GitOps](guides/portainer-and-gitops/README.md)
+  * [Set up GitHub](guides/portainer-and-gitops/set-up-github.md)
+  * [Install Portainer](guides/portainer-and-gitops/install-portainer.md)
+  * [Create your first GipOps Compose file](guides/portainer-and-gitops/create-your-first-gipops-compose-file.md)
+  * [Deploy your first GitOps stack](guides/portainer-and-gitops/deploy-your-first-gitops-stack.md)
+  * [Managing your production compose files](guides/portainer-and-gitops/managing-your-production-compose-files.md)
+* [❔ Cloudflare](guides/cloudflare/README.md)
+  * [❔ Domains](guides/cloudflare/domains.md)
+  * [Generate an API Key](guides/cloudflare/generate-an-api-key.md)
+  * [Tunnel](guides/cloudflare/tunnel/README.md)
+    * [Create a Tunnel](guides/cloudflare/tunnel/create-a-tunnel.md)
+    * [Access Groups & Authentication](guides/cloudflare/tunnel/access-groups-and-authentication.md)
+    * [Create a Proxy (Public Hostname)](guides/cloudflare/tunnel/create-a-proxy-public-hostname.md)
+    * [Enable Authentication](guides/cloudflare/tunnel/enable-authentication.md)
+  * [Dynamic DNS](guides/cloudflare/dynamic-dns.md)
+* [Pterodactyl](guides/pterodactyl/README.md)
+  * [Creating a new Panel](guides/pterodactyl/creating-a-new-panel.md)
+  * [Creating a new Wings node](guides/pterodactyl/creating-a-new-wings-node.md)
+  * [❔ DDNS for joining servers](guides/pterodactyl/ddns-for-joining-servers.md)
+  * [❔ Configuring your Database](guides/pterodactyl/configuring-your-database.md)
+  * [Server Best Practices & Suggestions](guides/pterodactyl/server-best-practices-and-suggestions.md)
+
+## 🎮 Game Servers
+
+* [❔ Insurgency Sandstorm](game-servers/insurgency-sandstorm.md)
+* [❔ Minecraft](game-servers/minecraft.md)
+
+## 🗃 --- Internal Files ---
+
+* [🗂 Internal Doco](internal-files/internal-doco.md)
+* [📋 Private GitHub](https://github.com/trentnbauer/agg.local)
+* [🗻 NetData](https://netdata.xfgn.dev)
+* [📊 Trello](https://trello.xfgn.dev)
+* [🕰 Service Monitoring](https://xfgn.dev)
+
+## 📏 Policies
+
+* [Authentication, Access and Accounts](policies/authentication-access-and-accounts.md)
+* [Issue and Project Tracking](policies/issue-and-project-tracking.md)
+* [Creation and Managment of Servers or Services](policies/creation-and-managment-of-servers-or-services.md)
+* [Server and Service Monitoring](policies/server-and-service-monitoring.md)
+* [External Access to Systems](policies/external-access-to-systems.md)
+
+## 📋 Processes
+
+* [❔ Deploy new Container Stack](processes/deploy-new-container-stack.md)
+* [❔ Create new Virtual Machine](processes/create-new-virtual-machine.md)
+* [❔ Disaster Recovery](processes/disaster-recovery.md)
+* [Internal IP Range Change](processes/internal-ip-range-change.md)
 
 ## 🗺 Service Overviews
 
@@ -69,58 +113,18 @@
   * [❔ Mealie](service-overviews/other-adhoc-apps/mealie.md)
   * [❔ LibreSpeed Test](service-overviews/other-adhoc-apps/librespeed-test.md)
 
-## 🎮 Game Servers
-
-* [❔ Insurgency Sandstorm](game-servers/insurgency-sandstorm.md)
-* [❔ Minecraft](game-servers/minecraft.md)
-
-## 📋 Processes
-
-* [❔ Deploy new Container Stack](processes/deploy-new-container-stack.md)
-* [❔ Create new Virtual Machine](processes/create-new-virtual-machine.md)
-
 ## ‼ Troubleshooting
 
+* [An Introduction...](troubleshooting/an-introduction....md)
 * [Portainer](troubleshooting/portainer.md)
 * [Pterodactyl](troubleshooting/pterodactyl.md)
-* [Network Infrastructure](troubleshooting/network-infrastructure.md)
 
-## 📚 Guides
+## 📖 -- Administration --
 
-* [Mini Guides](guides/mini-guides/README.md)
-  * ['All' Compose File](guides/mini-guides/all-compose-file.md)
-* [❔ UniFi](guides/unifi/README.md)
-  * [❔ Set up a new Dream Machine](guides/unifi/set-up-a-new-dream-machine.md)
-  * [❔ Assign a DHCP Reservation](guides/unifi/assign-a-dhcp-reservation.md)
-  * [❔ Port Forwarding](guides/unifi/port-forwarding.md)
-* [Portainer and GitOps](guides/portainer-and-gitops/README.md)
-  * [Set up GitHub](guides/portainer-and-gitops/set-up-github.md)
-  * [Install Portainer](guides/portainer-and-gitops/install-portainer.md)
-  * [Create your first GipOps Compose file](guides/portainer-and-gitops/create-your-first-gipops-compose-file.md)
-  * [Deploy your first GitOps stack](guides/portainer-and-gitops/deploy-your-first-gitops-stack.md)
-  * [Managing your production compose files](guides/portainer-and-gitops/managing-your-production-compose-files.md)
-* [❔ Cloudflare Guides](guides/cloudflare-guides/README.md)
-  * [❔ Domains](guides/cloudflare-guides/domains.md)
-  * [Generate an API Key](guides/cloudflare-guides/generate-an-api-key.md)
-  * [Tunnel](guides/cloudflare-guides/tunnel/README.md)
-    * [Create a Tunnel](guides/cloudflare-guides/tunnel/create-a-tunnel.md)
-    * [Access Groups & Authentication](guides/cloudflare-guides/tunnel/access-groups-and-authentication.md)
-    * [Create a Proxy (Public Hostname)](guides/cloudflare-guides/tunnel/create-a-proxy-public-hostname.md)
-    * [Enable Authentication](guides/cloudflare-guides/tunnel/enable-authentication.md)
-  * [Dynamic DNS](guides/cloudflare-guides/dynamic-dns.md)
-* [Pterodactyl](guides/pterodactyl/README.md)
-  * [Creating a new Panel](guides/pterodactyl/creating-a-new-panel.md)
-  * [Creating a new Wings node](guides/pterodactyl/creating-a-new-wings-node.md)
-  * [❔ DDNS for joining servers](guides/pterodactyl/ddns-for-joining-servers.md)
-  * [❔ Configuring your Database](guides/pterodactyl/configuring-your-database.md)
-  * [Server Best Practices & Suggestions](guides/pterodactyl/server-best-practices-and-suggestions.md)
-
-## 📖 GitBook Files
-
-* [📎 Templates](gitbook-files/templates/README.md)
-  * [Guide - Root Page](gitbook-files/templates/guide-root-page.md)
-  * [Guide - New Docker App](gitbook-files/templates/guide-new-docker-app.md)
-  * [Hardware Overview](gitbook-files/templates/hardware-overview.md)
-  * [App Overview - Externally Hosted](gitbook-files/templates/app-overview-externally-hosted.md)
-  * [App Overview - Container](gitbook-files/templates/app-overview-container.md)
-  * [Miniguide - Compose](gitbook-files/templates/miniguide-compose.md)
+* [📎 Gitbook Templates](administration/gitbook-templates/README.md)
+  * [Guide - Root Page](administration/gitbook-templates/guide-root-page.md)
+  * [Guide - New Docker App](administration/gitbook-templates/guide-new-docker-app.md)
+  * [Hardware Overview](administration/gitbook-templates/hardware-overview.md)
+  * [App Overview - Externally Hosted](administration/gitbook-templates/app-overview-externally-hosted.md)
+  * [App Overview - Container](administration/gitbook-templates/app-overview-container.md)
+  * [Miniguide - Compose](administration/gitbook-templates/miniguide-compose.md)

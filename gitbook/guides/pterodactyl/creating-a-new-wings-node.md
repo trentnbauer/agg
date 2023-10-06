@@ -30,7 +30,7 @@ _I suggest leaving the env pre-filled fields as they are_
 
 ### Configure the Reverse Proxy
 
-Refer to the [Create a Proxy](../cloudflare-guides/tunnel/create-a-proxy-public-hostname.md) Cloudflare Tunnel documentation for creating a Proxy, using hostname:port for the url. You could also use IP:port
+Refer to the [Create a Proxy](../cloudflare/tunnel/create-a-proxy-public-hostname.md) Cloudflare Tunnel documentation for creating a Proxy, using hostname:port for the url. You could also use IP:port
 
 My hostname is "basil.agg.local" and port "443" (the $port variable set above)
 

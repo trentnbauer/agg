@@ -27,7 +27,7 @@ SUBDOMAIN=
 PROXIED=false
 ```
 
-_The API\_KEY variable is your Cloudflare API, please follow_ [generate-an-api-key.md](../cloudflare-guides/generate-an-api-key.md "mention")\
+_The API\_KEY variable is your Cloudflare API, please follow_ [generate-an-api-key.md](../cloudflare/generate-an-api-key.md "mention")\
 _The Zone is your domain / website_\
 _The Subdomain is the address players will connect on, eg **play**.domain.com or **join**.domain.com_
 
