@@ -8,3 +8,4 @@ services:
       - ZONE=$PUBLICWEBSITE
       - SUBDOMAIN=$SUBDOMAIN
       - PROXIED=$PROXY
+
