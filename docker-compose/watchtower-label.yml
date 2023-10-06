@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    image: ghcr.io/containrrr/watchtower:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=$TZ
+      - WATCHTOWER_ROLLING_RESTART=true
+      - WATCHTOWER_CLEANUP=true
+      #- WATCHTOWER_DEBUG=true
+      - WATCHTOWER_INCLUDE_STOPPED=true
+      - WATCHTOWER_POLL_INTERVAL=86400
+      - WATCHTOWER_RUN_ONCE=true
+      - WATCHTOWER_LABEL_ENABLE=true
+    #command: --label-enable
