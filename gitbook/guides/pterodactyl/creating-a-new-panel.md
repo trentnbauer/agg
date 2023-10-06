@@ -13,10 +13,11 @@ _I would recommend deploying GitOps (have a look at the_ [portainer-and-gitops](
 {% @github-files/github-code-block url="https://github.com/trentnbauer/agg/blob/main/docker-compose/pterodactyl-panel.yml" %}
 
 {% code title=".ENV File" %}
-```
+```editorconfig
 MYSQL_PASS=
 MYSQL_PASS_ROOT=
-PORT=80
+PORT_DB=
+PORT_HTTP=
 MAIL_FROM=
 MAIL_SERVER=smtp.gmail.com
 MAIL_PORT=587
