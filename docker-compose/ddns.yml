@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       - API_KEY=$CLOUDFLARE_APIKEY
-      - ZONE=$DOMAIN
-      - SUBDOMAIN=$SUBDOMAIN
-      - PROXIED=$PROXIED
+      - ZONE=$DOMAIN   #Required
+      - SUBDOMAIN=$SUBDOMAIN    #Not required
+      - PROXIED=$PROXIED      #Required: true/false
 
