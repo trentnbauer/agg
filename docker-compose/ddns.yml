@@ -4,8 +4,8 @@ services:
     image: oznu/cloudflare-ddns:latest
     restart: always
     environment:
-      - API_KEY=$CLOUDFLARE_APIKEY
-      - ZONE=$DOMAIN   #Required
-      - SUBDOMAIN=$SUBDOMAIN    #Not required
-      - PROXIED=$PROXIED      #Required: true/false
+      - API_KEY=$CLOUDFLARE_APIKEY     #Required
+      - ZONE=$DOMAIN                   #Required
+      - SUBDOMAIN=$SUBDOMAIN           #Not required
+      - PROXIED=$PROXIED               #Required: true/false
 
