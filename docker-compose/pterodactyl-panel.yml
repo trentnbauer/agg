@@ -6,6 +6,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - db:/var/lib/mysql
+      - dbetc:/etc/mysql
     networks:
       - panel
     environment:
@@ -66,3 +67,4 @@ volumes:
   db:
   env:
   logs:
+  dbetc:
