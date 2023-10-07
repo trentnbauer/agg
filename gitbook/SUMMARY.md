@@ -43,4 +43,4 @@
 
 ***
 
-* [🛑 Server Troubleshooting](https://docs.xfgn.dev/troubleshooting/an-introduction...)
+* [🗄 Internal Documentation](https://docs.xfgn.dev)
