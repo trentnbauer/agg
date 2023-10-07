@@ -11,7 +11,7 @@ You can use a Dynamic DNS container to automatically update your Cloudflare mana
 
 ## Compose Files
 
-You will be able to use the [portainer-and-gitops](../../service-overviews/portainer-and-gitops/ "mention") guide to put these compose files into production
+You will be able to use the [Broken link](broken-reference "mention") guide to put these compose files into production
 
 {% @github-files/github-code-block url="https://github.com/trentnbauer/agg/blob/main/docker-compose/ddns.yml" %}
 

@@ -18,9 +18,9 @@ We're wanting to standardize;
 
 #### Recommendations
 
-* Portainer for managing docker, refer to [deploy-new-container-stack.md](../../processes/deploy-new-container-stack.md "mention") for a deployment guide
+* Portainer for managing docker, refer to [Broken link](broken-reference "mention") for a deployment guide
 
-_Please note that WatchTower is NOT a supported method for updating docker containers and automatic updates can cause issues. Please ensure you have backups of your data in case you need to roll back. I would recommend following my_ [portainer-and-gitops](../../service-overviews/portainer-and-gitops/ "mention") _documentation as this includes a much safer solution for updating containers._
+_Please note that WatchTower is NOT a supported method for updating docker containers and automatic updates can cause issues. Please ensure you have backups of your data in case you need to roll back. I would recommend following my_ [Broken link](broken-reference "mention") _documentation as this includes a much safer solution for updating containers._
 
 _Ignoring that, I am using WatchTower to update Portainer in my environment as I am unable to update it without doing it via the CLI. In general, this is the only time I would suggest this as a solution_
 

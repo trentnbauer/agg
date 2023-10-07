@@ -8,7 +8,7 @@ _I am installing Wings on my test VM, 'Basil', for writing this documentation. A
 
 ### Configure the 'Pterodactyl Wings' Portainer stack
 
-Refer to the [Portainer](../../service-overviews/portainer-and-gitops/portainer.md) and [GitOps](../../service-overviews/portainer-and-gitops/gitops-github.md) documentation for configuring a new Portainer stack using the AGG Pterodactyl Wings Docker Compose file
+Refer to the [Portainer](broken-reference) and [GitOps](broken-reference) documentation for configuring a new Portainer stack using the AGG Pterodactyl Wings Docker Compose file
 
 * Name the stack something simple, like 'wings'
 * Ensure you fill all the variables from the ENV file

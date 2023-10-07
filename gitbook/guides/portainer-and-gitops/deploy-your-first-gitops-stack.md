@@ -62,4 +62,4 @@ If you have any issues, refer to the Notifications tab at the top of the page;
 
 <figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
 
-Most Portainer errors can be resolved with a simple Google search but I also have my own [troubleshooting list here](../../troubleshooting/portainer.md)
+Most Portainer errors can be resolved with a simple Google search but I also have my own [troubleshooting list here](broken-reference)

@@ -8,7 +8,7 @@
 
 Create your Portainer stack using the below compose and env file
 
-_I would recommend deploying GitOps (have a look at the_ [portainer-and-gitops](../../service-overviews/portainer-and-gitops/ "mention") _guide) as this will shift your compose file off of your server and into GitOps and manage container updates for you_
+_I would recommend deploying GitOps (have a look at the_ [Broken link](broken-reference "mention") _guide) as this will shift your compose file off of your server and into GitOps and manage container updates for you_
 
 {% @github-files/github-code-block url="https://github.com/trentnbauer/agg/blob/main/docker-compose/pterodactyl-panel.yml" %}
 

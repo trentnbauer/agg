@@ -24,8 +24,6 @@ In our virtual library, you'll discover a plethora of resources, including examp
 
 We believe in the power of community, and your voice matters here. If you stumble upon any documentation that seems amiss or outdated, fear not! Your feedback is invaluable. You can directly contribute by submitting changes on [GitBooks](https://app.gitbook.com/invite/9JJ7mwvgQ4C75V2ngGDc/Og7Lqv2QEHYFdmXTFaCD), or engage with us on [GitHub](https://github.com/trentnbauer/agg/issues/new?assignees=\&labels=documentation\&projects=\&template=gitbook\_change.yaml\&title=%5Bdoc%5D%3A+) or [Discord](https://discord.agamersgrind.com). Your insights keep our digital home lively and up-to-date.
 
-But that's not all—venture further down the page, and you'll encounter our internal documentation, not intended for general viewing. However, we've chosen to share this knowledge with you, enriching your homelab experience. Inside, find detailed information about setting up commonly used homelab services like Plex and the Arr apps.
-
 So, welcome, friends, to a world where knowledge knows no bounds. Together, let's embark on a journey of tech exploration and homelab mastery. Happy browsing! 🌟
 
 > _ChatGPT makes me sound a loooot better than I am_
