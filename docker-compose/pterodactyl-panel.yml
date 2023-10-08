@@ -61,6 +61,12 @@ services:
       REDIS_HOST: "cache"
       DB_HOST: "database"
       DB_PORT: "3306"
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail http://localhost:$PORT_HTTP
+      interval: 1m
+      timeout: 30s
+      retries: 3
+      start_period: 1m
 networks:
   panel:
 
