@@ -62,7 +62,7 @@ services:
       DB_HOST: "database"
       DB_PORT: "3306"
     healthcheck:
-      test: curl --connect-timeout 15 $HEALTHCHECK
+      test: curl --connect-timeout 15 --silent --show-error --fail $HEALTHCHECK
       interval: 1m
       timeout: 30s
       retries: 3
