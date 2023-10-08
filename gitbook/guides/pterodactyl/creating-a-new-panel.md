@@ -12,9 +12,7 @@ _I would recommend deploying GitOps (have a look at the_ [Broken link](broken-re
 
 {% @github-files/github-code-block url="https://github.com/trentnbauer/agg/blob/main/docker-compose/pterodactyl-panel.yml" %}
 
-{% code title=".ENV File" %}
-```editorconfig
-MYSQL_PASS=
+<pre class="language-editorconfig" data-title=".ENV File"><code class="lang-editorconfig">MYSQL_PASS=
 MYSQL_PASS_ROOT=
 PORT_DB=
 PORT_HTTP=
@@ -25,8 +23,8 @@ MAIL_USERNAME=youremail@gmail.com
 MAIL_PASS=
 PTERO_PANEL_URL=https://panel.example.com #your cloudflare subdomain
 TZ=
-```
-{% endcode %}
+<strong>HEALTHCHECK= #this will be your hostname+PORT_HTTP, eg http://myserver:80
+</strong></code></pre>
 
 ### Confirm the Panel is running
 

@@ -15,14 +15,15 @@ Refer to the [Portainer](broken-reference) and [GitOps](broken-reference) docume
 
 {% @github-files/github-code-block url="https://github.com/trentnbauer/agg/blob/main/docker-compose/pterodactyl-wings.yml" %}
 
-{% code title="env file" %}
-```
+{% code title=".ENV file" %}
+```editorconfig
 PORT_SFTP=2022
 TZ=
 SQL_PASS=
 SQL_PASS_ROOT=
 PORT_DB=3306
 PORT= #This is the port Cloudflare will talk too
+HEALTHCHECK= #this will be your hostname+PORT, eg http://myserver:80
 ```
 {% endcode %}
 
