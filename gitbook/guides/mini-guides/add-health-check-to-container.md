@@ -24,13 +24,17 @@ services:
       start_period: 1m
 ```
 
-_Please read the code you are adding and ensure your variables match, otherwise you will have issues!_
+One thing to note is that not all containers will need health checks. Health checks do require additional compute to do and it may be better using a cloud service (such as [UptimeRobot](https://uptimerobot.com/)) or an internally hosted service like UptimeKuma
 
 ## Health Checks
 
+Please read the code you are adding and ensure your variables match, otherwise you will have issues!
+
 ### Web Page check
 
+{% code overflow="wrap" %}
 ```yaml
+#This will check if $HEALTHCHECK (eg http://myplexserver:32400 ) is accessible and if not, restart the container.
 healthcheck:
   test: curl --connect-timeout 15 --silent --show-error --fail $HEALTHCHECK
   interval: 1m
@@ -38,8 +42,9 @@ healthcheck:
   retries: 3
   start_period: 1m
 ```
+{% endcode %}
 
-This will check if localhost:$PORT is accessible and if not, restart the container.
+
 
 
 
