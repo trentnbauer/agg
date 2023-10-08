@@ -11,6 +11,7 @@
 
 * [Mini Guides](guides/mini-guides/README.md)
   * ['All' Compose File](guides/mini-guides/all-compose-file.md)
+  * [Add Health Check to Container](guides/mini-guides/add-health-check-to-container.md)
 * [❔ UniFi](guides/unifi/README.md)
   * [❔ Set up a new Dream Machine](guides/unifi/set-up-a-new-dream-machine.md)
   * [❔ Assign a DHCP Reservation](guides/unifi/assign-a-dhcp-reservation.md)
