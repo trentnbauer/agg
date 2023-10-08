@@ -23,12 +23,6 @@ services:
       - logs:/var/log/pterodactyl/
       - /tmp/pterodactyl/:/tmp/pterodactyl/
       - /srv/daemon-data/:/srv/daemon-data/
-    healthcheck:
-      test: curl --connect-timeout 15 --silent --show-error --fail $HEALTHCHECK
-      interval: 1m
-      timeout: 30s
-      retries: 3
-      start_period: 30s
 
   db:
     image: mariadb:10.11
