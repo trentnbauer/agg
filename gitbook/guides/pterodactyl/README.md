@@ -10,7 +10,12 @@ _Come across an issue with this documentation? You can make an edit request your
 
 ## The Scenario
 
-Our goal is to create a new Pterodactyl Panel and Wings node
+Our goal is to create a new Pterodactyl Panel and Wings node for hosting game servers.
+
+This documentation is NOT intended for a professional / reseller environment. Please do not follow this guide if you intend on selling or publicizing your server resources, as
+
+* Proxy / Tunneling wings and panel is NOT supported by Pterodactyl developers
+* This guide is provided with best effort support
 
 ### Panel
 
@@ -39,4 +44,4 @@ Wings hosts the game server compute (CPU) and storage. As this machines job is t
 ### Recommended
 
 * [Portainer & GitOps](../portainer-and-gitops/)
-* Ubuntu Server
+* A seperate server for the Panel and each Wings node
