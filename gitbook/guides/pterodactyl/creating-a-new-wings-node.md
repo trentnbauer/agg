@@ -23,7 +23,6 @@ SQL_PASS=
 SQL_PASS_ROOT=
 PORT_DB=3306
 PORT= #This is the port Cloudflare will talk too
-HEALTHCHECK= #this will be your hostname+PORT, eg http://myserver:80
 ```
 {% endcode %}
 
@@ -89,9 +88,23 @@ here is the proxy I created;
 2. On the right hand panel, input
    1. IP address: 0.0.0.0
    2. IP Alias: Your domain or subdomain that points to your servers public IP
-   3. Ports: The port range you will forward to this VM\
+   3. Ports: The port range you will forward to this VM (I've chosen ports 500-600)\
       ![](<../../.gitbook/assets/image (11).png>)
-   4. Refer to the [Port Forwarding](../unifi/port-forwarding.md) documentation to forward those ports to the host
+
+### Port Forward
+
+You will now need to port forward the chosen ports to your server.
+
+Firstly, have a look at your modem / router. You will need to take note of
+
+* Brand
+* Model number or part number
+
+Port forwarding is particularly tricky for beginners, mostly because every device is slightly different.
+
+You'll need to do some Googling and / or Youtube'ing on how to port forward with your model router / modem.
+
+
 
 ## Why do I do it this way?
 

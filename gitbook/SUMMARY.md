@@ -36,6 +36,7 @@
   * [Join servers via domain](guides/pterodactyl/ddns-for-joining-servers.md)
   * [Configuring your Database](guides/pterodactyl/configuring-your-database.md)
   * [Server Best Practices & Suggestions](guides/pterodactyl/server-best-practices-and-suggestions.md)
+  * [Troubleshooting](guides/pterodactyl/troubleshooting.md)
 
 ## 🎮 Game Servers
 
