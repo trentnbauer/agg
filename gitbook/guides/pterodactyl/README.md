@@ -28,11 +28,10 @@ Wings hosts the game server compute (CPU) and storage. As this machines job is t
 ### Prerequisites
 
 * Panel machine
-  * Docker installed
-  * Docker Compose installed
-* 1 machine to install the Wings node on (can be the same as the panel machine)
-  * Docker installed
-  * Docker Compose installed
+  * [Docker and compose installed](https://docs.docker.com/engine/install/ubuntu/)
+* 1 machine to install the Wings node on (can be the same as the panel machine)\
+  _You can create multiple node machines_
+  * [Docker and Compose installed](https://docs.docker.com/engine/install/ubuntu/)
   * A high performance, well spec'd machine;
     * Lots of RAM
     * High single thread passmark CPUs
