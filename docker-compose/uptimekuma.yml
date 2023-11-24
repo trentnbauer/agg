@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   app:
-    image: louislam/uptime-kuma:1.23.6-debian
+    image: louislam/uptime-kuma:1.23.7-debian
     volumes:
       - app:/app/data
     ports:
