@@ -5,6 +5,9 @@ services:
     image: louislam/uptime-kuma:1.23.7-debian
     volumes:
       - app:/app/data
+    environment:
+      - UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN=true
+      - UPTIME_KUMA_CLOUDFLARED_TOKEN=$CFTOKEN
     ports:
       - $PORT:3001  # <Host Port>:<Container Port>
     restart: always
