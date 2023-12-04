@@ -1,0 +1,33 @@
+version: '3'
+services:
+  db:
+    container_name: $DB_CONTAINER
+    image: mysql:8.2
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    volumes:
+       - db:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+       - MYSQL_ROOT_PASSWORD=$DB_ROOT_PASS
+       - MYSQL_DATABASE=wordpress
+       - MYSQL_USER=$DB_USER
+       - MYSQL_PASSWORD=$DB_PASS
+       - TZ=$TZ
+  app:
+    image: wordpress:php8.0-apache
+    ports:
+       - $PORT:80
+    restart: unless-stopped
+    volumes:
+      - app:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=$DB_CONTAINER:3306
+      - WORDPRESS_DB_USER=$DB_USER
+      - WORDPRESS_DB_PASSWORD=$DB_PASS
+      - TZ=$TZ
+
+volumes:
+  app:
+  db:
