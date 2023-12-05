@@ -39,7 +39,7 @@ services:
       - cache
     volumes:
       - env:/app/var
-      - logs:/app/storage/logs
+      - /var/log/pterodactyl:/app/storage/logs
     environment:
       MAIL_FROM: $MAIL_FROM
       MAIL_DRIVER: "smtp"
@@ -74,5 +74,4 @@ volumes:
   cache:
   db:
   env:
-  logs:
   dbetc:
