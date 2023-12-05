@@ -20,7 +20,7 @@ services:
       - /var/lib/docker/containers/:/var/lib/docker/containers/
       - config:/etc/pterodactyl/  #config file from Panel
       - /var/lib/pterodactyl/:/var/lib/pterodactyl/ #game server files
-      - logs:/var/log/pterodactyl/
+      - /var/log/pterodactyl/:/var/log/pterodactyl/
       - /tmp/pterodactyl/:/tmp/pterodactyl/
       - /srv/daemon-data/:/srv/daemon-data/
 
@@ -53,7 +53,6 @@ networks:
 volumes:
   config: 
   lib:
-  logs:
   daemon:
   db:
 
