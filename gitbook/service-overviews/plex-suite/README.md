@@ -10,10 +10,8 @@ The other apps listed in this doco are here to integrate, manage and automate va
 
 #### Flowchart <a href="#bkmrk-flowchart" id="bkmrk-flowchart"></a>
 
-<figure><img src="../../.gitbook/assets/Plex Suite 2.0.jpg" alt=""><figcaption></figcaption></figure>
-
-<img alt="" class="gitbook-drawing">
+<img src="../../.gitbook/assets/file.excalidraw.svg" alt="Software defined flowchat. How the containers integrate" class="gitbook-drawing">
 
 <figure><img src="https://kb.xfgn.dev/uploads/images/gallery/2023-05/scaled-1680-/plex-suite-2-0.jpg" alt=""><figcaption></figcaption></figure>
 
-<img src="../../.gitbook/assets/file.excalidraw.svg" alt="" class="gitbook-drawing">
+<img src="../../.gitbook/assets/file.excalidraw (1).svg" alt="Hardware defined flowchart. Where the applications sit" class="gitbook-drawing">
