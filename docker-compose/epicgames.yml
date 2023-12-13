@@ -7,7 +7,7 @@ services:
       - $PORT:3000/tcp
     restart: unless-stopped
     volumes:
-      - $VOLUME:/usr/app/config:rw #Mapped to local drive to allow automations syncing cookies files from GitHub
+      - config:/usr/app/config:rw #Mapped to local drive to allow automations syncing cookies files from GitHub
     environment:
       - TZ=$TZ
       - EMAIL=$EMAIL
@@ -22,3 +22,5 @@ services:
       - SMTP_USERNAME=$SMTP_USERNAME
       - SMTP_PASSWORD=$SMTP_PASSWORD
     mem_limit: 2G
+volumes:
+  config:
