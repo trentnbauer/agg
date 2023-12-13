@@ -1,0 +1,24 @@
+version: '3'
+services:
+  app:
+    image: ghcr.io/claabs/epicgames-freegames-node:bullseye-slim@sha256:aa718f613b9c562bdd240b5a9ef47c435815b51e392addd58e475452803074f4
+    ports:
+      - $PORT:3000/udp
+      - $PORT:3000/tcp
+    restart: unless-stopped
+    volumes:
+      - $VOLUME:/usr/app/config:rw #Mapped to local drive to allow automations syncing cookies files from GitHub
+    environment:
+      - TZ=$TZ
+      - EMAIL=$EMAIL
+      - RUN_ON_STARTUP=$RUN_ON_STARTUP
+      - BASE_URL=$BASE_URL
+      - SMTP_HOST=$SMTP_HOST
+      - SMTP_PORT=$SMTP_PORT
+      - EMAIL_SENDER_ADDRESS=$EMAIL_SENDER_ADDRESS
+      - EMAIL_SENDER_NAME=$EMAIL_SENDER_NAME
+      - EMAIL_RECIPIENT_ADDRESS=$EMAIL_RECIPIENT_ADDRESS
+      - SMTP_SECURE=$SMTP_SECURE
+      - SMTP_USERNAME=$SMTP_USERNAME
+      - SMTP_PASSWORD=$SMTP_PASSWORD
+    mem_limit: 2G
