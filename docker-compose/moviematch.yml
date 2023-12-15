@@ -1,0 +1,14 @@
+version: '3'
+services:
+  app:
+    image: lukechannings/moviematch:1.10.0
+    restart: unless-stopped
+    environment:
+      - PLEX_URL=$PLEX_URL
+      - PLEX_TOKEN=$PLEX_TOKEN
+      - ROOT_PATH=$ROOTPATH
+      - ROOTPATH=$ROOTPATH
+    ports:
+      - $PORT:8000     
+
+

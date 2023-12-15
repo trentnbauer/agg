@@ -1,0 +1,16 @@
+---
+version: "2.1"
+services:
+  app:
+    image: ghcr.io/linuxserver/sabnzbd:version-4.1.0@sha256:2e8400f3b64983a54c0f3486ae705e9f1d11d155b889ebf5907713859e823336
+    environment:
+      - TZ=$TZ
+    volumes:
+      - config:/config
+      - $DOWNLOADS:$DOWNLOADS
+      - $INCOMPLETE_DOWNLOADS:$INCOMPLETE_DOWNLOADS
+    ports:
+      - $PORT:8080
+    restart: unless-stopped
+volumes:
+  config:
