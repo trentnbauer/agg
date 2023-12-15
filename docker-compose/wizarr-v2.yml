@@ -1,0 +1,16 @@
+---
+version: "3.5"
+services:
+  app:
+    image: ghcr.io/wizarrrr/wizarr:2.2.0
+    restart: unless-stopped
+    ports:
+      - $PORT:5690
+    volumes:
+      - db:/data/database
+    environment:
+      - TZ=$TZ
+      - APP_URL=$URL
+
+volumes:
+  db:
