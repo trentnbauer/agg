@@ -7,7 +7,7 @@ services:
       - wings
     ports:
       - $PORT_SFTP:2022
-      - $PORT:443
+      - $PORT:443   #Web address port
       - $PORT_UNKNOWN:8080
     tty: true
     environment:
