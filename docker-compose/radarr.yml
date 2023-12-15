@@ -1,0 +1,35 @@
+---
+version: "2.1"
+services:
+  app:
+    image: ghcr.io/linuxserver/radarr:version-5.0.3.8127@sha256:9d963b1a7cf228904a0d17ad99e5fe2aeb91c17432dbe166ba1950664e3a9f86
+    environment:
+      #- PUID=1000
+      #- PGID=1000
+      - TZ=$TZ
+    volumes:
+      - config:/config
+      - media:/movies
+      - downloads:/downloads
+    ports:
+      - $PORT:7878
+    restart: unless-stopped
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail $HOST:$PORT/ping
+      interval: 3m
+      timeout: 30s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  config:
+  media:
+    driver_opts:
+      type: nfs
+      o: addr=$STORAGE,nfsvers=4
+      device: :$MEDIA
+  downloads:
+    driver_opts:
+      type: nfs 
+      o: addr=$STORAGE,nfsvers=4
+      device: :$DOWNLOAD
