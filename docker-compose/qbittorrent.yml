@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  app:
+    image: emmercm/qbittorrent:4.6-alpine
+    restart: unless-stopped
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    environment:
+      - TZ=$TZ
+    ports:
+      - $WEBPORT:8080
+      - 6881:6881/tcp #Torrent Traffic
+      - 6881:6881/udp #Torrent Traffic
+    volumes:
+      - config:/config
+      - data:/data
+      - $DOWNLOADS:/volume1/downloads
+  
+  #A better torrent fronten
+
+
+      
+       
+volumes:
+  config:
+  data:
