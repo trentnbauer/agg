@@ -1,0 +1,45 @@
+version: "2.1"
+services:
+  app:
+    image: ghcr.io/linuxserver/plex:1.32.8@sha256:8e038b79487919c2aefe976b690067df88113aec21a3d490837584f958c72412
+    network_mode: host
+    ports:
+      - $PORT:32400
+      - 1900:1900/udp
+      - 3005:3005
+      - 5353:5353/udp
+      - 8324:8324
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+      - 32469:32469
+    #devices:
+     # - /dev/dri:/dev/dri
+    environment:
+      #- PUID=1000
+      #- PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM=$PLEX_CLAIM
+      - NVIDIA_VISIBLE_DEVICES=ALL
+    runtime: nvidia
+    volumes:
+      - app:/config
+      #- $MEDIA:$MEDIA
+      - media:/nfs/Media
+      - /dev/shm:/dev/shm
+    restart: unless-stopped
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail http://localhost:$PORT/identity
+      interval: 1m
+      timeout: 30s
+      retries: 3
+      start_period: 1m
+
+volumes:
+  app:
+  media:
+    driver_opts:
+      type: nfs 
+      o: $STORAGE,nfsvers=4
+      device: :$MEDIA
