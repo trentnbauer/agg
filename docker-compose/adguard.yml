@@ -1,0 +1,21 @@
+version: "3"
+services:
+  app:
+    #Disable ResolveD https://hub.docker.com/r/adguard/adguardhome
+    image: adguard/adguardhome:v0.107.43
+    #network_mode: "host"
+    ports:
+       - 53:53/tcp #DNS
+       - 53:53/udp #DNS
+       - $PORT_HTTP:80/tcp #Admin Panel
+       - $PORT_SETUP:3000 #Setup port
+    environment:
+      - TZ=$TZ 
+    volumes:
+       - work:/opt/adguardhome/work
+       - conf:/opt/adguardhome/conf
+    restart: unless-stopped
+
+volumes:
+  work:
+  conf:
