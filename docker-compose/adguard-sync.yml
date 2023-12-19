@@ -12,6 +12,9 @@ services:
       REPLICA_URL: http://$SLAVE_URL
       REPLICA_USERNAME: $SLAVE_UN
       REPLICA_PASSWORD: $SLAVE_PW
+      REPLICA1_URL: http://$SLAVE1_URL
+      REPLICA1_USERNAME: $SLAVE1_UN
+      REPLICA1_PASSWORD: $SLAVE1_PW
       # REPLICA1_AUTOSETUP: true # if true, AdGuardHome is automatically initialized.
       # REPLICA1_INTERFACENAME: 'ens18' # use custom dhcp interface name
       # REPLICA1_DHCPSERVERENABLED: true/false (optional) enables/disables the dhcp server on the replica
