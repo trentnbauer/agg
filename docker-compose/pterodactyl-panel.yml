@@ -40,7 +40,7 @@ services:
     volumes:
       - env:/app/var
       - /var/log/pterodactyl:/app/storage/logs
-      - config:/app/config/socialite.php
+      - config:/app/config
     environment:
       MAIL_FROM: $MAIL_FROM
       MAIL_DRIVER: "smtp"
