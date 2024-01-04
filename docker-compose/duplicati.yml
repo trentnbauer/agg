@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  app:
+    image: ghcr.io/linuxserver/duplicati:v2.0.7.1-2.0.7.1_beta_2023-05-25-ls188
+    environment:
+      - PUID=0 #Root user
+      - PGID=0 #Root user
+      - TZ=$TZ
+      - CLI_ARGS= #optional
+    volumes:
+      - config:/config
+      - /:/macaroni
+    ports:
+      - $PORT:8200
+    restart: unless-stopped
+volumes:
+  config:
