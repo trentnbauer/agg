@@ -8,7 +8,7 @@ services:
       - TZ=$TZ
     volumes:
       - app:/config
-      - www:/app/overseerr/public #rebrand overseerr https://github.com/sct/overseerr/issues/404#issuecomment-1659795118
+      #- www:/app/overseerr/public #rebrand overseerr https://github.com/sct/overseerr/issues/404#issuecomment-1659795118
     ports:
       - $PORT:5055
     restart: unless-stopped
