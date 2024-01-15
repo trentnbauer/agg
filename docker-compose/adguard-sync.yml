@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   app:
-    image: ghcr.io/bakito/adguardhome-sync:v0.6.0@sha256:20312f97a38258d30af6f17f14eacc1251c8ed194ccc2c359a41906f017b8728
+    image: ghcr.io/bakito/adguardhome-sync:v0.6.2@sha256:06ad03b2f6b1e9b035d5ebba702de3d3851e51fd1368dd0ec47fc5c4ebd36ab4
     command: run
     environment:
       LOG_LEVEL: 'debug'
