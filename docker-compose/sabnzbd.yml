@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   app:
-    image: ghcr.io/linuxserver/sabnzbd:version-4.1.0@sha256:4b654fcb49a6301305dc8db42ef119734ed35fd2ef1d3b9144cce90f0cc64a09
+    image: ghcr.io/linuxserver/sabnzbd:4.2.1-ls146
     environment:
       - TZ=$TZ
     volumes:
