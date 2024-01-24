@@ -11,10 +11,10 @@ services:
       #- $PORT_UNKNOWN:8080
     tty: true
     environment:
-      TZ:$TZ
-      WINGS_UID:988
-      WINGS_GID:988
-      WINGS_USERNAME:pterodactyl
+      TZ: $TZ
+      WINGS_UID: 988
+      WINGS_GID: 988
+      WINGS_USERNAME: pterodactyl
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/containers/:/var/lib/docker/containers/
