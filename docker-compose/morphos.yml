@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  app:
+    image: ghcr.io/danvergara/morphos-server:0.1.1
+    ports:
+      - "${PORT:-8080}:8080"
+    volumes:
+      - /tmp:/tmp
+    restart: unless-stopped
+    networks:
+      - network
+    labels:
+      com.docker-tc.enabled: "1"
+      com.docker-tc.limit: "15mbps"  # Setting the bandwidth limit to 25mbit
+      # Additional labels for delay, loss, duplication, and corruption can be added if needed
+
+  traffic-control:
+    image: lukaszlach/docker-tc:stable
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - network
+    restart: on-failure
+    cap_add:
+      - NET_ADMIN
+    command: ["--interface", "${NETADAPT:-ens18}"]
+
+networks:
+  network:
