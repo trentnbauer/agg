@@ -4,11 +4,11 @@ services:
     image: ghcr.io/linuxserver/kasm:version-1.14.0.1@sha256:b880039c75f8e6beb922acd438d087fbc6eb31b33eb289365a90bf4fc354c786
     privileged: true
     environment:
-      - PUID=1000
-      - PGID=1000
+      #- PUID=1000
+      #- PGID=1000
       - KASM_PORT=444
       - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=all
+      #- NVIDIA_DRIVER_CAPABILITIES=all
       - TZ=$TZ
     runtime: nvidia
     volumes:
@@ -16,7 +16,7 @@ services:
       - profiles:/profiles #persistent storage
       - /dev/input:/dev/input #input support
       - /run/udev/data:/run/udev/data #input support
-      - custom_icons:/icons
+      - thumbnails:/kasm_release/www/img/thumbnails
       - /opt/kasm/current/log/agent_json.log:/opt/kasm/current/log/agent_json.log ##CrowdSec logs
     ports:
       - $PORT_SETUP:3000 #Setup WebGUI
@@ -26,4 +26,4 @@ services:
 volumes:
   opt:
   profiles:
-  custom_icons:
+  thumbnails:
