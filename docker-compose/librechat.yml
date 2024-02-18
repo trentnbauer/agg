@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  api:
+    image: ghcr.io/danny-avila/librechat:v0.6.10
+    ports:
+      - $PORT:3080
+    restart: always
+    env_file:
+      - ../stack.env
+    volumes:
+      - librechat_images:/app/client/public/images
+    networks:
+      librechat:
+        aliases:
+          - api
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.5.1
+    restart: always
+    env_file:
+      - ../stack.env
+    volumes:
+      - meili_data:/meili_data
+    networks:
+      librechat:
+        aliases:
+          - meilisearch
+          
+  mongodb:
+    image: mongo
+    restart: always
+    #user: "${UID}:${GID}"
+    env_file:
+      - ../stack.env
+    volumes:
+      - mongo_data:/data/db
+    command: mongod --noauth
+    networks:
+      librechat:
+        aliases:
+          - mongodb
+
+volumes:
+  librechat_images:
+    driver: local
+  meili_data:
+    driver: local
+  mongo_data:
+    driver: local
+
+networks:
+  librechat:
+    driver: bridge
