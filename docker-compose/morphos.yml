@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   app:
-    image: ghcr.io/danvergara/morphos-server:0.2.0
+    image: ghcr.io/danvergara/morphos-server:0.3.0
     ports:
       - "${PORT:-8080}:8080"
     volumes:
