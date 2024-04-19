@@ -1,7 +1,7 @@
 version: "2.1"
 services:
   app:
-    image: ghcr.io/linuxserver/plex:1.40.1@sha256:817fb3ea4813af30492227c9cf368db957970260717be4fde0bab782f9a5c9a5
+    image: ghcr.io/linuxserver/plex:1.40.2@sha256:15eaab9b1447e413b3f28df1cad8e5c87e4a06ac2b0eaf09aca8c6ae11feed3c
     network_mode: host
     ports:
       - $PORT:32400
