@@ -61,6 +61,8 @@ services:
       REDIS_HOST: "cache"
       DB_HOST: "database"
       DB_PORT: $PORT_DB
+      HASHIDS_SALT: $HASHIDS_SALT
+      HASHIDS_LENGTH: $HASHIDS_LENGTH
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail $HEALTHCHECK
       interval: 1m
