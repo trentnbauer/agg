@@ -23,6 +23,7 @@ services:
       - /var/log/pterodactyl/:/var/log/pterodactyl/ #Allows Crowdsec to read logs
       - /tmp/pterodactyl/:/tmp/pterodactyl/
       - /srv/daemon-data/:/srv/daemon-data/
+      - logs:/app/storage/logs/ #Laravel log files
 
   db:
     image: mariadb:10.11
@@ -55,5 +56,6 @@ volumes:
   lib:
   daemon:
   db:
+  logs:
 
 
