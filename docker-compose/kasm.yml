@@ -7,10 +7,10 @@ services:
       #- PUID=1000
       #- PGID=1000
       - KASM_PORT=444
-      - NVIDIA_VISIBLE_DEVICES=all
+      #- NVIDIA_VISIBLE_DEVICES=all
       #- NVIDIA_DRIVER_CAPABILITIES=all
       - TZ=$TZ
-    runtime: nvidia
+    #runtime: nvidia
     volumes:
       - opt:/opt
       - profiles:/profiles #persistent storage
