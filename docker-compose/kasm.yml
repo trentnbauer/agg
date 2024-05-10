@@ -22,6 +22,12 @@ services:
       - $PORT_SETUP:3000 #Setup WebGUI
       - $PORT:444
     restart: unless-stopped
+    healthcheck:
+      test: curl --fail http://localhost:444 || exit 1
+      internal: 60s
+      retry: 5
+      start-period: 20s
+      timeout: 10s
 
 volumes:
   opt:
