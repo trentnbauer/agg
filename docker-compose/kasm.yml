@@ -1,11 +1,11 @@
-version: "2.1"
+version: "2.3"
 services:
   app:
     image: ghcr.io/linuxserver/kasm:version-1.14.0.1@sha256:0fc0bdab8a99e1ae370c90af1b56ff1812f113ac06a7d3f96094c7c6be4d6e35
     privileged: true
     environment:
-      #- PUID=1000
-      #- PGID=1000
+      - PUID=1000
+      - PGID=1000
       - KASM_PORT=444
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
@@ -26,7 +26,7 @@ services:
       test: curl --connect-timeout 15 --silent --show-error --fail http://localhost:444
       interval: 30s
       retries: 3
-      start-period: 30s
+      start_period: 30s
       timeout: 15s
 
 volumes:
