@@ -24,7 +24,6 @@ services:
     restart: unless-stopped
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail http://localhost:444
-      internal: 30s
       retry: 3
       start-period: 20s
       timeout: 10s
