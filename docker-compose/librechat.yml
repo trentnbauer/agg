@@ -34,14 +34,13 @@ services:
       librechat:
         aliases:
           - meilisearch
-    #healthcheck:
-      #test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:7700
-      #interval: 30s
-      #retries: 3
-      #start_period: 30s
-      #timeout: 20s
-    #labels:
-      #- "autoheal=true"
+    healthcheck:
+      test: ["CMD-SHELL", "pidof mongod || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    labels:
+      - "autoheal=true"
           
   mongodb:
     image: mongo
