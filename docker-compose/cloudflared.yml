@@ -5,10 +5,3 @@ services:
     restart: unless-stopped
     network_mode: host
     command: tunnel run -token $CLOUDFLARE_UUID
-    environment:
-      TUNNEL_METRICS: "localhost:2000"
-    healthcheck:
-      command: cloudflared tunnel health --ready-endpoint ${TUNNEL_METRICS}/ready
-      interval: 5s
-      retries: 6
-      timeout: 3s
