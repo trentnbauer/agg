@@ -3,17 +3,17 @@ services:
   app:
     image: ghcr.io/linuxserver/plex:1.40.2@sha256:114bc1566b442144552843fe43c45ca1a4fb023b46ce2c75485d611792e45519
     network_mode: host
-    ports:
-      - $PORT:32400
-      - 1900:1900/udp
-      - 3005:3005
-      - 5353:5353/udp
-      - 8324:8324
-      - 32410:32410/udp
-      - 32412:32412/udp
-      - 32413:32413/udp
-      - 32414:32414/udp
-      - 32469:32469
+    #ports:
+      #- $PORT:32400
+      #- 1900:1900/udp
+      #- 3005:3005
+      #- 5353:5353/udp
+      #- 8324:8324
+      #- 32410:32410/udp
+      #- 32412:32412/udp
+      #- 32413:32413/udp
+      #- 32414:32414/udp
+      #- 32469:32469
     #devices:
      # - /dev/dri:/dev/dri
     environment:
@@ -25,16 +25,17 @@ services:
     runtime: nvidia
     volumes:
       - app:/config
-      #- $MEDIA:$MEDIA
       - media:/nfs/Media
       - /dev/shm:/dev/shm
     restart: unless-stopped
     healthcheck:
-      test: curl --connect-timeout 15 --silent --show-error --fail http://localhost:$PORT/identity
+      test: curl --connect-timeout 15 --silent --show-error --fail http://localhost:32400/identity
       interval: 1m
       timeout: 30s
       retries: 3
       start-period: 1m
+    labels:
+      - "autoheal=true"
 
 volumes:
   app:
