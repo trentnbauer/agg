@@ -3,8 +3,8 @@ services:
   database:
     image: mariadb:10.11
     restart: always
-    ports:
-      - 3306:3306
+    #ports:
+      #- 3306:3306
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - db:/var/lib/mysql
@@ -16,6 +16,13 @@ services:
       MYSQL_ROOT_PASSWORD: $MYSQL_PASS_ROOT
       MYSQL_DATABASE: "panel"
       MYSQL_USER: "pterodactyl"
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    labels:
+      - "autoheal=true"
       
   cache:
     image: redis:alpine3.18
@@ -31,7 +38,7 @@ services:
     networks:
       - panel
     ports:
-      - $PORT_HTTP:80
+      - ${PORT_HTTP:-80}:80
     #dns:
     #  - 1.1.1.1
     links:
@@ -63,11 +70,13 @@ services:
       HASHIDS_SALT: $HASHIDS_SALT     #Refer to https://github.com/pterodactyl/panel/issues/5012#issuecomment-1960789655
       HASHIDS_LENGTH: 8
     healthcheck:
-      test: curl --connect-timeout 15 --silent --show-error --fail $HEALTHCHECK
+      test: curl --connect-timeout 15 --silent --show-error --fail localhost:80
       interval: 1m
       timeout: 30s
       retries: 3
       start_period: 30s
+    labels:
+      - "autoheal=true"
 networks:
   panel:
 
