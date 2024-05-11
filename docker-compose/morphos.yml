@@ -10,6 +10,7 @@ services:
     networks:
       - network
     labels:
+      autoheal: "true"
       com.docker-tc.enabled: "1"
       com.docker-tc.limit: "15mbps"  # Setting the bandwidth limit to 25mbit
       # Additional labels for delay, loss, duplication, and corruption can be added if needed
@@ -19,8 +20,6 @@ services:
       retries: 3
       start_period: 30s
       timeout: 20s
-    labels:
-      - "autoheal=true"
       
   traffic-control:
     image: lukaszlach/docker-tc:stable
