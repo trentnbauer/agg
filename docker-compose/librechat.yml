@@ -15,7 +15,7 @@ services:
         aliases:
           - api
     healthcheck:
-      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:3080
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:3080/login
       interval: 30s
       retries: 3
       start_period: 30s
