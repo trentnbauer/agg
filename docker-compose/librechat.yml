@@ -4,8 +4,8 @@ services:
   api:
     image: ghcr.io/danny-avila/librechat:v0.7.1
     ports:
-      - $PORT:3080
-    restart: always
+      - ${PORT:-3080}:3080
+    restart: unless-stopped
     env_file:
       - ../stack.env
     volumes:
@@ -14,10 +14,18 @@ services:
       librechat:
         aliases:
           - api
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:3080
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
 
   meilisearch:
     image: getmeili/meilisearch:v1.5.1
-    restart: always
+    restart: unless-stopped
     env_file:
       - ../stack.env
     volumes:
@@ -29,7 +37,7 @@ services:
           
   mongodb:
     image: mongo
-    restart: always
+    restart: unless-stopped
     #user: "${UID}:${GID}"
     env_file:
       - ../stack.env
@@ -40,6 +48,13 @@ services:
       librechat:
         aliases:
           - mongodb
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    labels:
+      - "autoheal=true"
 
 volumes:
   librechat_images:
