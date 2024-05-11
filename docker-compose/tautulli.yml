@@ -9,8 +9,15 @@ services:
     volumes:
       - app:/config
     ports:
-      - $PORT:8181
+      - ${PORT:-8181}:8181
     restart: unless-stopped
-
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8181
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
 volumes:
   app:
