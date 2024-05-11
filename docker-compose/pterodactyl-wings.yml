@@ -6,8 +6,8 @@ services:
     networks:
       - wings
     ports:
-      - $PORT_SFTP:2022
-      - $PORT:443   #Web address port
+      - ${PORT_SFTP:-2022}:2022
+      - ${PORT:-443}:443   #Web address port
       #- $PORT_UNKNOWN:8080
     tty: true
     environment:
@@ -24,7 +24,6 @@ services:
       - /tmp/pterodactyl/:/tmp/pterodactyl/
       - /srv/daemon-data/:/srv/daemon-data/
       - logs:/app/storage/logs/ #Laravel log files
-
   db:
     image: mariadb:10.11
     restart: always
@@ -40,6 +39,13 @@ services:
       - MYSQL_USER="pterodactyl"
       - MYSQL_PASSWORD=$SQL_PASS
       - MYSQL_ROOT_PASSWORD=$SQL_PASS_ROOT
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-proot", "--password=$MYSQL_PASS_ROOT"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    labels:
+      - "autoheal=true"
 
 networks:
   wings:
