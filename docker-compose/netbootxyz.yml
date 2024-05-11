@@ -13,11 +13,19 @@ services:
       - conf:/config
       - assets:/assets #Bootable Assets, eg live CDs
     ports:
-      - $PORT_UI:3000 #WebUI
+      - ${PORT_UI:-3000}:3000 #WebUI
       - 69:69/udp #TFTP
       - $PORT_ASSETS:80 #Assets
     restart: unless-stopped
-
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:3000
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
+      
 volumes:
   conf:
   assets:
