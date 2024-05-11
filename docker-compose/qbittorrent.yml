@@ -10,14 +10,21 @@ services:
     environment:
       - TZ=$TZ
     ports:
-      - $WEBPORT:8080
-      - 6881:6881/tcp #Torrent Traffic
-      - 6881:6881/udp #Torrent Traffic
+      - ${WEBPORT:-8080}:8080
+      - ${PORTFORWARD:-6881}:${PORTFORWARD:-6881}/tcp #Torrent Traffic
+      - ${PORTFORWARD:-6881}:${PORTFORWARD:-6881}/udp #Torrent Traffic
     volumes:
       - config:/config
       - data:/data
       - $DOWNLOADS:/volume1/downloads
-  
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8080
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"  
   #A better torrent fronten
 
 
