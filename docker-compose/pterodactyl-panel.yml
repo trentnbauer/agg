@@ -31,7 +31,14 @@ services:
     restart: always
     volumes:
       - cache:/data
-      
+     healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    labels:
+      - "autoheal=true"
+    
   panel:
     image: ghcr.io/pterodactyl/panel:v1.11.7
     restart: always
