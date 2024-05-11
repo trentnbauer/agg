@@ -14,14 +14,6 @@ services:
       librechat:
         aliases:
           - api
-    #healthcheck:
-      #test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:3080/login
-      #interval: 30s
-      #retries: 3
-      #start_period: 30s
-      #timeout: 20s
-    #labels:
-      #- "autoheal=true"
 
   meilisearch:
     image: getmeili/meilisearch:v1.5.1
@@ -34,13 +26,7 @@ services:
       librechat:
         aliases:
           - meilisearch
-    healthcheck:
-      test: ["CMD-SHELL", "pidof mongod || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    labels:
-      - "autoheal=true"
+
           
   mongodb:
     image: mongo
@@ -55,14 +41,13 @@ services:
       librechat:
         aliases:
           - mongodb
-    #healthcheck:
-      #test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
-      #interval: 30s
-      #timeout: 10s
-      #start_period: 30s
-      #retries: 5
-    #labels:
-      #- "autoheal=true"
+    healthcheck:
+      test: ["CMD-SHELL", "pidof mongod || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    labels:
+      - "autoheal=true"
 
 volumes:
   librechat_images:
