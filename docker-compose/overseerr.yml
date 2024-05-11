@@ -10,15 +10,17 @@ services:
       - app:/config
       #- www:/app/overseerr/public #rebrand overseerr https://github.com/sct/overseerr/issues/404#issuecomment-1659795118
     ports:
-      - $PORT:5055
+      - ${PORT:-5055}:5055
     restart: unless-stopped
     healthcheck:
-      test: curl --connect-timeout 15 --silent --show-error --fail $HEALTHCHECK
+      test: curl --connect-timeout 15 --silent --show-error --fail http://localhost:5050
       interval: 1m
       timeout: 30s
       retries: 3
       start_period: 30s
-
+    labels:
+      - "autoheal=true"
+      
 volumes:
   app:
   www:
