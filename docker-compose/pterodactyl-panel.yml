@@ -24,7 +24,7 @@ services:
     restart: always
     volumes:
       - cache:/data
-     healthcheck:
+    healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 5s
