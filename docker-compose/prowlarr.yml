@@ -12,9 +12,16 @@ services:
       - media:/media
       - downloads:/downloads
     ports:
-      - $PORT:9696
+      - ${PORT:-9696}:9696
     restart: unless-stopped
-    
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:9696
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
 
 volumes:
   config:
