@@ -19,8 +19,8 @@ services:
       - thumbnails:/kasm_release/www/img/thumbnails
       - /opt/kasm/current/log/agent_json.log:/opt/kasm/current/log/agent_json.log ##CrowdSec logs
     ports:
-      - $PORT_SETUP:3000 #Setup WebGUI
-      - $PORT:444
+      - ${PORT_SETUP:-3000}:3000 #Setup WebGUI
+      - $PORT:-444}:444
     restart: unless-stopped
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:444
@@ -28,6 +28,8 @@ services:
       retries: 3
       start_period: 30s
       timeout: 15s
+    labels:
+      - "autoheal=true"
 
 volumes:
   opt:
