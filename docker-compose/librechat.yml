@@ -60,6 +60,7 @@ services:
       test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
       interval: 30s
       timeout: 10s
+      start_period: 30s
       retries: 5
     labels:
       - "autoheal=true"
