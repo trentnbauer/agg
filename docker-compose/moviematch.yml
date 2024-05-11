@@ -9,6 +9,13 @@ services:
       - ROOT_PATH=$ROOTPATH
       - ROOTPATH=$ROOTPATH
     ports:
-      - $PORT:8000     
-
+      - ${PORT:-8000}:8000   
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8000
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
 
