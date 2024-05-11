@@ -9,6 +9,14 @@ services:
       - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
       - TZ=$TZ
     ports:
-      - $PORT:8191
+      - ${PORT:-8191}:8191
     restart: unless-stopped
     mem_limit: 2G
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8191
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
