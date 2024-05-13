@@ -1,0 +1,20 @@
+---
+version: "3.5"
+services:
+  app:
+    image: ghcr.io/wizarrrr/wizarr:4.1.0
+    ports:
+      - ${PORT:-5690}:5690
+    volumes:
+      - db:/data/database
+    restart: unless-stopped
+    labels:
+      - "autoheal=true"
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:5690
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+volumes:
+  db:
