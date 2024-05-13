@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  app:
+    image: allebb/studio-server:1.0.4-rc6
+    restart: unless-stopped
+    #network_mode: bridge
+    environment:
+      - TZ=${TZ:-Australia/Melbourne}
+    ports:
+      - ${PORTDB:-5432}:5432       #DB             https://wirebear.co.uk/software/studio-server
+      - ${PORTCHAT:-50059}:50059   #Davinci Chat   https://wirebear.co.uk/software/studio-server
+      - ${PORTWEB:-8543}:8543      #Web UI
+    volumes:
+      - hooks:/var/studio-server/hooks/
+      - database:/var/studio-server/database/
+      - jobs:/etc/cron.d/
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8543
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
+
+volumes:
+  hooks:
+  database:
+  jobs:
+  #fettuccine:
+    #driver_opts:
+      #type: nfs 
+      #o: ${SERVER:-fettuccine.agg.local},nfsvers=4
+      #device: :$SHARE
