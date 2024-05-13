@@ -23,7 +23,7 @@ services:
       - ${PORT:-444}:444
     restart: unless-stopped
     healthcheck:
-      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:444
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:444/api/__healthcheck
       interval: 30s
       retries: 3
       start_period: 30s
