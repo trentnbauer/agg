@@ -10,7 +10,7 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
       #- NVIDIA_DRIVER_CAPABILITIES=all
       - TZ=$TZ
-    #runtime: nvidia
+    runtime: nvidia
     volumes:
       - opt:/opt
       - profiles:/profiles #persistent storage
