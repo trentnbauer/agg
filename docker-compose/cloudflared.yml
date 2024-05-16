@@ -1,4 +1,4 @@
-version: "2.3"
+version: '3'
 services:
   app:
     image: cloudflare/cloudflared:2024.4.1
@@ -7,8 +7,9 @@ services:
     environment:
       - TUNNEL_METRICS=0.0.0.0:5566
     command: tunnel run -token $CLOUDFLARE_UUID
-    #healthcheck:
-    #  command: cloudflared tunnel health --ready-endpoint 127.0.0.1:5566/ready
-    #  interval: 5s
-    #  retries: 6
-    #  timeout: 3s
+    healthcheck:
+      test: cloudflared tunnel health --ready-endpoint 127.0.0.1:5566/ready
+      interval: 5s
+      retries: 6
+      timeout: 3s
+      start_period: 5s
