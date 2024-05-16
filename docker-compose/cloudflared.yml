@@ -8,7 +8,7 @@ services:
       - TUNNEL_METRICS=0.0.0.0:5566
     command: tunnel run -token $CLOUDFLARE_UUID
     healthcheck:
-      test: cloudflared tunnel health --ready-endpoint 127.0.0.1:5566/ready
+      test: curl --connect-timeout 15 --silent --show-error --fail -k 127.0.0.1:5566/ready
       interval: 5s
       retries: 6
       timeout: 3s
