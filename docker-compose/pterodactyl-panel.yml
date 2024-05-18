@@ -23,7 +23,11 @@ services:
       retries: 5
     labels:
       - "autoheal=true"
-      
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"      
   cache:
     image: redis:alpine3.18
     networks:
@@ -38,7 +42,11 @@ services:
       retries: 5
     labels:
       - "autoheal=true"
-    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"    
   panel:
     image: ghcr.io/pterodactyl/panel:v1.11.7
     restart: always
@@ -84,6 +92,11 @@ services:
       start_period: 30s
     labels:
       - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 networks:
   panel:
 
