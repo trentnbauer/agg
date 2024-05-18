@@ -7,3 +7,8 @@ services:
     environment:
       - TUNNEL_METRICS=0.0.0.0:5566
     command: tunnel run -token $CLOUDFLARE_UUID
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
