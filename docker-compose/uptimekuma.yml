@@ -9,8 +9,12 @@ services:
       - UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN=true
       - UPTIME_KUMA_CLOUDFLARED_TOKEN=$CFTOKEN
     ports:
-      - $PORT:3001  # <Host Port>:<Container Port>
+      - ${PORT:-3001}:3001  # <Host Port>:<Container Port>
     restart: always
-
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 volumes:
   app:
