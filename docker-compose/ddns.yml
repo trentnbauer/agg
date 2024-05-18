@@ -8,4 +8,8 @@ services:
       - ZONE=$DOMAIN                   #Required
       - SUBDOMAIN=$SUBDOMAIN           #Not required
       - PROXIED=$PROXIED               #Required: true/false
-
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
