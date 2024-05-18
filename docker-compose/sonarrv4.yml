@@ -22,7 +22,11 @@ services:
       start_period: 30s
     labels:
       - "autoheal=true"
-
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 volumes:
   config:
   media:

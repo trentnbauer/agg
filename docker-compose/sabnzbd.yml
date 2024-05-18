@@ -20,5 +20,10 @@ services:
       timeout: 20s
     labels:
       - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 volumes:
   config:
