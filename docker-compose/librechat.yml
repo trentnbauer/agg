@@ -14,7 +14,11 @@ services:
       librechat:
         aliases:
           - api
-
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
   meilisearch:
     image: getmeili/meilisearch:v1.5.1
     restart: unless-stopped
@@ -26,7 +30,11 @@ services:
       librechat:
         aliases:
           - meilisearch
-
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
           
   mongodb:
     image: mongo
@@ -48,7 +56,11 @@ services:
       retries: 5
     labels:
       - "autoheal=true"
-
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 volumes:
   librechat_images:
     driver: local
