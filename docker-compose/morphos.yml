@@ -13,7 +13,11 @@ services:
       com.docker-tc.enabled: "1"
       com.docker-tc.limit: "15mbps"  # Setting the bandwidth limit to 25mbit
       # Additional labels for delay, loss, duplication, and corruption can be added if needed
- 
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 
   traffic-control:
     image: lukaszlach/docker-tc:stable
     volumes:
@@ -24,6 +28,10 @@ services:
     cap_add:
       - NET_ADMIN
     command: ["--interface", "${NETADAPT:-ens18}"]
-
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 networks:
   network:
