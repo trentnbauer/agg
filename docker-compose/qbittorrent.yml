@@ -28,7 +28,11 @@ services:
       timeout: 20s
     labels:
       - "autoheal=true"  
-  #A better torrent fronten
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 
       
