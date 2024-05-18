@@ -15,3 +15,8 @@ services:
       - WATCHTOWER_RUN_ONCE=true
       - WATCHTOWER_LABEL_ENABLE=true
     #command: --label-enable
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
