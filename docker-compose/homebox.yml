@@ -1,0 +1,17 @@
+services:
+  app:
+    restart: unless-stopped
+    ports:
+      - ${PORT:-7745}:7745
+    environment:
+      - TZ=$TZ
+    volumes:
+      - data:/data
+    image: ghcr.io/hay-kot/homebox:v0.10.3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 
+volumes:
+    data:
