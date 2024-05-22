@@ -34,7 +34,7 @@ services:
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     ports:
-      - $PORT_DB:3306
+      - ${PORT_DB:-3306}:3306
     networks:
       - wings
     volumes:
