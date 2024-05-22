@@ -3,8 +3,8 @@ services:
   app:
     image: ghcr.io/claabs/epicgames-freegames-node:bullseye-slim@sha256:a2725d1a4a906f7b66953d7066feca8ec36202aa249005201c5a010d9eb64a78
     ports:
-      - $PORT:3000/udp
-      - $PORT:3000/tcp
+      - ${PORT:-3000}:3000/udp
+      - ${PORT:-3000}:3000/tcp
     restart: unless-stopped
     volumes:
       - config:/usr/app/config:rw #Mapped to local drive to allow automations syncing cookies files from GitHub
@@ -25,7 +25,7 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "10m"
+        max-size: "5m"
         max-file: "3"
 volumes:
   config:
