@@ -2,7 +2,7 @@ version: '2.3'
 services:
   app:
     image: ghcr.io/linuxserver/plex:1.40.2@sha256:55c6c1bbc40936f527dc684946c2c32fdc2f0669467c1f359a70ea911593ea6e
-    network_mode: host
+    network_mode: host ###Leave this as it may detect your LAN traffic as WAN, forcing encoding. It may also run into issues if your internert is down
     ports:
       - ${PORT:-32400}:32400
       - 1900:1900/udp
