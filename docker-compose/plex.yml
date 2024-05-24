@@ -78,6 +78,7 @@ services:
         max-size: "5m"
         max-file: "3"
 volumes:
+  config:
   app:
   media:
     driver_opts:
