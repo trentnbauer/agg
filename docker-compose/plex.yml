@@ -43,6 +43,7 @@ services:
         max-file: "3"
   jellyfin:
     image: ghcr.io/linuxserver/jellyfin:version-10.9.2ubu2204
+    network_mode: host
     environment:
       #- PUID=1000
       #- PGID=1000
