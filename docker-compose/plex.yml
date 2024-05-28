@@ -3,17 +3,17 @@ services:
   app:
     image: ghcr.io/linuxserver/plex:1.40.2@sha256:addec5e26fb63af661992e0c50e0bd6f7a271433cd2a058f130e0ec1bae415e4
     network_mode: host ###Leave this as it may detect your LAN traffic as WAN, forcing encoding. It may also run into issues if your internert is down
-    ports:
-      - ${PLEXPORT:-32400}:32400
-      - 1900:1900/udp
-      - 3005:3005
-      - 5353:5353/udp
-      - 8324:8324
-      - 32410:32410/udp
-      - 32412:32412/udp
-      - 32413:32413/udp
-      - 32414:32414/udp
-      - 32469:32469
+    #ports:
+    #  - ${PLEXPORT:-32400}:32400
+    #  - 1900:1900/udp
+    #  - 3005:3005
+    #  - 5353:5353/udp
+    #  - 8324:8324
+    #  - 32410:32410/udp
+    #  - 32412:32412/udp
+    #  - 32413:32413/udp
+    #  - 32414:32414/udp
+    #  - 32469:32469
     devices:
       - /dev/dri:/dev/dri
     environment:
