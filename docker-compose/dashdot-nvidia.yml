@@ -1,0 +1,36 @@
+version: '3'
+services:
+  dashdot:
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:3001
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
+    image: ghcr.io/mauricenino/dashdot:nvidia-5.8.3
+    restart: unless-stopped
+    ports:
+      - ${PORT:-3001}:3001
+    volumes:
+      - /:/mnt/host:ro
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities:
+                - gpu
+    environment:
+      - DASHDOT_SHOW_HOST=${DASHDOT_SHOW_HOST:-true}                                #true/false
+      - DASHDOT_ENABLE_CPU_TEMPS=${DASHDOT_ENABLE_CPU_TEMPS:-true}                  #true/false
+      - DASHDOT_ALWAYS_SHOW_PERCENTAGES=${DASHDOT_ALWAYS_SHOW_PERCENTAGES:-true}    #true/false
+      - DASHDOT_ACCEPT_OOKLA_EULA=${DASHDOT_ACCEPT_OOKLA_EULA:-true}                #true/false
+      - DASHDOT_CUSTOM_HOST=${DASHDOT_CUSTOM_HOST:-}                            #String
+      - DASHDOT_WIDGET_LIST=${DASHDOT_WIDGET_LIST:-}                            #refer to https://getdashdot.com/docs/config/ui-features#dashdot_widget_list
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
