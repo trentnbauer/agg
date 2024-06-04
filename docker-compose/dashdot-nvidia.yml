@@ -27,8 +27,8 @@ services:
       - DASHDOT_ENABLE_CPU_TEMPS=${DASHDOT_ENABLE_CPU_TEMPS:-true}                  #true/false
       - DASHDOT_ALWAYS_SHOW_PERCENTAGES=${DASHDOT_ALWAYS_SHOW_PERCENTAGES:-true}    #true/false
       - DASHDOT_ACCEPT_OOKLA_EULA=${DASHDOT_ACCEPT_OOKLA_EULA:-true}                #true/false
-      - DASHDOT_CUSTOM_HOST=${DASHDOT_CUSTOM_HOST:-}                            #String
-      - DASHDOT_WIDGET_LIST=${DASHDOT_WIDGET_LIST:-}                            #refer to https://getdashdot.com/docs/config/ui-features#dashdot_widget_list
+      - DASHDOT_CUSTOM_HOST=${DASHDOT_CUSTOM_HOST:-}                                #String
+      - DASHDOT_WIDGET_LIST=${DASHDOT_WIDGET_LIST:-cpu,ram,storage,gpu}             #Refer to https://getdashdot.com/docs/configuration/basic#dashdot_widget_list
     logging:
       driver: "json-file"
       options:
