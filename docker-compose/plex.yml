@@ -28,6 +28,10 @@ services:
       - media:/nfs/Media
       - /dev/shm:/dev/shm
     restart: unless-stopped
+    devices:
+      - /dev/dvb/adapter0/frontend0:/dev/dvb/adapter0/frontend0
+      - /dev/dvb/adapter0/demux0:/dev/dvb/adapter0/demux0
+      - /dev/dvb/adapter0/dvr0:/dev/dvb/adapter0/dvr0
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail http://localhost:32400/identity
       interval: 1m
