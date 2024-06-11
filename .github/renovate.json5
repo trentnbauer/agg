@@ -13,6 +13,12 @@
             "matchPackageNames": ["willfarrell/autoheal"],
             "automerge": true,
             "automergeType": "branch"
+        },
+        {
+            "matchDatasources": ["docker"],
+            "matchPackageNames": ["getmeili/meilisearch"],
+            "matchPaths": ["docker-compose/librechat.yml"],
+            "enabled": false
         }
     ]
 }
