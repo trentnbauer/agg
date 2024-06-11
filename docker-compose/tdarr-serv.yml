@@ -20,6 +20,11 @@ services:
       - nodeName=${SERVNAME:-Server}
       - NVIDIA_DRIVER_CAPABILITIES=all
       - NVIDIA_VISIBLE_DEVICES=all
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 
     volumes:
       - server:/app/server
       - configs:/app/configs
@@ -53,6 +58,11 @@ services:
       - ffmpegVersion=6
       - NVIDIA_DRIVER_CAPABILITIES=all
       - NVIDIA_VISIBLE_DEVICES=all
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 
     volumes:
       - configs:/app/configs
       - logs:/app/logs
