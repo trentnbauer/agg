@@ -17,6 +17,7 @@ services:
     devices:
       - /dev/dri:/dev/dri
       - /dev/dvb:/dev/dvb
+      - /dev/bus/usb/002/002:/dev/bus/usb/002/002
     environment:
       #- PUID=1000
       #- PGID=1000
