@@ -12,7 +12,9 @@
             "matchDatasources": ["docker"],
             "matchPackageNames": ["willfarrell/autoheal"],
             "automerge": true,
-            "automergeType": "branch"
+            "automergeType": "pr",
+            "automergeStrategy": "squash",
+            "requiredStatusChecks": null
         },
         {
             "matchDatasources": ["docker"],
