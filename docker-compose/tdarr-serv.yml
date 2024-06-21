@@ -29,6 +29,19 @@ services:
       - /etc/hostname:/etc/hostname:ro
     devices:
       - /dev/dri:/dev/dri
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8265
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 
     deploy:
       resources:
         reservations:
@@ -61,6 +74,11 @@ services:
       - /etc/hostname:/etc/hostname:ro
     devices:
       - /dev/dri:/dev/dri
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 
     deploy:
       resources:
         reservations:
