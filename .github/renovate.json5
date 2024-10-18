@@ -21,6 +21,14 @@
             "matchPackageNames": ["getmeili/meilisearch"],
             "matchPaths": ["docker-compose/librechat.yml"],
             "enabled": false
+        },
+        {
+            "matchDatasources": ["docker"],
+            "matchUpdateTypes": ["digest"],
+            "automerge": true,
+            "automergeType": "pr",
+            "automergeStrategy": "squash",
+            "requiredStatusChecks": null
         }
     ]
 }
