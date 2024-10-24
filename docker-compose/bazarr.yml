@@ -1,7 +1,7 @@
 version: '2.3'
 services:
   app:
-    image: ghcr.io/linuxserver/bazarr:1.4.4@sha256:476c315f0381d0b8c7921fbf3116b65e96ae32128df5fd27600e97213b862809
+    image: ghcr.io/linuxserver/bazarr:1.4.5@sha256:5e915ab0bdf0aed036f2bce05abcfa85e4fb748df982cdbca1e600a77e02ab24
     environment:
       - TZ=Australia/Melbourne
     volumes:
