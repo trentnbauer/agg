@@ -46,7 +46,7 @@ services:
         max-size: "10m"
         max-file: "3"    
   panel:
-    image: ghcr.io/pterodactyl/panel:v1.11.7
+    image: ghcr.io/pterodactyl/panel:v1.11.9
     restart: always
     networks:
       - panel
