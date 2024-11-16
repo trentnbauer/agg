@@ -1,7 +1,7 @@
 version: '2.3'
 services:
   app:
-    image: ghcr.io/linuxserver/plex:1.41.1@sha256:25fea67a8ed67ed0e1d89d3cbe0538a7d12dfd984f987f33abc5a66ac3cb641b
+    image: ghcr.io/linuxserver/plex:1.41.2@sha256:a3a3a850a64fb747c59f85dbc19b157781c3b9c921a83799127894b0ebdf3a68
     network_mode: host ###Leave this as it may detect your LAN traffic as WAN, forcing encoding. It may also run into issues if your internert is down
     #ports:
     #  - ${PLEXPORT:-32400}:32400
