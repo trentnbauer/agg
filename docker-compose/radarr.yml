@@ -2,7 +2,7 @@
 version: "2.3"
 services:
   app:
-    image: ghcr.io/linuxserver/radarr:5.16.3@sha256:0068f9fa55cdf8b72b831b8fd56e9e94cf1de969cfa1f58f7ba11ee3619eaf65
+    image: ghcr.io/linuxserver/radarr:5.16.3@sha256:eb894bd26fd3fb29981bf91b140834417ce2ed28ab8217d0ce121db5c460f39a
     environment:
       #- PUID=1000
       #- PGID=1000
