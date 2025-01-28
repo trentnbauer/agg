@@ -6,7 +6,8 @@ services:
       #- $MEDIA:$MEDIA
       - data:/opt/data
     environment:
-      - TZ=Australia/Melbourne
+      - TZ=${TZ:-Australia/Melbourne}
+      - base_path=${BASEPATH:-}
     ports:
       - ${PORT:-6246}:6246 
     restart: unless-stopped
