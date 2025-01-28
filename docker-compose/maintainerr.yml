@@ -8,6 +8,7 @@ services:
     environment:
       - TZ=${TZ:-Australia/Melbourne}
       - base_path=${BASEPATH:-}
+      - debug=true
     ports:
       - ${PORT:-6246}:6246 
     restart: unless-stopped
