@@ -7,7 +7,7 @@ services:
       - data:/opt/data
     environment:
       - TZ=${TZ:-Australia/Melbourne}
-      - base_path=${BASEPATH:-}
+      - BASE_PATH=/${BASEPATH:-}
       - debug=true
     ports:
       - ${PORT:-6246}:6246 
