@@ -2,7 +2,7 @@ version: "3"
 
 services:
   app:
-    image: emmercm/qbittorrent:4.6.6-alpine@sha256:cb3c388710471ea6d4be0c26f7340b2117e8c6392a345c5b0d71633360860ce8
+    image: emmercm/qbittorrent:4.6.6-alpine@sha256:9f77f5f7de5de5c7a98c8f76af521b34c41e8396413696f18a5156c42e395099
     restart: unless-stopped
     dns:
       - 1.1.1.1
