@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   app:
-    image: ghcr.io/dmunozv04/isponsorblocktv:v2.2.1
+    image: ghcr.io/dmunozv04/isponsorblocktv:v2.3.1
     restart: unless-stopped
     volumes:
       - $configdir:/app/data
