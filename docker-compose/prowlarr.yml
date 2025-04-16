@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   app:
-    image: ghcr.io/linuxserver/prowlarr:1.32.2@sha256:d8abff6588666b96672eaf812cc3eae1fe59e28de806bb88162433eba339d42c
+    image: ghcr.io/linuxserver/prowlarr:1.33.3@sha256:e3242cf552ed1818f9e8208c7826e6b3a28b9203c9732fb0dae176b0323954f2
     environment:
       #- PUID=1000
       #- PGID=1000
