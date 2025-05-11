@@ -1,0 +1,41 @@
+---
+version: "2.3"
+services:
+  app:
+    image: lscr.io/linuxserver/lidarr:2.11.2.4629-ls40@sha256:273641e57caa284a1439b062eea2faed965761d6b7bda78a687184080a901cc2
+    environment:
+      #- PUID=1000
+      #- PGID=1000
+      - TZ=$TZ
+    volumes:
+      - config:/config
+      - media:/music
+      - downloads:/downloads
+    ports:
+      - ${PORT:-8686}:8686
+    restart: unless-stopped
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8686/ping
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  config:
+  media:
+    driver_opts:
+      type: nfs
+      o: addr=$STORAGE,nfsvers=4
+      device: :$MEDIA
+  downloads:
+    driver_opts:
+      type: nfs 
+      o: addr=$STORAGE,nfsvers=4
+      device: :$DOWNLOAD
