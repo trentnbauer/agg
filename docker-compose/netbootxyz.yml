@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   app:
-    image: ghcr.io/linuxserver/netbootxyz:0.7.5@sha256:1822be6218cb3b5bf50ea97533511d10aa7f9f415793c9fb7f0bb6a5c6503ced
+    image: ghcr.io/linuxserver/netbootxyz:0.7.5@sha256:4442c750d19da9165efdfee0432dcd70bf7ad0cde6f353b1ae8ad4890feddad3
     environment:
       - PUID=$PUID
       - PGID=$PUID
