@@ -38,7 +38,7 @@ services:
         "Found potentially dangerous file with extension"
         ]'
       ## Radarr
-      RADARR_URL: $RADARURL
+      RADARR_URL: $RADARRURL
       RADARR_KEY: $RADARRAPI
       ## Sonarr
       SONARR_URL: $SONARRURL
