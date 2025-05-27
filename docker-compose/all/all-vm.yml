@@ -19,7 +19,7 @@ services:
     
   docker-socket-proxy:
     network_mode: host
-    image: ghcr.io/tecnativa/docker-socket-proxy:0.3.0
+    image: ghcr.io/tecnativa/docker-socket-proxy:0.3.0@sha256:9e4b9e7517a6b660f2cc903a19b257b1852d5b3344794e3ea334ff00ae677ac2
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -27,7 +27,7 @@ services:
       - CONTAINERS=1
 
   watchtower:
-    image: ghcr.io/containrrr/watchtower:1.7.1
+    image: ghcr.io/containrrr/watchtower:1.7.1@sha256:6dd50763bbd632a83cb154d5451700530d1e44200b268a4e9488fefdfcf2b038
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
