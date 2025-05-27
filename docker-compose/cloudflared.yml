@@ -15,7 +15,9 @@ services:
         max-file: "3"
     healthcheck:
       test: ["CMD", "cloudflared", "--version"]       # Check if cloudflared version command works
-      interval: 30s                                   # Time between health check attempts
-      timeout: 10s                                    # Time to wait for a response
+      interval: 60s                                   # Time between health check attempts
+      timeout: 55s                                    # Time to wait for a response
       retries: 3                                      # Number of retries before marking as unhealthy
-      start_period: 10s                               # Delay before health checks begin
+      start_period: 30s                               # Delay before health checks begin
+    labels:
+      - "autoheal=true"
