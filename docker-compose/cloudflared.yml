@@ -12,8 +12,8 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    healthcheck:
-      test: ['CMD-SHELL', 'curl -fsS http://localhost:5566/ready']
-      interval: 1s
-      timeout: 2s
-      retries: 60
+#    healthcheck:
+#      test: ['CMD-SHELL', 'curl -fsS http://localhost:5566/ready']
+#      interval: 1s
+#      timeout: 2s
+#      retries: 60
