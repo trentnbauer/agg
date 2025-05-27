@@ -1,0 +1,70 @@
+version: '3'
+services:
+  wazuh-agent:
+    image: kennyopennix/wazuh-agent:4.11.1@sha256:4786b1431e43a579a128b281c9d79ccab825a7dade9fe0dfd69ecbe46bb21bb3
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /:/rootfs:ro
+      - ossec:/var/ossec
+    network_mode: host
+    environment:
+      - JOIN_MANAGER_MASTER_HOST=$WAZUHMASTER
+      - JOIN_MANAGER_WORKER_HOST=$WAZUHWORKER
+      - JOIN_MANAGER_PASSWORD=$WAZUHPASS
+      - JOIN_MANAGER_USER=$WAZUHUSER
+    restart: always
+  autoheal:
+    deploy:
+      replicas: 1
+    environment:
+      AUTOHEAL_CONTAINER_LABEL: autoheal
+      AUTOHEAL_INTERVAL: 60
+      AUTOHEAL_START_PERIOD: 240
+      AUTOHEAL_DEFAULT_STOP_TIMEOUT: 60
+      AUTOHEAL_ONLY_MONITOR_RUNNING: true
+    image: willfarrell/autoheal@sha256:7dd5c9e52e6ae49ee76bce5be943eb1be6a9901561019bb11cfbb4a0f678c279
+    network_mode: none
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  docker-socket-proxy:
+    network_mode: host
+    image: ghcr.io/tecnativa/docker-socket-proxy:0.3.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - CONTAINERS=1
+
+  watchtower:
+    image: ghcr.io/containrrr/watchtower:1.7.1
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=Australia/Melbourne
+      - WATCHTOWER_ROLLING_RESTART=true
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_INCLUDE_STOPPED=true
+      - WATCHTOWER_POLL_INTERVAL=86400
+      - WATCHTOWER_LABEL_ENABLE=true
+
+  beszel-agent:
+    image: ghcr.io/henrygd/beszel/beszel-agent:0.11.1@sha256:d015952e66319b993a2103ad0f9bf3bf89eb8755500a51956091dc9457234b7c
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - LISTEN=${BESZELPORT:-45876}
+      - KEY=$BESZELKEY
+      - GPU="true"
+    healthcheck:
+      test: ['CMD', '/agent', 'health']
+      start_period: 5s 
+      interval: 120s
+    labels:
+      - autoheal=true
+volumes:
+  ossec:
