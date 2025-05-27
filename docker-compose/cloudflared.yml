@@ -5,10 +5,17 @@ services:
     restart: unless-stopped
     network_mode: host
     environment:
+      - TUNNEL_TOKEN=$CLOUDFLARE_UUID
       - TUNNEL_METRICS=0.0.0.0:5566
-    command: tunnel run -token $CLOUDFLARE_UUID
+    command: tunnel run
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
+    healthcheck:
+      test: ["CMD", "cloudflared", "--version"]       # Check if cloudflared version command works
+      interval: 30s                                   # Time between health check attempts
+      timeout: 10s                                    # Time to wait for a response
+      retries: 3                                      # Number of retries before marking as unhealthy
+      start_period: 10s                               # Delay before health checks begin
