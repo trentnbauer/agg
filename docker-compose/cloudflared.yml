@@ -12,15 +12,3 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-
-  healthcheck:
-    image: quay.io/curl/curl:8.10.1
-    init: true
-    command: sleep infinity
-    depends_on:
-      - app
-    healthcheck:
-      test: ['CMD-SHELL', 'curl -fsS http://app:5566/ready']
-      interval: 1s
-      timeout: 2s
-      retries: 60
