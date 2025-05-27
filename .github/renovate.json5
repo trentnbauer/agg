@@ -1,34 +1,50 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "config:base",
-        ":disableRateLimiting"
+    $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+    extends: [
+        'config:recommended',
+        ':disableRateLimiting',
     ],
-    "docker-compose": {
-        "fileMatch": ["docker-compose/.+\\.ya?ml$"]
+    'docker-compose': {
+        managerFilePatterns: [
+            '/docker-compose/.+\\.ya?ml$/',
+        ],
     },
-    "packageRules": [
+    packageRules: [
         {
-            "matchDatasources": ["docker"],
-            "matchPackageNames": ["willfarrell/autoheal"],
-            "automerge": true,
-            "automergeType": "pr",
-            "automergeStrategy": "squash",
-            "requiredStatusChecks": null
+            matchDatasources: [
+                'docker',
+            ],
+            matchPackageNames: [
+                'willfarrell/autoheal',
+            ],
+            automerge: true,
+            automergeType: 'pr',
+            automergeStrategy: 'squash',
+            ignoreTests: true,
         },
         {
-            "matchDatasources": ["docker"],
-            "matchPackageNames": ["getmeili/meilisearch"],
-            "matchPaths": ["docker-compose/librechat.yml"],
-            "enabled": false
+            matchDatasources: [
+                'docker',
+            ],
+            matchPackageNames: [
+                'getmeili/meilisearch',
+            ],
+            matchFileNames: [
+                'docker-compose/librechat.yml',
+            ],
+            enabled: false,
         },
         {
-            "matchDatasources": ["docker"],
-            "matchUpdateTypes": ["digest"],
-            "automerge": true,
-            "automergeType": "pr",
-            "automergeStrategy": "squash",
-            "requiredStatusChecks": null
-        }
-    ]
+            matchDatasources: [
+                'docker',
+            ],
+            matchUpdateTypes: [
+                'digest',
+            ],
+            automerge: true,
+            automergeType: 'pr',
+            automergeStrategy: 'squash',
+            ignoreTests: true,
+        },
+    ],
 }
