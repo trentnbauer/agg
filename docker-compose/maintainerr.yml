@@ -18,7 +18,7 @@ services:
         max-size: "10m"
         max-file: "3"
     healthcheck:
-      test: wget --no-verbose --tries=1 --spider ${HEATHCHECK:-http://app:6246} || exit 1
+      test: wget --no-verbose --tries=1 --spider http://app:6246/${BASEPATH:-} || exit 1
       interval: 30s
       retries: 3
       start_period: 30s
