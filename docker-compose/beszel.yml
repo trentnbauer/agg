@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  app:
+    image: ghcr.io/henrygd/beszel/beszel:0.11.1@sha256:b060dd22f29958d1075def8c1c710a5ec208911aebe3b85b21dde361de8b8b14
+    restart: unless-stopped
+    ports:
+      - ${PORT:-8090}:8090
+    volumes:
+      - data:/beszel_data
+      - ./beszel_socket:/beszel_socket
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      #- BESZEL_HUB_DISABLE_PASSWORD_AUTH=true
+      - BESZEL_HUB_USER_CREATION=true
+    healthcheck:
+      test: ['CMD', '/beszel', 'health', '--url', 'http://localhost:8090']
+      start_period: 30s
+      interval: 120s
+    labels:
+      - autoheal=true
+volumes:
+  data:
