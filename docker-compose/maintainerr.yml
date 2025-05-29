@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: ghcr.io/jorenn92/maintainerr:2.15.0@sha256:861fa79fc8f60df31a85bf340cb322f68148faecaa8a6002b4d0cdc37f45381d
+    image: ghcr.io/jorenn92/maintainerr:2.16.0@sha256:5b5844de17b92cc7b4eeb5fe4cbda24d0f1248c382fe29cac871e4e284b5a099
     volumes:
       #- $MEDIA:$MEDIA
       - data:/opt/data
