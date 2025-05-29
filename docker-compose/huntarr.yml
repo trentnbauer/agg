@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: ghcr.io/plexguide/huntarr:7.4.2@sha256:9cdfcf13749b68911d333eb3a09096517e5efa0236017ccfe30bc42de01d8715
+    image: ghcr.io/plexguide/huntarr:7.4.4@sha256:13d205313f30eb50fa483690c503340a4b532cecb65997de6f5956e7dd4ac0c5
     restart: always
     ports:
       - ${PORT:-9705}:9705
