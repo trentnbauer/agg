@@ -7,6 +7,7 @@ services:
       - ${PORT:-5690}:5690
     volumes:
       - db:/data/database
+      - steps:/data/wizard_steps
     restart: unless-stopped
     labels:
       - "autoheal=true"
@@ -23,5 +24,7 @@ services:
         max-file: "3"
     environment:
         - TZ=${TZ:-Australia/Melbourne}
+        - DISABLE_BUILTIN_AUTH=${DISABLEAUTH:-false}
 volumes:
   db:
+  steps:
