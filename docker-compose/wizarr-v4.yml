@@ -21,5 +21,7 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    environment:
+        - TZ=${TZ:-Australia/Melbourne}
 volumes:
   db:
