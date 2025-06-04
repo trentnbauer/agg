@@ -1,0 +1,26 @@
+services:
+  app:
+    image: ghcr.io/arunoruto/beszel-agent:v0.11.1@sha256:f1d36b3c0bd5cac73432ce1b31ebf0c3fc4baa8caa94a5025fa0e4d24c97a943
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities:
+                - utility
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LOG_LEVEL: info
+      PORT: ${PORT:-45876}
+      GPU: true
+      KEY: $BESZELKEY
+    healthcheck:
+      test: ['CMD', '/agent', 'health'] # Run the health command
+      start_period: 5s # Check 5 seconds after the container starts
+      interval: 120s # Then check every 120 seconds after that
+    labels:
+      - autoheal=true
