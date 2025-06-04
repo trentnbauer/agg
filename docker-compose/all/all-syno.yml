@@ -13,6 +13,7 @@ services:
       - JOIN_MANAGER_PASSWORD=$WAZUHPASS
       - JOIN_MANAGER_USER=$WAZUHUSER
     restart: always
+    
   autoheal:
     deploy:
       replicas: 1
@@ -66,5 +67,7 @@ services:
       interval: 120s
     labels:
       - autoheal=true
+
+
 volumes:
   ossec:
