@@ -35,7 +35,8 @@ services:
         "Found matching series via grab history, but release was matched to series by ID. Automatic import is not possible. See the FAQ for details",
         "was not found in the grabbed release",
         "was unexpected considering the",
-        "Found potentially dangerous file with extension"
+        "Found potentially dangerous file with extension",
+        "Invalid video file, unsupported extension"
         ]'
       ## Radarr
       RADARR_URL: $RADARRURL
