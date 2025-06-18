@@ -27,5 +27,12 @@ services:
       options:
         max-size: "5m"
         max-file: "3"
+    labels:
+      - cloudflare.tunnel.enable=true
+      - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
+      - cloudflare.tunnel.service=${HTTP:-http://}${HOSTNAME:-localhost}:${PORT:-5055}
+      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
+      - cloudflare.tunnel.zonename=${DOMAIN}
+      - cloudflare.tunnel.path=${URLPATH:-}
 volumes:
   config:
