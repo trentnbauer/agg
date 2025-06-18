@@ -82,7 +82,7 @@ services:
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=$HOSTNAME.tunnel.$URLTLD
       - cloudflare.tunnel.service=http://$HOSTNAME.agg.local:${DOCKLAREPORT:-5000}
-      - cloudflare.tunnel.access.policy=authenticate
+      - cloudflare.tunnel.access.policy=default_tld
       - cloudflare.tunnel.zonename=$URLTLD
       #- cloudflare.tunnel.path=${URLPATH:-}
 volumes:
