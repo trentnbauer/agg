@@ -22,11 +22,6 @@ services:
       - SMTP_USERNAME=$SMTP_USERNAME
       - SMTP_PASSWORD=$SMTP_PASSWORD
     mem_limit: 2G
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "5m"
-        max-file: "3"
     labels:
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
@@ -34,5 +29,10 @@ services:
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
       - cloudflare.tunnel.zonename=${DOMAIN}
       - cloudflare.tunnel.path=${URLPATH:-}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
 volumes:
   config:
