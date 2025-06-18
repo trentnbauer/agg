@@ -20,9 +20,9 @@ services:
       - autoheal=true
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${SUBDOMAIN}.${DOMAIN}
-      - cloudflare.tunnel.service=http://$HOSTNAME.agg.local:${PORT:-5505}
+      - cloudflare.tunnel.service={$HTTP:-http://}${HOSTNAME:-localhost}:${PORT:-5505}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
-      - cloudflare.tunnel.zonename=$DOMAIN
+      - cloudflare.tunnel.zonename=$}DOMAIN}
       - cloudflare.tunnel.path=${URLPATH:-}
     logging:
       driver: "json-file"
