@@ -68,6 +68,34 @@ services:
     labels:
       - autoheal=true
 
-
+  dockflare:
+    image: alplat/dockflare:v1.8.7@sha256:0c30781a7659ba8f0cdb2f69684aa6cbc4f5ca521a23631a188e226a9eedfe58
+    restart: unless-stopped
+    ports:
+      - ${PORT:-5000}:5000
+    environment:
+      - STATE_FILE_PATH=/app/data/state.json
+      - TZ=${TZ:-Australia/Melbourne}
+      - CF_API_TOKEN=$CFAPITOKEN
+      - CF_ACCOUNT_ID=$CFACCOUNTID
+      #- CF_ZONE_ID=$CFZONEID
+      - TUNNEL_NAME=${HOSTNAME}
+      - LABEL_PREFIX=cloudflare.tunnel
+      - GRACE_PERIOD_SECONDS=28800
+      - CLEANUP_INTERVAL_SECONDS=900
+      - AGENT_STATUS_UPDATE_INTERVAL_SECONDS=30
+      - SCAN_ALL_NETWORKS=true
+      - MAX_CONCURRENT_DNS_OPS=3
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - dockflare_data:/app/data
+#    labels:
+#      - cloudflare.tunnel.enable=true
+#      - cloudflare.tunnel.hostname=$HOSTNAME.$URLTLD
+#      - cloudflare.tunnel.service=http://$URLSUB.agg.local:{$PORT:-5000}
+#      - cloudflare.tunnel.access.policy=authenticate
+#      - cloudflare.tunnel.zonename=$URLTLD
+#      - cloudflare.tunnel.path=${URLPATH:-}
 volumes:
+  dockflare_data:
   ossec:
