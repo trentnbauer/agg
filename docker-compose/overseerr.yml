@@ -22,7 +22,7 @@ services:
       - cloudflare.tunnel.hostname=${SUBDOMAIN}.${DOMAIN}
       - cloudflare.tunnel.service=${HTTP:-http://}${HOSTNAME:-localhost}:${PORT:-5505}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
-      - cloudflare.tunnel.zonename=$}DOMAIN}
+      - cloudflare.tunnel.zonename=${DOMAIN}
       - cloudflare.tunnel.path=${URLPATH:-}
     logging:
       driver: "json-file"
