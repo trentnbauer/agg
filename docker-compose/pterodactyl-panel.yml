@@ -21,12 +21,6 @@ services:
       retries: 5
     labels:
       - "autoheal=true"
-      - cloudflare.tunnel.enable=true
-      - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
-      - cloudflare.tunnel.service=${HTTP:-http://}${HOSTNAME:-localhost}:${PORT:-5055}
-      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
-      - cloudflare.tunnel.zonename=${DOMAIN}
-      - cloudflare.tunnel.path=${URLPATH:-}
     logging:
       driver: "json-file"
       options:
@@ -96,6 +90,12 @@ services:
       start_period: 30s
     labels:
       - "autoheal=true"
+      - cloudflare.tunnel.enable=true
+      - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
+      - cloudflare.tunnel.service=${HTTP:-http://}${HOSTNAME:-localhost}:${PORT_HTTP:-80}
+      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
+      - cloudflare.tunnel.zonename=${DOMAIN}
+      - cloudflare.tunnel.path=${URLPATH:-}
     logging:
       driver: "json-file"
       options:
