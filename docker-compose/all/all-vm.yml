@@ -68,7 +68,7 @@ services:
       - CF_API_TOKEN=$CFAPITOKEN
       - CF_ACCOUNT_ID=$CFACCOUNTID
       #- CF_ZONE_ID=$CFZONEID
-      - TUNNEL_NAME=${HOSTNAME}
+      - TUNNEL_NAME=${HOSTNAME:-MissingHostname}
       - LABEL_PREFIX=cloudflare.tunnel
       - GRACE_PERIOD_SECONDS=28800
       - CLEANUP_INTERVAL_SECONDS=900
