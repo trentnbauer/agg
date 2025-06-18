@@ -19,8 +19,8 @@ services:
     labels:
       - autoheal=true
       - cloudflare.tunnel.enable=true
-      - cloudflare.tunnel.hostname=$SUBDOMIAN
-      - cloudflare.tunnel.service=http://$HOSTNAME.agg.local:${PORT:-5000}
+      - cloudflare.tunnel.hostname=$SUBDOMIAN.$DOMAIN
+      - cloudflare.tunnel.service=http://localhost:${PORT:-5505}
       - cloudflare.tunnel.access.policy=default_tld
       - cloudflare.tunnel.zonename=$DOMAIN
       - cloudflare.tunnel.path=${URLPATH:-}
