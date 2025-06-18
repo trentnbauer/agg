@@ -80,7 +80,7 @@ services:
       - dockflare_data:/app/data
     labels:
       - cloudflare.tunnel.enable=true
-      - cloudflare.tunnel.hostname=$HOSTNAME.tunnel.$URLTLD
+      - cloudflare.tunnel.hostname=$URL
       - cloudflare.tunnel.service=http://$HOSTNAME.agg.local:{$PORT:-5000}
       - cloudflare.tunnel.access.policy=default_tld
       - cloudflare.tunnel.zonename=$URLTLD
