@@ -66,8 +66,7 @@ services:
       retries: 3
       start_period: 30s
       timeout: 20s
-    labels:
-      - "autoheal=true"
+      
     networks:
       - cloudflare-net
     ports:
@@ -89,6 +88,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - dockflare_data:/app/data
     labels:
+      - autoheal=true
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=$HOSTNAME-tunnel.$URLTLD
       - cloudflare.tunnel.service=http://$HOSTNAME.agg.local:${DOCKLAREPORT:-5000}
