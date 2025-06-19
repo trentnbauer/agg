@@ -10,14 +10,14 @@ services:
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 60
       AUTOHEAL_ONLY_MONITOR_RUNNING: true
     image: willfarrell/autoheal@sha256:ef5e1e570b5757072059440078cbed88c9c2443b600b0664ef7692b8069a7336
-    network_mode: none
+    #network_mode: none
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock\
   
   docker-socket-proxy:
-    network_mode: host
+    #network_mode: host
     image: ghcr.io/tecnativa/docker-socket-proxy:0.3.0
     restart: unless-stopped
     volumes:
