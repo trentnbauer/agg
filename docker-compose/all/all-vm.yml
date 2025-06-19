@@ -14,7 +14,7 @@ services:
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock\
+      - /var/run/docker.sock:/var/run/docker.sock
   
   docker-socket-proxy:
     network_mode: host
