@@ -92,4 +92,5 @@ volumes:
 
 networks:
   cloudflare-net:
-    name: cloudflare-net
+    name: "cloudflare-net"
+    driver: host
