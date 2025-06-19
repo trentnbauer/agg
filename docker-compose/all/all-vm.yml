@@ -66,8 +66,6 @@ services:
       retries: 3
       start_period: 30s
       timeout: 20s 
-    networks:
-      - cloudflare-net
     ports:
       - ${DOCKFLAREPORT:-5000}:5000
     environment:
@@ -96,8 +94,3 @@ services:
       #- cloudflare.tunnel.path=${URLPATH:-}
 volumes:
   dockflare_data:
-
-networks:
-  cloudflare-net:
-    name: cloudflare-net
-    #driver: host
