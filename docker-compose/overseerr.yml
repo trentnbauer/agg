@@ -2,6 +2,7 @@ version: '3'
 services:
   app:
     image: ghcr.io/linuxserver/overseerr:1.34.0@sha256:1205b8873f3ea0a98890191d9e01da911d9509272462a46414ba0378a6d76288
+    hostname: ${ALIAS:-overseerr}
     environment:
       - TZ=${TZ:-Australia/Melbourne}
     volumes:
@@ -20,7 +21,7 @@ services:
       - autoheal=true
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${SUBDOMAIN}.${DOMAIN}
-      - cloudflare.tunnel.service=${HTTP:-http://}${HOSTNAME:-localhost}:${PORT:-5055}
+      - cloudflare.tunnel.service=${HTTP:-http://}${ALIAS:-overseerr}:${PORT:-5055}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
       - cloudflare.tunnel.zonename=${DOMAIN}
       - cloudflare.tunnel.path=${URLPATH:-}
@@ -32,3 +33,8 @@ services:
 volumes:
   app:
   www:
+
+networks:
+  cloudflare-net: 
+    name: cloudflare-net 
+    external: true
