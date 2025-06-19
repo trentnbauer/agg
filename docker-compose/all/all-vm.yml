@@ -10,14 +10,14 @@ services:
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 60
       AUTOHEAL_ONLY_MONITOR_RUNNING: true
     image: willfarrell/autoheal@sha256:ef5e1e570b5757072059440078cbed88c9c2443b600b0664ef7692b8069a7336
-    #network_mode: none
+    network_mode: none
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock\
   
   docker-socket-proxy:
-    #network_mode: host
+    network_mode: host
     image: ghcr.io/tecnativa/docker-socket-proxy:0.3.0
     restart: unless-stopped
     volumes:
@@ -41,7 +41,7 @@ services:
   beszel-agent:
     image: ghcr.io/henrygd/beszel/beszel-agent:0.11.1@sha256:d015952e66319b993a2103ad0f9bf3bf89eb8755500a51956091dc9457234b7c
     restart: unless-stopped
-    #network_mode: host
+    network_mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
@@ -60,8 +60,6 @@ services:
   dockflare:
     image: alplat/dockflare:v1.8.7@sha256:0c30781a7659ba8f0cdb2f69684aa6cbc4f5ca521a23631a188e226a9eedfe58
     restart: unless-stopped
-    networks:
-      - cloudflare-net
     ports:
       - ${DOCKFLAREPORT:-5000}:5000
     environment:
@@ -93,4 +91,4 @@ volumes:
 networks:
   cloudflare-net:
     name: cloudflare-net
-    external: true
+    driver: host
