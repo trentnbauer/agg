@@ -71,6 +71,8 @@ services:
   dockflare:
     image: alplat/dockflare:v1.8.7@sha256:0c30781a7659ba8f0cdb2f69684aa6cbc4f5ca521a23631a188e226a9eedfe58
     restart: unless-stopped
+    networks:
+      - cloudflare-net
     ports:
       - ${DOCKFLAREPORT:-5000}:5000
     environment:
@@ -99,3 +101,7 @@ services:
 volumes:
   dockflare_data:
   ossec:
+networks:
+  cloudflare-net: 
+    name: cloudflare-net 
+    #external: true
