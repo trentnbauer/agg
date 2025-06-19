@@ -34,7 +34,7 @@ services:
         max-file: "3"      
 volumes:
   app:
-  www:
+  #www:
 
 networks:
   cloudflare-net: 
