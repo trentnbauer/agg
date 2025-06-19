@@ -9,7 +9,7 @@ services:
       AUTOHEAL_START_PERIOD: 240
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 60
       AUTOHEAL_ONLY_MONITOR_RUNNING: true
-    image: willfarrell/autoheal@sha256:b629deafdb2f943209198ee8316ca031f9e88c2da694ea8cd3b2def949ba1f1b
+    image: willfarrell/autoheal@sha256:ef5e1e570b5757072059440078cbed88c9c2443b600b0664ef7692b8069a7336
     network_mode: none
     restart: always
     volumes:
