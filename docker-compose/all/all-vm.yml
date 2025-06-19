@@ -41,7 +41,7 @@ services:
   beszel-agent:
     image: ghcr.io/henrygd/beszel/beszel-agent:0.11.1@sha256:d015952e66319b993a2103ad0f9bf3bf89eb8755500a51956091dc9457234b7c
     restart: unless-stopped
-    network_mode: host
+    #network_mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
