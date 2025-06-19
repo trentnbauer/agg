@@ -100,4 +100,4 @@ volumes:
 networks:
   cloudflare-net: 
     name: cloudflare-net 
-    external: true
+    #external: true
