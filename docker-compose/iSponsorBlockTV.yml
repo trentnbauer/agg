@@ -4,5 +4,8 @@ services:
     image: ghcr.io/dmunozv04/isponsorblocktv:v2.5.3
     restart: unless-stopped
     volumes:
-      - $configdir:/app/data
+      - config:/app/data
     network_mode: host #required for auto-discovery of Android TVs
+
+volumes:
+  config:
