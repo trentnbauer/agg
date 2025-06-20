@@ -3,6 +3,7 @@ version: "3.5"
 services:
   app:
     image: ghcr.io/wizarrrr/wizarr:2025.6.4@sha256:a4ef81f24b399bf9cde787c1a54c638108443225f2c39bbee1b02044765d5b91
+    hostname: ${ALIAS:-wizarr}
     ports:
       - ${PORT:-5690}:5690
     volumes:

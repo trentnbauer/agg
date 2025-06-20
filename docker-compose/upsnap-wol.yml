@@ -3,6 +3,7 @@ services:
   app:
     image: ghcr.io/seriousm4x/upsnap:5.1.0@sha256:2cdbfaeac6cb2c31b86d35d12c23a013d01f41ee9fb8735f1ffe847f143c6047
     network_mode: host
+    hostname: ${ALIAS:-upsnap}
     restart: unless-stopped
     volumes:
       - app:/app/pb_data

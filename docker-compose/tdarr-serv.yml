@@ -3,6 +3,7 @@ services:
   server:
     image: ghcr.io/haveagitgat/tdarr:2.45.01
     restart: unless-stopped
+    hostname: ${ALIAS:-tdarr}
     ports:
       - ${WEBUI:-8265}:8265 # webUI port
       - ${SERVER:-8266}:${SERVER:-8266} # server port
