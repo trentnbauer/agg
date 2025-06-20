@@ -8,7 +8,9 @@ services:
       - /tmp:/tmp
     restart: unless-stopped
     networks:
-      - network
+      network:
+        aliases:
+          - ${ALIAS:-morphos}
     labels:
       com.docker-tc.enabled: "1"
       com.docker-tc.limit: "15mbps"  # Setting the bandwidth limit to 25mbit
