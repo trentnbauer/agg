@@ -3,7 +3,6 @@ version: "2.1"
 services:
   app:
     image: ghcr.io/linuxserver/sabnzbd:4.5.1@sha256:f9c06e2556a6f10b65373b9d0f2da8cdcf4cac15e7f30ea02fb2e52beffa2696
-    hostname: ${ALIAS:-sabnzbd}
     environment:
       - TZ=${TZ:-Australia/Melbourne}
     volumes:
@@ -20,7 +19,13 @@ services:
       start_period: 30s
       timeout: 20s
     labels:
-      - "autoheal=true"
+      - autoheal=true
+      - cloudflare.tunnel.enable=true
+      - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${PORT:-8080}
+      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
+      - cloudflare.tunnel.zonename=${CFDOMAIN}
+      - cloudflare.tunnel.path=${CFURLPATH:-}      
     logging:
       driver: "json-file"
       options:
