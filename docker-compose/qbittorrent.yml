@@ -4,7 +4,6 @@ services:
   app:
     image: emmercm/qbittorrent:5.0.4-alpine@sha256:8924d2bdfec37201d9a239867016c37160b849dc491c6bfe181c8d03e8b820ee
     restart: unless-stopped
-    hostname: ${ALIAS:-qbittorrent}
     dns:
       - 1.1.1.1
       - 8.8.8.8
@@ -28,7 +27,13 @@ services:
       start_period: 30s
       timeout: 20s
     labels:
-      - "autoheal=true"  
+      - autoheal=true  
+      - cloudflare.tunnel.enable=true
+      - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${PORT:-8080}
+      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
+      - cloudflare.tunnel.zonename=${CFDOMAIN}
+      - cloudflare.tunnel.path=${CFURLPATH:-}      
     logging:
       driver: "json-file"
       options:
