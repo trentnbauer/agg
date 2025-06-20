@@ -2,7 +2,6 @@ version: '3'
 services:
   app:
     image: lukechannings/moviematch:1.10.0
-    hostname: ${ALIAS:-moviematch}
     networks:
       - cloudflare-net
     restart: unless-stopped
@@ -21,7 +20,7 @@ services:
     labels:
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
-      - cloudflare.tunnel.service=HTTP://${ALIAS:-moviematch}:${PORT:-8000}
+      - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${PORT:-8000}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
       - cloudflare.tunnel.zonename=${DOMAIN}
       - cloudflare.tunnel.path=${URLPATH:-}
