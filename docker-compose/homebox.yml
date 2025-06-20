@@ -1,6 +1,7 @@
 services:
   app:
     restart: unless-stopped
+    hostname: ${ALIAS:-homebox}
     ports:
       - ${PORT:-7745}:7745
     environment:

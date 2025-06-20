@@ -11,6 +11,7 @@ services:
     ports:
       - ${PORT:-8191}:8191
     restart: unless-stopped
+    hostname: ${ALIAS:-flaresolverr}
     mem_limit: 2G
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8191
