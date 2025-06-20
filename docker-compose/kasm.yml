@@ -3,6 +3,7 @@ services:
   app:
     image: ghcr.io/linuxserver/kasm:1.17.0@sha256:cc7d53bc0b6a3117cf7eb5ce355c2f6eee76f7632f77bc8982de69f7ab8f51d0
     privileged: true
+    hostname: ${ALIAS:-kasm}
     environment:
       - PUID=1000
       - PGID=1000
