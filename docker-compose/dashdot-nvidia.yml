@@ -10,6 +10,7 @@ services:
     labels:
       - "autoheal=true"
     image: ghcr.io/mauricenino/dashdot:nvidia-5.8.6@sha256:bd8907e1c7433ae2ea75badbc8984f78b63e1233d41b04b2cc5e870e5f1c4c74
+    hostname: ${ALIAS:-dashdot}
     restart: unless-stopped
     ports:
       - ${PORT:-3001}:3001

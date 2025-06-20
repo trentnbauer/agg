@@ -4,6 +4,7 @@ services:
   app:
     image: allebb/studio-server:1.0.4-rc6
     restart: unless-stopped
+    hostname: ${ALIAS:-davincistudioserver}
     #network_mode: bridge
     environment:
       - TZ=${TZ:-Australia/Melbourne}
