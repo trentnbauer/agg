@@ -6,6 +6,7 @@ services:
       - ${PORT:-3000}:3000/udp
       - ${PORT:-3000}:3000/tcp
     restart: unless-stopped
+    hostname: ${ALIAS:-epicgames}
     volumes:
       - config:/usr/app/config:rw #Mapped to local drive to allow automations syncing cookies files from GitHub
     environment:
@@ -25,7 +26,7 @@ services:
     labels:
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
-      - cloudflare.tunnel.service=${HTTP:-http://}${HOSTNAME:-localhost}:${PORT:-3000}
+      - cloudflare.tunnel.service=http://${ALIAS:-epicgames}:${PORT:-3000}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
       - cloudflare.tunnel.zonename=${DOMAIN}
       - cloudflare.tunnel.path=${URLPATH:-}
