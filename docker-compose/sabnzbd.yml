@@ -3,8 +3,9 @@ version: "2.1"
 services:
   app:
     image: ghcr.io/linuxserver/sabnzbd:4.5.1@sha256:f9c06e2556a6f10b65373b9d0f2da8cdcf4cac15e7f30ea02fb2e52beffa2696
+    hostname: ${ALIAS:-sabnzbd}
     environment:
-      - TZ=$TZ
+      - TZ=${TZ:-Australia/Melbourne}
     volumes:
       - config:/config
       - $DOWNLOADS:$DOWNLOADS
