@@ -92,7 +92,7 @@ services:
       - "autoheal=true"
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
-      - cloudflare.tunnel.service=http://${ALIAS:-panel}:${PORT_HTTP:-80}
+      - cloudflare.tunnel.service=http://${HOSTNAME}:${PORT_HTTP:-80}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
       - cloudflare.tunnel.zonename=${DOMAIN}
       - cloudflare.tunnel.path=${URLPATH:-}
@@ -103,9 +103,6 @@ services:
         max-file: "3"
 networks:
   panel:
-  cloudflare-net: 
-    name: cloudflare-net 
-    external: true
 
 volumes:
   cache:
