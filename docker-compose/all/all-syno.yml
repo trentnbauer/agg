@@ -101,7 +101,7 @@ services:
       - autoheal=true
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${CFTUNNELNAME:-MissingHostname}-tunnel.$URLTLD
-      - cloudflare.tunnel.service=http://${HOSTNAME}:${DOCKLAREPORT:-5000}
+      - cloudflare.tunnel.service=http://${HOSTNAME}:${DOCKFLAREPORT:-5000}
       - cloudflare.tunnel.access.policy=default_tld
       - cloudflare.tunnel.zonename=$URLTLD
       #- cloudflare.tunnel.path=${URLPATH:-}
