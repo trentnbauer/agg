@@ -8,7 +8,6 @@ services:
       - PGID=0 #Root user
       - TZ=$TZ
       - CLI_ARGS= #optional
-    hostname: ${ALIAS:-duplicati}
     volumes:
       - config:/config
       - /:/macaroni
@@ -22,7 +21,13 @@ services:
       start_period: 30s
       timeout: 20s
     labels:
-      - "autoheal=true"
+      - autoheal=true
+      - cloudflare.tunnel.enable=true
+      - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${PORT:-8200}
+      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
+      - cloudflare.tunnel.zonename=${CFDOMAIN}
+      - cloudflare.tunnel.path=${CFURLPATH:-}
     logging:
       driver: "json-file"
       options:
