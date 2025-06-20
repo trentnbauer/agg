@@ -8,6 +8,7 @@ services:
       - PGID=0 #Root user
       - TZ=$TZ
       - CLI_ARGS= #optional
+    hostname: ${ALIAS:-duplicati}
     volumes:
       - config:/config
       - /:/macaroni
