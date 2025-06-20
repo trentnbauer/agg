@@ -4,6 +4,7 @@ services:
   app:
     image: emmercm/qbittorrent:5.0.4-alpine@sha256:8924d2bdfec37201d9a239867016c37160b849dc491c6bfe181c8d03e8b820ee
     restart: unless-stopped
+    hostname: ${ALIAS:-qbittorrent}
     dns:
       - 1.1.1.1
       - 8.8.8.8
