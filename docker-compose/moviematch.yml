@@ -2,8 +2,6 @@ version: '3'
 services:
   app:
     image: lukechannings/moviematch:1.10.0
-    networks:
-      - cloudflare-net
     restart: unless-stopped
     environment:
       - PLEX_URL=$PLEX_URL
@@ -20,13 +18,7 @@ services:
     labels:
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
-      - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${PORT:-8000}
+      - cloudflare.tunnel.service=http://${HOSTNAME}:${PORT:-8000}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
       - cloudflare.tunnel.zonename=${DOMAIN}
       - cloudflare.tunnel.path=${URLPATH:-}
-
-
-networks:
-  cloudflare-net: 
-    name: cloudflare-net 
-    external: true
