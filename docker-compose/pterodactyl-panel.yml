@@ -50,8 +50,8 @@ services:
     restart: always
     hostname: ${ALIAS:-panel}
     networks:
-      - panel
       - cloudflare-net
+      - panel
     ports:
       - ${PORT_HTTP:-80}:80
     #dns:
