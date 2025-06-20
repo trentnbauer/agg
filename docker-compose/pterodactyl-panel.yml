@@ -2,7 +2,7 @@ version: '3.8'
 services:
   database:
     image: mariadb:10.11
-    restart: always
+    restart: unless-stopped
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - db:/var/lib/mysql
@@ -30,7 +30,7 @@ services:
     image: redis:alpine3.18
     networks:
       - panel
-    restart: always
+    restart: unless-stopped
     volumes:
       - cache:/data
     healthcheck:
@@ -47,11 +47,12 @@ services:
         max-file: "3"    
   panel:
     image: ghcr.io/pterodactyl/panel:v1.11.11
-    restart: always
-    hostname: ${ALIAS:-panel}
+    restart: unless-stopped
     networks:
-      - cloudflare-net
-      - panel
+       panel:
+       cloudflare-net:
+         aliases:
+           - ${ALIAS:-panel}
     ports:
       - ${PORT_HTTP:-80}:80
     #dns:
