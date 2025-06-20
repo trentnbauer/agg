@@ -8,8 +8,8 @@ services:
     environment:
       - PLEX_URL=$PLEX_URL
       - PLEX_TOKEN=$PLEX_TOKEN
-      - ROOT_PATH=$ROOTPATH
-      - ROOTPATH=$ROOTPATH
+      - ROOT_PATH=${URLPATH:-}
+      - ROOTPATH=${URLPATH:-}
     ports:
       - ${PORT:-8000}:8000   
     logging:
