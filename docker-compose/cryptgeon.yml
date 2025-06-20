@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:8-alpine
+    # Set a size limit. See link below on how to customise.
+    # https://redis.io/docs/manual/eviction/
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    labels:
+      - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"     
+  app:
+    image: cupcakearmy/cryptgeon:2.9.1@sha256:9d52b458855e14384460be37b735e7e6e661a42fc77d2b29654a682da9bdf1d0
+    hostname: ${ALIAS:-cryptgeon}
+    networks:
+      - cloudflare-net
+    depends_on:
+      - redis
+    environment:
+      # Size limit for a single note.
+      SIZE_LIMIT: 4 MiB
+    ports:
+      - ${PORT:-8000}:8000
+    restart: unless-stopped
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8000
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - "autoheal=true"
+      - cloudflare.tunnel.enable=true
+      - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
+      - cloudflare.tunnel.service=http://${ALIAS:-cryptgeon}:${PORT:-5055}
+      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
+      - cloudflare.tunnel.zonename=${DOMAIN}
+      - cloudflare.tunnel.path=${URLPATH:-}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+networks:
+  cloudflare-net: 
+    name: cloudflare-net 
+    external: true
