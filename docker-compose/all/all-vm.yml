@@ -58,7 +58,6 @@ services:
       - autoheal=true
 
   dockflare:
-    hostname: ${DOCKFLAREALIAS:-dockflare}
     image: alplat/dockflare:v1.8.7@sha256:0c30781a7659ba8f0cdb2f69684aa6cbc4f5ca521a23631a188e226a9eedfe58
     restart: unless-stopped
     networks:
@@ -77,7 +76,7 @@ services:
       - CF_API_TOKEN=$CFAPITOKEN
       - CF_ACCOUNT_ID=$CFACCOUNTID
       #- CF_ZONE_ID=$CFZONEID
-      - TUNNEL_NAME=${HOSTNAME:-MissingHostname}
+      - TUNNEL_NAME=${CFTUNNELNAME:-MissingHostname}
       - LABEL_PREFIX=cloudflare.tunnel
       - GRACE_PERIOD_SECONDS=28800
       - CLEANUP_INTERVAL_SECONDS=900
@@ -90,8 +89,8 @@ services:
     labels:
       - autoheal=true
       - cloudflare.tunnel.enable=true
-      - cloudflare.tunnel.hostname=$HOSTNAME-tunnel.$URLTLD
-      - cloudflare.tunnel.service=http://${DOCKFLAREALIAS:-dockflare}:${DOCKLAREPORT:-5000}
+      - cloudflare.tunnel.hostname=${CFTUNNELNAME:-MissingHostname}-tunnel.$URLTLD
+      - cloudflare.tunnel.service=http://${HOSTNAME}:${DOCKLAREPORT:-5000}
       - cloudflare.tunnel.access.policy=default_tld
       - cloudflare.tunnel.zonename=$URLTLD
       #- cloudflare.tunnel.path=${URLPATH:-}
