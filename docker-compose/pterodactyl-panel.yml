@@ -49,10 +49,7 @@ services:
     image: ghcr.io/pterodactyl/panel:v1.11.11
     restart: unless-stopped
     networks:
-       panel:
-       cloudflare-net:
-         aliases:
-           - ${ALIAS:-panel}
+       - panel
     ports:
       - ${PORT_HTTP:-80}:80
     #dns:
