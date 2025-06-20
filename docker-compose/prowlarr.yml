@@ -3,6 +3,7 @@ version: "2.1"
 services:
   app:
     image: ghcr.io/linuxserver/prowlarr:1.37.0@sha256:b058be8a4e083e0cba238f03759994617a559abe0c89e5ed66454b44395da6a9
+    hostname: ${ALIAS:-prowlarr}
     environment:
       #- PUID=1000
       #- PGID=1000
