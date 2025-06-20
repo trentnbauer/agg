@@ -32,7 +32,7 @@ services:
     labels:
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${PORT:-443}
+      - cloudflare.tunnel.service=http://${HOSTNAME}:${PORT:-443}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
       - cloudflare.tunnel.zonename=${CFDOMAIN}
       - cloudflare.tunnel.path=${CFURLPATH:-}
