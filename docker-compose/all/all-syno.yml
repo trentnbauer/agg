@@ -71,7 +71,7 @@ services:
   dockflare:
     image: alplat/dockflare:v1.8.7@sha256:0c30781a7659ba8f0cdb2f69684aa6cbc4f5ca521a23631a188e226a9eedfe58
     restart: unless-stopped
-    hostname: dockflare
+    hostname: ${DOCKFLAREALAS:-dockflare}
     networks:
       - cloudflare-net
     ports:
@@ -95,7 +95,7 @@ services:
     labels:
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=$HOSTNAME-tunnel.$URLTLD
-      - cloudflare.tunnel.service=http://dockflare:${DOCKLAREPORT:-5000}
+      - cloudflare.tunnel.service=http://${DOCKFLAREALAS:-dockflare}:${DOCKLAREPORT:-5000}
       - cloudflare.tunnel.access.policy=default_tld
       - cloudflare.tunnel.zonename=$URLTLD
       #- cloudflare.tunnel.path=${URLPATH:-}
