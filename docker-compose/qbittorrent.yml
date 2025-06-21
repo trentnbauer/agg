@@ -30,7 +30,7 @@ services:
       - autoheal=true  
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${PORT:-8080}
+      - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${WEBPORT:-8080}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
       - cloudflare.tunnel.zonename=${CFDOMAIN}
       - cloudflare.tunnel.path=${CFURLPATH:-}      
