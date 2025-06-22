@@ -22,7 +22,7 @@ services:
       start_period: 30s
     labels:
       - autoheal=true
-      - cloudflare.tunnel.enable={$CFTUNNEL:-true}
+      - cloudflare.tunnel.enable=${CFTUNNEL:-true}
       - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
       - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${PORT:-8989}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
