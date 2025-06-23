@@ -11,7 +11,15 @@ services:
       - steps:/data/wizard_steps
     restart: unless-stopped
     labels:
-      - "autoheal=true"
+      - autoheal=true
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME}:${PORT:-5690}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}=
+    networks:
+        - cloudflare-net
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:5690
       interval: 30s
@@ -29,3 +37,8 @@ services:
 volumes:
   db:
   steps:
+
+networks:
+    cloudflare-net:
+        name: cloudflare-net
+        external: true
