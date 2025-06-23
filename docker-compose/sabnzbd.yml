@@ -12,6 +12,8 @@ services:
     ports:
       - ${PORT:-8080}:8080
     restart: unless-stopped
+    networks:
+      - cloudflare-net
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8080
       interval: 30s
@@ -33,3 +35,8 @@ services:
         max-file: "3"
 volumes:
   config:
+
+networks:
+  cloudflare-net:
+    name: cloudflare-net
+    external: true
