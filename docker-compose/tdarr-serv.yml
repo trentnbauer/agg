@@ -3,7 +3,6 @@ services:
   server:
     image: ghcr.io/haveagitgat/tdarr:2.45.01
     restart: unless-stopped
-    hostname: ${ALIAS:-tdarr}
     ports:
       - ${WEBUI:-8265}:8265 # webUI port
       - ${SERVER:-8266}:${SERVER:-8266} # server port
@@ -37,7 +36,13 @@ services:
       start_period: 30s
       timeout: 20s
     labels:
-      - "autoheal=true"
+      - autoheal=true
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME}:${SERVER:-8266}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}
     logging:
       driver: "json-file"
       options:
