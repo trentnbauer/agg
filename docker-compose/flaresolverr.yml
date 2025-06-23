@@ -11,7 +11,8 @@ services:
     ports:
       - ${PORT:-8191}:8191
     restart: unless-stopped
-    hostname: ${ALIAS:-flaresolverr}
+    network:
+      - cloudflare-net
     mem_limit: 2G
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8191
@@ -20,9 +21,20 @@ services:
       start_period: 30s
       timeout: 20s
     labels:
-      - "autoheal=true"
+      - autoheal=true
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME}:${PORT:-8191}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
+
+networks:
+  cloudflare-net:
+    name: cloudflare-net
+    external: true
