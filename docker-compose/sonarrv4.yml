@@ -24,12 +24,12 @@ services:
       start_period: 30s
     labels:
       - autoheal=true
-      - dockflare.enable=${CFTUNNEL:-"true"}
-      - dockflare.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.service=HTTP://${HOSTNAME}:${PORT:-8989}
-      - dockflare.access.policy=${CFPOLICY:-default_tld}
-      - dockflare.zonename=${CFDOMAIN}
-      - dockflare.path=${CFURLPATH:-}
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=HTTP://${HOSTNAME}:${PORT:-8989}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}
     logging:
       driver: "json-file"
       options:
