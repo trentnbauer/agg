@@ -18,11 +18,11 @@ services:
         max-size: "10m"
         max-file: "3" 
     healthcheck:
-      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:6767${CFURLPATH:-}
-      interval: 30s
-      retries: 3
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:6767
+      interval: 60s
+      retries: 5
       start_period: 30s
-      timeout: 20s
+      timeout: 50s
     labels:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
