@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: ghcr.io/plexguide/huntarr:8.1.4@sha256:48ca6bfca24f8c81e5575e5233751e04cd0a36292fc9220966e4a2522302b43e
+    image: ghcr.io/plexguide/huntarr:8.1.7@sha256:8ac2dc7d34646ff3be836419c48a374680206fb7007f7b2b1ed2aaa25b1aee1d
     hostname: ${ALIAS:-huntarr}
     restart: always
     ports:
