@@ -3,20 +3,26 @@ services:
   app:
     image: ghcr.io/seriousm4x/upsnap:5.1.0@sha256:2cdbfaeac6cb2c31b86d35d12c23a013d01f41ee9fb8735f1ffe847f143c6047
     network_mode: host
-    hostname: ${ALIAS:-upsnap}
     restart: unless-stopped
     volumes:
       - app:/app/pb_data
     environment:
-      - TZ=$TZ
+      - TZ=${TZ:-Australia/Melbourne}
       - UPSNAP_INTERVAL=@every 10s # Sets the interval in which the devices are pinged
-      - UPSNAP_SCAN_RANGE=$RANGE # Scan range is used for device discovery on local network
-      - UPSNAP_WEBSITE_TITLE=$WEBSITE_TITLE # Custom website title
-      - UPSNAP_PING_PRIVILEGED=$PING_PRIVILEGED
+      - UPSNAP_SCAN_RANGE=${RANGE:-192.168.0.1/24} # Scan range is used for device discovery on local network
+      - UPSNAP_WEBSITE_TITLE=${WEBSITE_TITLE:-Up Snap} # Custom website title
+      - UPSNAP_PING_PRIVILEGED=${PING_PRIVILEGED:-true}
     logging:
       driver: "json-file"
       options:
         max-size: "15m"
-        max-file: "3"    
+        max-file: "3"   
+    labels:
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME}:${PORT:-5055}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}
 volumes:
   app:
