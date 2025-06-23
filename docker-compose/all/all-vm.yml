@@ -77,7 +77,7 @@ services:
       - CF_ACCOUNT_ID=$CFACCOUNTID
       #- CF_ZONE_ID=$CFZONEID
       - TUNNEL_NAME=${CFTUNNELNAME:-MissingTunnelName}
-      - LABEL_PREFIX=cloudflare.tunnel
+      #- LABEL_PREFIX=dockflare
       - GRACE_PERIOD_SECONDS=28800
       - CLEANUP_INTERVAL_SECONDS=900
       - AGENT_STATUS_UPDATE_INTERVAL_SECONDS=15
