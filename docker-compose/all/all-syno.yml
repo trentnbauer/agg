@@ -94,6 +94,7 @@ services:
       - AGENT_STATUS_UPDATE_INTERVAL_SECONDS=30
       - SCAN_ALL_NETWORKS=true
       - MAX_CONCURRENT_DNS_OPS=3
+      - TUNNEL_DNS_SCAN_ZONE_NAMES=${DNSSCANZONES:-}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - dockflare_data:/app/data
