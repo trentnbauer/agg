@@ -22,7 +22,7 @@ services:
       timeout: 20s
     labels:
       - autoheal=true
-      - cloudflare.tunnel.enable=false
+      - cloudflare.tunnel.enable="true"
       - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
       - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${PORT:-8080}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
