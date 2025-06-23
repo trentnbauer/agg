@@ -35,5 +35,5 @@ volumes:
 
 networks:
   cloudflare-net:
-    name: coudflare-net
+    name: cloudflare-net
     external: true
