@@ -3,6 +3,8 @@ services:
   app:
     image: ghcr.io/henrygd/beszel/beszel:0.11.1@sha256:b060dd22f29958d1075def8c1c710a5ec208911aebe3b85b21dde361de8b8b14
     restart: unless-stopped
+    networks:
+      - cloudflare-net
     ports:
       - ${PORT:-8090}:8090
     volumes:
@@ -22,5 +24,16 @@ services:
       interval: 120s
     labels:
       - autoheal=true
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME}:${PORT:-5055}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}
 volumes:
   data:
+
+networks:
+  cloudflare-net:
+    name: coudflare-net
+    external: true
