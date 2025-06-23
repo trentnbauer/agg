@@ -17,11 +17,10 @@ services:
       retries: 3
       start_period: 30s
       timeout: 20s
-    labels:
-      - autoheal=true
     networks:
       - cloudflare-net
     labels:
+      - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN0}${CFDOMAIN0}
       - dockflare.0.service=http://${HOSTNAME}:${PORT:-3001}
