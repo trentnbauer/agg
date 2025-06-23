@@ -4,7 +4,8 @@ services:
   app:
     image: allebb/studio-server:1.0.4-rc6
     restart: unless-stopped
-    hostname: ${ALIAS:-davincistudioserver}
+    networks:
+      - cloudflare-net
     #network_mode: bridge
     environment:
       - TZ=${TZ:-Australia/Melbourne}
@@ -23,7 +24,13 @@ services:
       start_period: 30s
       timeout: 20s
     labels:
-      - "autoheal=true"
+      - autoheal=true
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME}:${PORT:-5055}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}
     logging:
       driver: "json-file"
       options:
@@ -38,3 +45,8 @@ volumes:
       #type: nfs 
       #o: ${SERVER:-fettuccine.agg.local},nfsvers=4
       #device: :$SHARE
+
+networks:
+    cloudflare-net:
+        name: cloudflare-net
+        external: true
