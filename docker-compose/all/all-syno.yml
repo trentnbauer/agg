@@ -109,6 +109,7 @@ services:
       - dockflare.1.service=https://${HOSTNAME}:5001
       - dockflare.1.access.policy=default_tld
       - dockflare.1.zonename=${URLTLD}
+      - dockflare.1.no_tls_verify=true
 volumes:
   dockflare_data:
   ossec:
