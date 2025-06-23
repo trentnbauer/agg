@@ -11,7 +11,7 @@ services:
     ports:
       - ${PORT:-8191}:8191
     restart: unless-stopped
-    network:
+    networks:
       - cloudflare-net
     mem_limit: 2G
     healthcheck:
