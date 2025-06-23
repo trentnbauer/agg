@@ -34,10 +34,11 @@ services:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:${PORT:-444}
+      - dockflare.0.service=https://${HOSTNAME}:${PORT:-444}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}
+      - dockflare.0.no_tls_verify=true
     logging:
       driver: "json-file"
       options:
