@@ -22,7 +22,7 @@ services:
       timeout: 20s
     labels:
       - autoheal=true
-      - dockflare.enable=true
+      - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
       - dockflare.0.service=http://${HOSTNAME}:${PORT:-8080}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
