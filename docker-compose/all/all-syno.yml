@@ -88,7 +88,7 @@ services:
       - CF_ACCOUNT_ID=$CFACCOUNTID
       #- CF_ZONE_ID=$CFZONEID
       - TUNNEL_NAME=${CFTUNNELNAME}
-      - LABEL_PREFIX=cloudflare.tunnel
+      - LABEL_PREFIX=docklare.0
       - GRACE_PERIOD_SECONDS=28800
       - CLEANUP_INTERVAL_SECONDS=900
       - AGENT_STATUS_UPDATE_INTERVAL_SECONDS=30
@@ -99,12 +99,17 @@ services:
       - dockflare_data:/app/data
     labels:
       - autoheal=true
-      - cloudflare.tunnel.enable=true
-      - cloudflare.tunnel.hostname=${CFTUNNELNAME:-MissingHostname}-tunnel.$URLTLD
-      - cloudflare.tunnel.service=http://${HOSTNAME}:${DOCKFLAREPORT:-5000}
-      - cloudflare.tunnel.access.policy=default_tld
-      - cloudflare.tunnel.zonename=$URLTLD
-      #- cloudflare.tunnel.path=${URLPATH:-}
+      - docklare.0.hostname=${CFTUNNELNAME:-MissingHostname}-tunnel.$URLTLD
+      - docklare.0.enable="true"
+      - docklare.0.service=http://${HOSTNAME}:${DOCKFLAREPORT:-5000}
+      - docklare.0.access.policy=default_tld
+      - docklare.0.zonename=${URLTLD}
+      - dockflare.1.enable="true"
+      - dockflare.1.hostname=nas.${URLTLD}
+      - dockflare.1.service=https://${HOSTNAME}:5001
+      - dockflare.1.access.policy=default_tld
+      - dockflare.1.zonename=$URLTLD
+      #- docklare.0.path=${URLPATH:-}
 volumes:
   dockflare_data:
   ossec:
