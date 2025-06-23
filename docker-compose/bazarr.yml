@@ -17,14 +17,7 @@ services:
       options:
         max-size: "10m"
         max-file: "3" 
-    healthcheck:
-      test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:6767
-      interval: 60s
-      retries: 5
-      start_period: 30s
-      timeout: 50s
     labels:
-      - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
       - dockflare.0.service=http://${HOSTNAME}:${PORT:-6767}
