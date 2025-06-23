@@ -3,7 +3,8 @@ version: "2.1"
 services:
   app:
     image: ghcr.io/linuxserver/netbootxyz:0.7.6@sha256:bb52bc116e15305655516912112821cc7d0fedc71ee9fc6e0256a2c8a595b3e2
-    hostname: ${ALIAS:-netbootxyz}
+    networks:
+      - cloudflare-net
     environment:
       - PUID=$PUID
       - PGID=$PUID
@@ -25,7 +26,13 @@ services:
       start_period: 30s
       timeout: 20s
     labels:
-      - "autoheal=true"
+      - autoheal=true
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME}:${PORT:-5055}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}      
     logging:
       driver: "json-file"
       options:
@@ -34,3 +41,7 @@ services:
 volumes:
   conf:
   assets:
+networks:
+  cloudflare-net:
+    name: cloudflare-net
+    external: true
