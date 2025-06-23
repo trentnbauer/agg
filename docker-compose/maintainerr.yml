@@ -8,11 +8,13 @@ services:
       - data:/opt/data
     environment:
       - TZ=${TZ:-Australia/Melbourne}
-      - BASE_PATH=/${BASEPATH:-}
+      - BASE_PATH=${BASEPATH:-}
       - debug=true
     ports:
       - ${PORT:-6246}:6246 
     restart: unless-stopped
+    networks:
+      - cloudflare-net
     logging:
       driver: "json-file"
       options:
@@ -25,6 +27,16 @@ services:
       start_period: 30s
       timeout: 20s
     labels:
-      - "autoheal=true"
+      - autoheal=true
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME}:${PORT:-5055}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}      
 volumes:
   data:
+networks:
+    cloudflare-net:
+        name: cloudflare-net
+        external: true
