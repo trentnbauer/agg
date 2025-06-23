@@ -22,7 +22,13 @@ services:
       start_period: 30s
       timeout: 20s
     labels:
-      - "autoheal=true"
+      - autoheal=true
+      - cloudflare.tunnel.enable=${CFTUNNEL:-true}
+      - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - cloudflare.tunnel.service=HTTP://${HOSTNAME}:${PORT:-5055}
+      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
+      - cloudflare.tunnel.zonename=${CFDOMAIN}
+      - cloudflare.tunnel.path=${CFURLPATH:-}
     logging:
       driver: "json-file"
       options:
