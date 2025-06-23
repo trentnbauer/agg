@@ -80,9 +80,9 @@ services:
       - LABEL_PREFIX=dockflare
       - GRACE_PERIOD_SECONDS=28800
       - CLEANUP_INTERVAL_SECONDS=900
-      - AGENT_STATUS_UPDATE_INTERVAL_SECONDS=60
+      - AGENT_STATUS_UPDATE_INTERVAL_SECONDS=30
       - SCAN_ALL_NETWORKS=true
-      - MAX_CONCURRENT_DNS_OPS=1
+      - MAX_CONCURRENT_DNS_OPS=2
       - TUNNEL_DNS_SCAN_ZONE_NAMES=${DNSSCANZONES:-}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
