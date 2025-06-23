@@ -22,12 +22,12 @@ services:
       timeout: 20s
     labels:
       - autoheal=true
-      - cloudflare.tunnel.enable="true"
-      - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - cloudflare.tunnel.service=http://${HOSTNAME}:${PORT:-8080}
-      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
-      - cloudflare.tunnel.zonename=${CFDOMAIN}
-      - cloudflare.tunnel.path=${CFURLPATH:-}      
+      - dockflare.enable=true
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME}:${PORT:-8080}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}      
     logging:
       driver: "json-file"
       options:
