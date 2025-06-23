@@ -4,6 +4,8 @@ services:
   app:
     image: ghcr.io/linuxserver/radarr:5.26.2@sha256:07a474b61394553e047ad43a1a78c1047fc99be0144c509dd91e3877f402ebcb
     hostname: ${ALIAS:-radarr}
+    networks:
+      - cloudflare-net
     environment:
       #- PUID=1000
       #- PGID=1000
@@ -46,3 +48,7 @@ volumes:
       type: nfs 
       o: addr=$STORAGE,nfsvers=4
       device: :$DOWNLOAD
+networks:
+  cloudflare-net:
+    name: cloudflare-net
+    external: true
