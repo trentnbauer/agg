@@ -11,6 +11,8 @@ services:
       - config:/config
       - media:/tv #optional
       - downloads:/downloads
+    networks:
+      - cloudflare-net
     ports:
       - ${PORT:-8989}:8989
     restart: unless-stopped
@@ -45,3 +47,8 @@ volumes:
       type: nfs 
       o: addr=$STORAGE,nfsvers=4
       device: :$DOWNLOAD
+
+networks:
+  cloudflare-net:
+    name: cloudflare-net
+    external: true
