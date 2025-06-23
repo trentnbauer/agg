@@ -17,7 +17,7 @@ services:
       - dockflare.0.service=http://${HOSTNAME}:${PORT:-5690}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
-      - dockflare.0.path=${CFURLPATH:-}=
+      - dockflare.0.path=${CFURLPATH:-}
     networks:
         - cloudflare-net
     healthcheck:
