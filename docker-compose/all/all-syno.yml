@@ -74,7 +74,7 @@ services:
     networks:
       - cloudflare-net
     healthcheck:
-      test: wget --no-verbose --tries=1 --spider ${PROTOCOL:-http}://localhost:5000 -O /dev/null || exit 1
+      test: wget --no-verbose --tries=1 --spider http://localhost:5000 -O /dev/null || exit 1
       interval: 30s
       retries: 3
       start_period: 30s
@@ -100,7 +100,6 @@ services:
       - dockflare_data:/app/data
     labels:
       - autoheal=true
-
       - docklare.enable="true"
       - dockflare.0.hostname=${CFTUNNELNAME:-MissingHostname}-tunnel.${URLTLD}
       - dockflare.0.service=http://${HOSTNAME}:${DOCKFLAREPORT:-5000}
@@ -110,7 +109,6 @@ services:
       - dockflare.1.service=https://${HOSTNAME}:5001
       - dockflare.1.access.policy=default_tld
       - dockflare.1.zonename=${URLTLD}
-      #- docklare.0.path=${URLPATH:-}
 volumes:
   dockflare_data:
   ossec:
