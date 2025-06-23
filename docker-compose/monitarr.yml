@@ -12,14 +12,7 @@ services:
     restart: unless-stopped
     networks:
        - cloudflare-net
-    healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:3000 || exit 1
-      interval: 30s
-      retries: 3
-      start_period: 30s
-      timeout: 20s
     labels:
-      - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
       - dockflare.0.service=http://${HOSTNAME}:${PORT:-3000}
