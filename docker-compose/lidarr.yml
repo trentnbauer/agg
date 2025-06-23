@@ -3,11 +3,10 @@ version: "2.3"
 services:
   app:
     image: lscr.io/linuxserver/lidarr:2.11.2.4629-ls40@sha256:273641e57caa284a1439b062eea2faed965761d6b7bda78a687184080a901cc2
-    hostname: ${ALIAS:-lidarr}
     environment:
       #- PUID=1000
       #- PGID=1000
-      - TZ=$TZ
+      - TZ=${TZL:-Australia/Melbourne}
     volumes:
       - config:/config
       - media:/music
@@ -15,6 +14,8 @@ services:
     ports:
       - ${PORT:-8686}:8686
     restart: unless-stopped
+    networks:
+      - cloudflare-net
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail -k http://localhost:8686/ping
       interval: 30s
@@ -22,7 +23,13 @@ services:
       start_period: 30s
       timeout: 20s
     labels:
-      - "autoheal=true"
+      - autoheal=true
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME}:${PORT:-8686}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}
     logging:
       driver: "json-file"
       options:
@@ -40,3 +47,8 @@ volumes:
       type: nfs 
       o: addr=$STORAGE,nfsvers=4
       device: :$DOWNLOAD
+
+networks:
+    cloudflare-net:
+        name: cloudflare-net
+        external: true
