@@ -100,15 +100,14 @@ services:
     labels:
       - autoheal=true
       - docklare.0.hostname=${CFTUNNELNAME:-MissingHostname}-tunnel.$URLTLD
-      - docklare.0.enable="true"
+      - docklare.enable="true"
       - docklare.0.service=http://${HOSTNAME}:${DOCKFLAREPORT:-5000}
       - docklare.0.access.policy=default_tld
       - docklare.0.zonename=${URLTLD}
-      - dockflare.1.enable="true"
       - dockflare.1.hostname=nas.${URLTLD}
       - dockflare.1.service=https://${HOSTNAME}:5001
       - dockflare.1.access.policy=default_tld
-      - dockflare.1.zonename=$URLTLD
+      - dockflare.1.zonename=${URLTLD}
       #- docklare.0.path=${URLPATH:-}
 volumes:
   dockflare_data:
