@@ -100,7 +100,7 @@ services:
       - dockflare_data:/app/data
     labels:
       - autoheal=true
-      - dockflare.enable="true"
+      - dockflare.enable=true
       - dockflare.0.hostname=${CFTUNNELNAME:-MissingHostname}-tunnel.${URLTLD}
       - dockflare.0.service=http://${HOSTNAME}:${DOCKFLAREPORT:-5000}
       - dockflare.0.access.policy=default_tld
