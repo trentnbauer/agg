@@ -58,7 +58,7 @@ services:
       - autoheal=true
 
   dockflare:
-    image: alplat/dockflare:v1.8.9@sha256:b8b4d424a7ca95547290ed57b2359f418991ca9b7a7507ff92fa8bc54eac38a2
+    image: alplat/dockflare:v1.9.1@sha256:a703f0221f98c102667ef1b2d746fbf188fff3f366d1a640d892d7a944065c95
     restart: unless-stopped
     networks:
       - cloudflare-net
