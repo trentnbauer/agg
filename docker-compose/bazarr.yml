@@ -2,6 +2,14 @@ version: '2.3'
 services:
   app:
     image: ghcr.io/linuxserver/bazarr:1.5.2@sha256:b515d79a4f7aa4bbbdfe45376d996a9bae2794faa16aca5a2beab0dba0c0b074
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://LOCALHOST:6767
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - autoheal=true
     networks:
       - cloudflare-net
     environment:
@@ -18,6 +26,7 @@ services:
         max-size: "10m"
         max-file: "3" 
     labels:
+      - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
       - dockflare.0.service=http://${HOSTNAME}:${PORT:-6767}
