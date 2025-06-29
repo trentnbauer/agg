@@ -1,19 +1,5 @@
 version: '3'
 services:
-  wazuh-agent:
-    image: kennyopennix/wazuh-agent:4.11.1@sha256:4786b1431e43a579a128b281c9d79ccab825a7dade9fe0dfd69ecbe46bb21bb3
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /:/rootfs:ro
-      - ossec:/var/ossec
-    network_mode: host
-    environment:
-      - JOIN_MANAGER_MASTER_HOST=$WAZUHMASTER
-      - JOIN_MANAGER_WORKER_HOST=$WAZUHWORKER
-      - JOIN_MANAGER_PASSWORD=$WAZUHPASS
-      - JOIN_MANAGER_USER=$WAZUHUSER
-    restart: always
-    
   autoheal:
     deploy:
       replicas: 1
