@@ -6,8 +6,6 @@ services:
     volumes:
       - config:/app/data
     network_mode: host #required for auto-discovery of Android TV
-    labels:
-      - cloudflare.tunnel.enable=false
 
 volumes:
   config:
