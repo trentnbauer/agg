@@ -25,7 +25,7 @@ services:
       - configs:/app/configs
       - logs:/app/logs
       - media:/media
-      - /cache:/temp
+      - /dev/shm:/temp
       - /etc/hostname:/etc/hostname:ro
     devices:
       - /dev/dri:/dev/dri
@@ -39,7 +39,7 @@ services:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:${WEBUI:-8265}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${WEBUI:-8265}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}
@@ -76,7 +76,7 @@ services:
       - configs:/app/configs
       - logs:/app/logs
       - media:/media
-      - /cache:/temp
+      - /dev/shm:/temp
       - /etc/hostname:/etc/hostname:ro
     devices:
       - /dev/dri:/dev/dri
