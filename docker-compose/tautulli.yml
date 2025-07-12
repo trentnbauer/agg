@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: ghcr.io/linuxserver/tautulli:2.15.2@sha256:899245206017f6874e32a499a7cd305526ffa3440252cbfee6a175198c3453df
+    image: ghcr.io/linuxserver/tautulli:2.15.2@sha256:73540c967731d36692cea9b8e8881c45e2734f47d5eac1ed6e5e1821f4801737
     environment:
       - PUID=1000
       - PGID=1000
@@ -23,7 +23,7 @@ services:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:${PORT:-8181}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORT:-8181}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}
