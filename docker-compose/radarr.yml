@@ -2,7 +2,7 @@
 version: "2.3"
 services:
   app:
-    image: ghcr.io/linuxserver/radarr:5.26.2@sha256:07a474b61394553e047ad43a1a78c1047fc99be0144c509dd91e3877f402ebcb
+    image: ghcr.io/linuxserver/radarr:5.26.2@sha256:3f6c13cd920e60469e24fac6b25338b0805832e6dea108f8316814d0f4147ab6
     hostname: ${ALIAS:-radarr}
     networks:
       - cloudflare-net
@@ -27,7 +27,7 @@ services:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:${PORT:-5055}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORT:-5055}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}
