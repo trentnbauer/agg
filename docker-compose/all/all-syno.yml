@@ -9,7 +9,7 @@ services:
       AUTOHEAL_START_PERIOD: 240
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 60
       AUTOHEAL_ONLY_MONITOR_RUNNING: true
-    image: willfarrell/autoheal@sha256:0819fd084489a8afa4eaa497e1deda40d95a9f8ac44adf151f3ee00198ea36fa
+    image: willfarrell/autoheal@sha256:2bfaaef04746985cadf1b1445b0fe21fa3251a86da7a0387750e5b846c5a4315
     network_mode: none
     restart: always
     volumes:
@@ -81,6 +81,7 @@ services:
       - SCAN_ALL_NETWORKS=true
       - MAX_CONCURRENT_DNS_OPS=1
       - TUNNEL_DNS_SCAN_ZONE_NAMES=${DNSSCANZONES:-}
+      - CLOUDFLARED_NETWORK_NAME=${CLOUDFLARED_NETWORK_NAME:-host}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - dockflare_data:/app/data
@@ -88,11 +89,11 @@ services:
       - autoheal=true
       - dockflare.enable=true
       - dockflare.0.hostname=${CFTUNNELNAME:-MissingHostname}-tunnel.${URLTLD}
-      - dockflare.0.service=http://${HOSTNAME}:${DOCKFLAREPORT:-5000}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${DOCKFLAREPORT:-5000}
       - dockflare.0.access.policy=default_tld
       - dockflare.0.zonename=${URLTLD}
       - dockflare.1.hostname=nas.${URLTLD}
-      - dockflare.1.service=https://${HOSTNAME}:5001
+      - dockflare.1.service=https://${HOSTNAME:-localhost}:5001
       - dockflare.1.access.policy=default_tld
       - dockflare.1.zonename=${URLTLD}
       - dockflare.1.no_tls_verify=true
