@@ -2,7 +2,7 @@
 version: "3.5"
 services:
   app:
-    image: ghcr.io/wizarrrr/wizarr:2025.6.5@sha256:45cbac99eb86f3f63b204022538e9b537f335ccdd2749ca360b8d58b41f7a896
+    image: ghcr.io/wizarrrr/wizarr:2025.7.5@sha256:eebc736c1eb23488e669d0816fe9eb9d4e48effb569f3c3f44404771d5cfe363
     hostname: ${ALIAS:-wizarr}
     ports:
       - ${PORT:-5690}:5690
@@ -14,7 +14,7 @@ services:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:${PORT:-5690}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORT:-5690}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}
