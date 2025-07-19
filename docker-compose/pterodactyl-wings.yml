@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   wings:
-    image: ghcr.io/pterodactyl/wings:v1.11.13
+    image: ghcr.io/pterodactyl/wings:v1.11.13@sha256:98a5b9622cd152c43f1795fbc443934a25828cb1b3f7b5979cd5efb58175e869
     restart: always
     logging:
       driver: "json-file"
@@ -32,7 +32,7 @@ services:
     labels:
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - cloudflare.tunnel.service=http://${HOSTNAME}:${PORT:-443}
+      - cloudflare.tunnel.service=http://${HOSTNAME:-localhost}:${PORT:-443}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
       - cloudflare.tunnel.zonename=${CFDOMAIN}
       - cloudflare.tunnel.path=${CFURLPATH:-}
