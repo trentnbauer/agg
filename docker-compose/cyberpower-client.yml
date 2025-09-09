@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  app:
+    image: ghcr.io/nathanvaughn/powerpanel-business:remote-440
+    privileged: true
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - data:/data
+      - /etc/localtime:/etc/localtime:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+volumes:
+  data:

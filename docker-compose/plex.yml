@@ -1,8 +1,8 @@
 version: '2.3'
 services:
   app:
-    image: ghcr.io/linuxserver/plex:1.41.8@sha256:14e8d783f2b0ec7e7ca2836d3d7185f5e68c60ba0e4eac77666bee4f0f819043
-    #network_mode: host ###Leave this as it may detect your LAN traffic as WAN, forcing encoding. It may also run into issues if your internert is down
+    image: ghcr.io/linuxserver/plex:1.42.1@sha256:28f18c27b6822328df994154dbf7c0f511032d9f91bbd10881030b706afd8593
+    network_mode: host ###Leave this as it may detect your LAN traffic as WAN, forcing encoding. It may also run into issues if your internert is down
     ports:
       - ${PLEXPORT:-32400}:32400
       - 1900:1900/udp
@@ -33,9 +33,9 @@ services:
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail http://localhost:32400/identity
       interval: 1m
-      timeout: 30s
+      timeout: 50s
       retries: 3
-      start_period: 1m
+      start_period: 30s
     labels:
       - "autoheal=true"
     logging:
@@ -51,3 +51,4 @@ volumes:
       type: nfs 
       o: $STORAGE,nfsvers=4
       device: :$MEDIA
+

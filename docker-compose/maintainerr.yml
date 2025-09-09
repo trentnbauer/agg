@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: ghcr.io/jorenn92/maintainerr:2.18.1@sha256:da4b3b5b5e0a4aae6b4e294abdad2510a3be9bd138af8f4ca5a6e7cd6d94b1a2
+    image: ghcr.io/jorenn92/maintainerr:2.19.0@sha256:bee84707edaf589cda3d18b6813cbfe3a137b52786210c3a28190e10910c1240
     hostname: ${ALIAS:-maintainerr}
     volumes:
       #- $MEDIA:$MEDIA
@@ -30,7 +30,7 @@ services:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:${PORT:-6246}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORT:-6246}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}      

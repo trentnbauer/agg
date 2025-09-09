@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  app:
+    image: ghcr.io/nathanvaughn/powerpanel-business:local-440
+    privileged: true
+    network_mode: host
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    restart: unless-stopped
+    volumes:
+      - data:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    labels:
+      - cloudflare.tunnel.enable=true
+      - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - cloudflare.tunnel.service=HTTP://${HOSTNAME:-localhost}:${PORT:-3052}
+      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
+      - cloudflare.tunnel.zonename=${CFDOMAIN}
+      - cloudflare.tunnel.path=${CFURLPATH:-}   
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+volumes:
+  data:

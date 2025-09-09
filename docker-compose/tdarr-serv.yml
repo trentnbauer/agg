@@ -1,7 +1,7 @@
 version: "2.3"
 services:
   server:
-    image: ghcr.io/haveagitgat/tdarr:2.45.01
+    image: ghcr.io/haveagitgat/tdarr:2.46.01
     restart: unless-stopped
     ports:
       - ${WEBUI:-8265}:8265 # webUI port
@@ -25,7 +25,7 @@ services:
       - configs:/app/configs
       - logs:/app/logs
       - media:/media
-      - /cache:/temp
+      - /dev/shm:/temp
       - /etc/hostname:/etc/hostname:ro
     devices:
       - /dev/dri:/dev/dri
@@ -39,7 +39,7 @@ services:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:${WEBUI:-8265}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${WEBUI:-8265}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}
@@ -57,7 +57,7 @@ services:
             capabilities: [gpu]
             
   nodeA:
-    image: ghcr.io/haveagitgat/tdarr_node:2.45.01
+    image: ghcr.io/haveagitgat/tdarr_node:2.46.01
     restart: unless-stopped
     network_mode: service:server
     environment:
@@ -76,7 +76,7 @@ services:
       - configs:/app/configs
       - logs:/app/logs
       - media:/media
-      - /cache:/temp
+      - /dev/shm:/temp
       - /etc/hostname:/etc/hostname:ro
     devices:
       - /dev/dri:/dev/dri

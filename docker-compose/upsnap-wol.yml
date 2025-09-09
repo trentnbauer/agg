@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-    image: ghcr.io/seriousm4x/upsnap:5.1.0@sha256:2cdbfaeac6cb2c31b86d35d12c23a013d01f41ee9fb8735f1ffe847f143c6047
+    image: ghcr.io/seriousm4x/upsnap:5.1.9@sha256:2f8f297078cb97dbe8b6e719e77339e2d12ff4593a3f8b86b067d1a3a1fcd789
     network_mode: host
     restart: unless-stopped
     volumes:
@@ -20,7 +20,7 @@ services:
     labels:
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:8090
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:8090
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}

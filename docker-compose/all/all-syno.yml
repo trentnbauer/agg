@@ -9,7 +9,7 @@ services:
       AUTOHEAL_START_PERIOD: 240
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 60
       AUTOHEAL_ONLY_MONITOR_RUNNING: true
-    image: willfarrell/autoheal@sha256:0819fd084489a8afa4eaa497e1deda40d95a9f8ac44adf151f3ee00198ea36fa
+    image: willfarrell/autoheal@sha256:f6a1f882c1440299b0e61f2445e4d20134c2326981563dd3f55dbf7c088fbeac
     network_mode: none
     restart: always
     volumes:
@@ -18,7 +18,7 @@ services:
 
   docker-socket-proxy:
     network_mode: host
-    image: ghcr.io/tecnativa/docker-socket-proxy:0.3.0
+    image: ghcr.io/tecnativa/docker-socket-proxy:v0.4.1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
@@ -38,7 +38,7 @@ services:
       - WATCHTOWER_LABEL_ENABLE=true
 
   beszel-agent:
-    image: ghcr.io/henrygd/beszel/beszel-agent:0.11.1@sha256:d015952e66319b993a2103ad0f9bf3bf89eb8755500a51956091dc9457234b7c
+    image: ghcr.io/henrygd/beszel/beszel-agent:0.12.7@sha256:c5e10925a28633594548497ded3c9a9a04892b93f96ab37a3eec7c1190676d80
     restart: unless-stopped
     network_mode: host
     volumes:
@@ -55,7 +55,7 @@ services:
       - autoheal=true
 
   dockflare:
-    image: alplat/dockflare:v1.9.2@sha256:ca3cf8c825093943d3019d0f473e8dd24938db4d09fddd027e310981a69327c6
+    image: alplat/dockflare:v2.0.5@sha256:4ea265abf39b10cd8715f3c3ab82cb7aec9ce7ffae3b71b0287597ec7be95335
     restart: unless-stopped
     networks:
       - cloudflare-net
@@ -81,6 +81,7 @@ services:
       - SCAN_ALL_NETWORKS=true
       - MAX_CONCURRENT_DNS_OPS=1
       - TUNNEL_DNS_SCAN_ZONE_NAMES=${DNSSCANZONES:-}
+      - CLOUDFLARED_NETWORK_NAME=${CLOUDFLARED_NETWORK_NAME:-host}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - dockflare_data:/app/data
@@ -88,16 +89,38 @@ services:
       - autoheal=true
       - dockflare.enable=true
       - dockflare.0.hostname=${CFTUNNELNAME:-MissingHostname}-tunnel.${URLTLD}
-      - dockflare.0.service=http://${HOSTNAME}:${DOCKFLAREPORT:-5000}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${DOCKFLAREPORT:-5000}
       - dockflare.0.access.policy=default_tld
       - dockflare.0.zonename=${URLTLD}
       - dockflare.1.hostname=nas.${URLTLD}
-      - dockflare.1.service=https://${HOSTNAME}:5001
+      - dockflare.1.service=https://${HOSTNAME:-localhost}:5001
       - dockflare.1.access.policy=default_tld
       - dockflare.1.zonename=${URLTLD}
       - dockflare.1.no_tls_verify=true
+      
+  portracker:
+    image: mostafawahied/portracker:1.2.0@sha256:36e0987b1bf449a3762c24f0c62d28b5b9b5b61fd7524015a6a4d6e5a38067c5
+    restart: unless-stopped
+    network_mode: "host"
+    pid: "host"
+    volumes:
+      - portacker_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - DATABASE_PATH=/data/portracker.db
+      - PORT=${PORTACKERPORT:-4999}
+    labels:
+      - autoheal=true
+      - dockflare.enable=true
+      - dockflare.0.hostname=${CFTUNNELNAME:-MissingHostname}-portacker.$URLTLD
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORTACKERPORT:-4999}
+      - dockflare.0.access.policy=default_tld
+      - dockflare.0.zonename=$URLTLD
+      #- cloudflare.tunnel.path=${URLPATH:-}
+
 volumes:
   dockflare_data:
+  portacker_data:
   ossec:
 networks:
   cloudflare-net: 

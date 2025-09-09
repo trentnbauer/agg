@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-    image: ghcr.io/nickshanks347/monitarr:latest
+    image: ghcr.io/nickshanks347/monitarr:latest@sha256:ba45015c688fbc56a201c13d51bb07d76adb0d4f008ce4468042b76c6f14f6e8
     ports:
       - ${PORT:-3000}:3000
     environment:
@@ -9,13 +9,14 @@ services:
       - SONARR_API_KEY=$SONARRAPI
       - RADARR_URL=$RADARRURL
       - RADARR_API_KEY=$RADARRAPI
+      - BASE_PATH=${CFURLPATH:-}
     restart: unless-stopped
     networks:
        - cloudflare-net
     labels:
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:${PORT:-3000}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORT:-3000}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}
