@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: cloudflare/cloudflared:2025.6.1@sha256:175aee7e8b548f983f7e3b79ace217676d2a79255a73c074dacb491e59603679
+    image: cloudflare/cloudflared:2025.8.1@sha256:b77d84e8704db38db22c22661cf7e56468c526e3a6a5fe9c8b7c151452fa1472
     restart: unless-stopped
     network_mode: host
     environment:
