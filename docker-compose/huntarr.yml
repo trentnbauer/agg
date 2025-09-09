@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: ghcr.io/plexguide/huntarr:8.1.11@sha256:06e39589254837642936300211b3b514a47b2ffd5caba22650583120b05dc34d
+    image: ghcr.io/plexguide/huntarr:8.2.10@sha256:b5a47c2b43806165f433d308d69a21e74a687ce59f4fcccb612d6a7acb3af6d7
     networks:
       - cloudflare-net
     restart: always
@@ -22,7 +22,7 @@ services:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:${PORT:-9705}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORT:-9705}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}
