@@ -2,8 +2,7 @@
 version: "3.5"
 services:
   app:
-    image: ghcr.io/wizarrrr/wizarr:2025.6.5@sha256:45cbac99eb86f3f63b204022538e9b537f335ccdd2749ca360b8d58b41f7a896
-    hostname: ${ALIAS:-wizarr}
+    image: ghcr.io/wizarrrr/wizarr:2025.9.1@sha256:b3bf6d81a59d0d1b0fef7cb757b529012173ea084e865310e045508f4b33c2a7
     ports:
       - ${PORT:-5690}:5690
     volumes:
@@ -14,10 +13,15 @@ services:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME}:${PORT:-5690}
-      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORT:-5690}
+      - dockflare.0.access.policy=${CFPOLICY:-public}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}
+      - dockflare.1.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.1.service=http://${HOSTNAME:-localhost}:${PORT:-5690}
+      - dockflare.1.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.1.zonename=${CFDOMAIN}
+      - dockflare.1.path=${CFURLPATH:-}/login
     networks:
         - cloudflare-net
     healthcheck:
@@ -33,7 +37,7 @@ services:
         max-file: "3"
     environment:
         - TZ=${TZ:-Australia/Melbourne}
-        - DISABLE_BUILTIN_AUTH=${DISABLEAUTH:-false}
+        - DISABLE_BUILTIN_AUTH=${DISABLEAUTH:-true}
 volumes:
   db:
   steps:
