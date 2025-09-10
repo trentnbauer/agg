@@ -1,7 +1,7 @@
 version: "2.3"
 services:
   app:
-    image: ghcr.io/linuxserver/kasm:1.17.0@sha256:c00f53a6de755e94c14030f4d919961621cb67a7f0adb9bc9bf5b682fc71944e
+    image: ghcr.io/linuxserver/kasm:1.17.0@sha256:2a4450def1ed1710366d886e2ff19e3549b279464a11ea0293a697a1ab594005
     privileged: true
     networks:
       - cloudflare-net
