@@ -82,6 +82,8 @@ services:
       - MAX_CONCURRENT_DNS_OPS=1
       - TUNNEL_DNS_SCAN_ZONE_NAMES=${DNSSCANZONES:-}
       - CLOUDFLARED_NETWORK_NAME=${CLOUDFLARED_NETWORK_NAME:-host}
+      - DOCKFLARE_PASSWORD=${DOCKFLAREPASSWORD}
+      - SECRET_KEY=${DOCKFLAREKEY}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - dockflare_data:/app/data
@@ -116,7 +118,6 @@ services:
       - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORTACKERPORT:-4999}
       - dockflare.0.access.policy=default_tld
       - dockflare.0.zonename=$URLTLD
-      #- cloudflare.tunnel.path=${URLPATH:-}
 
 volumes:
   dockflare_data:
