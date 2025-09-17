@@ -33,6 +33,13 @@ services:
       options:
         max-size: "5m"
         max-file: "3"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "--quiet", "http://localhost:3000"]
+      interval: 60s
+      timeout: 50s
+      retries: 2
+      start_period: 15s
+
 volumes:
   config:
 
@@ -45,3 +52,4 @@ volumes:
 #SUBDOMAIN=
 #DOMAIN=
 #HOSTNAME=
+
