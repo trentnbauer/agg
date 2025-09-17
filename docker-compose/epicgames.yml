@@ -10,7 +10,7 @@ services:
       - config:/usr/app/config
     environment:
       - TZ=${TZ:-Australia/Melbourne}
-      #- EMAIL=${RECIPIENT} #Email this person when a new free game is released
+      - EMAIL=${RECIPIENT} #Email this person when a new free game is released
       - RUN_ON_STARTUP=${RUN_ON_STARTUP:-true}
       - BASE_URL=https://${SUBDOMAIN}${DOMAIN}
       - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
@@ -52,6 +52,7 @@ volumes:
 #SUBDOMAIN=
 #DOMAIN=
 #HOSTNAME=
+
 
 
 
