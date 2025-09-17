@@ -15,8 +15,8 @@ services:
       - BASE_URL=https://${SUBDOMAIN}${DOMAIN}
       - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
       - SMTP_PORT=${SMTP_PORT:-587}
-      - EMAIL_SENDER_ADDRESS=${EMAIL} #Emails will be sent from this address
-      - EMAIL_SENDER_NAME=${EMAIL_SENDER_NAME:-Epic Games Free Games}
+      - EMAIL_SENDER_ADDRESS=${SMTP_FROM} #Emails will be sent from this address
+      - EMAIL_SENDER_NAME=${SMTP_SUBJECT:-Epic Games Free Games}
       #- EMAIL_RECIPIENT_ADDRESS=${RECIPIENT} #Email this person when a new free game is released
       - SMTP_SECURE=${SMTP_SECURE:-false}
       - SMTP_USERNAME=${SMTP_USERNAME}
@@ -52,6 +52,7 @@ volumes:
 #SUBDOMAIN=
 #DOMAIN=
 #HOSTNAME=
+
 
 
 
