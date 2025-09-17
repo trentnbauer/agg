@@ -12,7 +12,7 @@ services:
       - TZ=${TZ:-Australia/Melbourne}
       - EMAIL=${EMAIL} #Emails will be sent from this address
       - RUN_ON_STARTUP=${RUN_ON_STARTUP:-true}
-      - BASE_URL=${SUBDOMAIN}${DOMAIN}
+      - BASE_URL=https://${SUBDOMAIN}${DOMAIN}
       - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
       - SMTP_PORT=${SMTP_PORT:-587}
       - EMAIL_SENDER_ADDRESS=${EMAIL} #Emails will be sent from this address
@@ -52,5 +52,6 @@ volumes:
 #SUBDOMAIN=
 #DOMAIN=
 #HOSTNAME=
+
 
 
