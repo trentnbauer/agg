@@ -6,11 +6,11 @@ services:
       - ${WEBPORT:-3000}:3000/udp
       - ${WEBPORT:-3000}:3000/tcp
     restart: unless-stopped
-    volumes:
-      - config:/usr/app/config:r
+#    volumes:
+ #     - config:/usr/app/config:r
     environment:
       - TZ=${TZ:-Australia/Melbourne}
-      - EMAIL=${EMAIL} #Emails will be sent from this address
+      - EMAIL=${RECIPIENT} #Emails will be sent from this address
       - RUN_ON_STARTUP=${RUN_ON_STARTUP:-true}
       - BASE_URL=https://${SUBDOMAIN}${DOMAIN}
       - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
@@ -40,8 +40,8 @@ services:
       retries: 2
       start_period: 15s
 
-volumes:
-  config:
+#volumes:
+#  config:
 
 ### Follow https://github.com/claabs/epicgames-freegames-node?tab=readme-ov-file#cookie-import to import cookies for each user you wish to email
 
@@ -52,6 +52,8 @@ volumes:
 #SUBDOMAIN=
 #DOMAIN=
 #HOSTNAME=
+
+
 
 
 
