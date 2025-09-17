@@ -18,7 +18,7 @@ services:
       - EMAIL_SENDER_ADDRESS=${EMAIL} #Emails will be sent from this address
       - EMAIL_SENDER_NAME=${EMAIL_SENDER_NAME:-Epic Games Free Games}
       - EMAIL_RECIPIENT_ADDRESS=${EMAIL} #Emails will be sent from this address
-      - SMTP_SECURE=${SMTP_SECURE:-true}
+      - SMTP_SECURE=${SMTP_SECURE:-false}
       - SMTP_USERNAME=${SMTP_USERNAME}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
     mem_limit: 2G
@@ -52,6 +52,7 @@ volumes:
 #SUBDOMAIN=
 #DOMAIN=
 #HOSTNAME=
+
 
 
 
