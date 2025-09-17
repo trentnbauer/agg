@@ -6,18 +6,18 @@ services:
       - ${WEBPORT:-3000}:3000/udp
       - ${WEBPORT:-3000}:3000/tcp
     restart: unless-stopped
-    volumes:
-      - config:/usr/app/config
+#    volumes:
+#      - config:/usr/app/config
     environment:
       - TZ=${TZ:-Australia/Melbourne}
-      #- EMAIL=${RECIPIENT} #Email this person when a new free game is released
+      - EMAIL=${RECIPIENT} #Email this person when a new free game is released
       - RUN_ON_STARTUP=${RUN_ON_STARTUP:-true}
       - BASE_URL=https://${SUBDOMAIN}${DOMAIN}
       - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
       - SMTP_PORT=${SMTP_PORT:-587}
       - EMAIL_SENDER_ADDRESS=${EMAIL} #Emails will be sent from this address
       - EMAIL_SENDER_NAME=${EMAIL_SENDER_NAME:-Epic Games Free Games}
-      #- EMAIL_RECIPIENT_ADDRESS=${RECIPIENT} #Email this person when a new free game is released
+      - EMAIL_RECIPIENT_ADDRESS=${RECIPIENT} #Email this person when a new free game is released
       - SMTP_SECURE=${SMTP_SECURE:-false}
       - SMTP_USERNAME=${SMTP_USERNAME}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
@@ -52,6 +52,7 @@ volumes:
 #SUBDOMAIN=
 #DOMAIN=
 #HOSTNAME=
+
 
 
 
