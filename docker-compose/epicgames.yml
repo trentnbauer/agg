@@ -3,35 +3,31 @@ services:
   app:
     image: ghcr.io/claabs/epicgames-freegames-node:bullseye-slim@sha256:7a86071da4385c1ea01f496dfdcb161425861d8b3e017b0f8d2b961eab22f3b9
     ports:
-      - ${PORT:-3000}:3000/udp
-      - ${PORT:-3000}:3000/tcp
+      - ${WEBPORT:-3000}:3000/udp
+      - ${WEBPORT:-3000}:3000/tcp
     restart: unless-stopped
-    #hostname: ${ALIAS:-epicgames} #DOES NOT WORK
-    networks:
-      - cloudflare-net
     volumes:
-      - config:/usr/app/config:rw #Mapped to local drive to allow automations syncing cookies files from GitHub
+      - config:/usr/app/config:rw
     environment:
-      - TZ=$TZ
-      - EMAIL=$EMAIL
-      - RUN_ON_STARTUP=$RUN_ON_STARTUP
-      - BASE_URL=$BASE_URL
-      - SMTP_HOST=$SMTP_HOST
-      - SMTP_PORT=$SMTP_PORT
-      - EMAIL_SENDER_ADDRESS=$EMAIL_SENDER_ADDRESS
-      - EMAIL_SENDER_NAME=$EMAIL_SENDER_NAME
-      - EMAIL_RECIPIENT_ADDRESS=$EMAIL_RECIPIENT_ADDRESS
-      - SMTP_SECURE=$SMTP_SECURE
-      - SMTP_USERNAME=$SMTP_USERNAME
-      - SMTP_PASSWORD=$SMTP_PASSWORD
+      - TZ=${TZ:-Australia/Melbourne}
+      - EMAIL=${EMAIL} #Emails will be sent from this address
+      - RUN_ON_STARTUP=${RUN_ON_STARTUP:-yes}
+      - BASE_URL=${SUBDOMAIN}${DOMAIN}
+      - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - EMAIL_SENDER_ADDRESS=${EMAIL} #Emails will be sent from this address
+      - EMAIL_SENDER_NAME=${EMAIL_SENDER_NAME:-Epic Games Free Games}
+      - EMAIL_RECIPIENT_ADDRESS=${EMAIL} #Emails will be sent from this address
+      - SMTP_SECURE=${SMTP_SECURE:-true}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
     mem_limit: 2G
     labels:
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
-      - cloudflare.tunnel.service=http://${HOSTNAME:-localhost}:${PORT:-3000}
-      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
+      - cloudflare.tunnel.service=http://${HOSTNAME:-localhost}:${WEBPORT:-3000}
+      - cloudflare.tunnel.access.policy=${CFPOLICY:-bypass}
       - cloudflare.tunnel.zonename=${DOMAIN}
-      - cloudflare.tunnel.path=${URLPATH:-}
     logging:
       driver: "json-file"
       options:
@@ -40,7 +36,3 @@ services:
 volumes:
   config:
 
-networks:
-  cloudflare-net: 
-    name: cloudflare-net 
-    external: true
