@@ -38,3 +38,10 @@ volumes:
 
 ### Follow https://github.com/claabs/epicgames-freegames-node?tab=readme-ov-file#cookie-import to import cookies for each user you wish to email
 
+#MINIMUM ENV
+#EMAIL=
+#SMTP_USERNAME=
+#SMTP_PASSWORD=
+#SUBDOMAIN=
+#DOMAIN=
+#HOSTNAME=
