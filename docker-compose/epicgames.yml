@@ -10,14 +10,14 @@ services:
       - config:/usr/app/config
     environment:
       - TZ=${TZ:-Australia/Melbourne}
-      - EMAIL=${RECIPIENT} #Email this person when a new free game is released
+      - EMAIL=${RECIPIENT_EMAIL} #Email this person when a new free game is released
       - RUN_ON_STARTUP=${RUN_ON_STARTUP:-true}
-      - BASE_URL=https://${SUBDOMAIN}${DOMAIN}
+      - BASE_URL=https://${RECIPIENT_NAME}-egf.${DOMAIN}
       - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
       - SMTP_PORT=${SMTP_PORT:-587}
       - EMAIL_SENDER_ADDRESS=${SMTP_FROM} #Emails will be sent from this address
       - EMAIL_SENDER_NAME=${SMTP_SUBJECT:-Epic Games Free Games}
-      - EMAIL_RECIPIENT_ADDRESS=${RECIPIENT} #Email this person when a new free game is released
+      - EMAIL_RECIPIENT_ADDRESS=${RECIPIENT_EMAIL} #Email this person when a new free game is released
       - SMTP_SECURE=${SMTP_SECURE:-false}
       - SMTP_USERNAME=${SMTP_USERNAME}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
@@ -25,7 +25,7 @@ services:
     mem_limit: 2G
     labels:
       - cloudflare.tunnel.enable=true
-      - cloudflare.tunnel.hostname=${SUBDOMAIN}${DOMAIN}
+      - cloudflare.tunnel.hostname=${RECIPIENT_NAME}-egf${DOMAIN}
       - cloudflare.tunnel.service=http://${HOSTNAME:-localhost}:${WEBPORT:-3000}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-bypass}
       - cloudflare.tunnel.zonename=${DOMAIN}
@@ -41,13 +41,15 @@ volumes:
 ##     I RECOMMEND A CONTAINER PER USER
 ##     MINIMUM ENV
 ##     SET THE SUBDOMAIN TO BE UNIQUE AND RECIPIENT TO BE UNIQUE
-#RECIPIENT=
+#RECIPIENT_EMAIL=
+#RECIPIENT_NAME=
 #FROM_SMTP=
 #SMTP_USERNAME=
 #SMTP_PASSWORD=
 #SUBDOMAIN=
 #DOMAIN=
 #HOSTNAME=
+
 
 
 
