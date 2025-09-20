@@ -18,7 +18,7 @@ services:
         max-size: "10m"
         max-file: "3"
     healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:6246${CFURLPATH:-} || exit 1
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:6246$${BASE_PATH:-} || exit 1"]
       interval: 30s
       retries: 3
       start_period: 30s
