@@ -12,7 +12,7 @@ services:
       - BASE_PATH=${CFURLPATH:-}
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:3000$${BASE_PATH:-} || exit 1"]
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:3000$${CFURLPATH:-} || exit 1"]
       interval: 30s
       timeout: 20s
       retries: 3
