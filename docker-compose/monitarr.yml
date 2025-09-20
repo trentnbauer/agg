@@ -18,7 +18,7 @@ services:
       retries: 3
       start_period: 30s
     labels:
-      - autoheal=true
+      #- autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
       - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORT:-3000}
