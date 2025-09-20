@@ -23,7 +23,15 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - CONTAINERS=1
-
+    healthcheck:
+      test: wget --spider http://localhost:2375/version || exit 1
+      interval: "29s"
+      timeout: "5s"
+      retries: 3
+      start_period: "21s"
+    labels:
+      - autoheal=true
+      
   watchtower:
     image: ghcr.io/containrrr/watchtower:1.7.1
     restart: always
