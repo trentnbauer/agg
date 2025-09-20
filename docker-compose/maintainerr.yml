@@ -33,4 +33,3 @@ services:
       - dockflare.0.path=${CFURLPATH:-}      
 volumes:
   data:
-networks:
