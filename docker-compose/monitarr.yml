@@ -11,9 +11,14 @@ services:
       - RADARR_API_KEY=$RADARRAPI
       - BASE_PATH=${CFURLPATH:-}
     restart: unless-stopped
-    networks:
-       - cloudflare-net
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:3000$${BASE_PATH:-} || exit 1"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+      start_period: 30s
     labels:
+      - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
       - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORT:-3000}
@@ -25,7 +30,3 @@ services:
       options:
         max-size: "10m"
         max-file: "3" 
-networks:
-    cloudflare-net:
-        name: cloudflare-net
-        external: true
