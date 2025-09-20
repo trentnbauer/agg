@@ -2,7 +2,6 @@ version: '3'
 services:
   app:
     image: ghcr.io/jorenn92/maintainerr:2.19.0@sha256:bee84707edaf589cda3d18b6813cbfe3a137b52786210c3a28190e10910c1240
-    hostname: ${ALIAS:-maintainerr}
     volumes:
       #- $MEDIA:$MEDIA
       - data:/opt/data
@@ -13,15 +12,13 @@ services:
     ports:
       - ${PORT:-6246}:6246 
     restart: unless-stopped
-    networks:
-      - cloudflare-net
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
     healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:6246/${BASEPATH:-} || exit 1
+      test: wget --no-verbose --tries=1 --spider http://localhost:6246{CFURLPATH:-} || exit 1
       interval: 30s
       retries: 3
       start_period: 30s
@@ -37,6 +34,3 @@ services:
 volumes:
   data:
 networks:
-    cloudflare-net:
-        name: cloudflare-net
-        external: true
