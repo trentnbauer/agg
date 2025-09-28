@@ -74,8 +74,8 @@ services:
     labels:
       - autoheal=true
 
-  app:
-    image: alplat/dockflare-agent:latest
+  dockflare:
+    image: alplat/dockflare-agent:v1.0.0
     restart: unless-stopped
     environment:
       - DOCKER_HOST=${DOCKER_HOST:-tcp://localhost:2375}
