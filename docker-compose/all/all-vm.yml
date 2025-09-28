@@ -18,21 +18,13 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
   
   docker-socket-proxy:
+    network_mode: host
     image: ghcr.io/tecnativa/docker-socket-proxy:v0.4.1
     restart: unless-stopped
-    ports:
-      - 2375:2375
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      - DOCKER_HOST=unix:///var/run/docker.sock
       - CONTAINERS=1
-      - EVENTS=1
-      - NETWORKS=1
-      - IMAGES=1
-      - POST=1
-      - PING=1
-      - EXEC=1
     healthcheck:
       test: wget --spider http://localhost:2375/version || exit 1
       interval: "29s"
@@ -75,26 +67,46 @@ services:
       - autoheal=true
 
   dockflare:
-    image: alplat/dockflare-agent:v1.0.0
+    image: alplat/dockflare:v2.1.7@sha256:015653bdd533b6f4e81057e3b29500622ab3c56b2c244129451f8d02f311814f
     restart: unless-stopped
-    network_mode: host
+    networks:
+      - cloudflare-net
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider ${PROTOCOL:-http}://localhost:5000 -O /dev/null || exit 1
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s 
+    ports:
+      - ${DOCKFLAREPORT:-5000}:5000
     environment:
-      - DOCKER_HOST=${DOCKER_HOST:-tcp://localhost:2375}
+      - STATE_FILE_PATH=/app/data/state.json
       - TZ=${TZ:-Australia/Melbourne}
-      - LOG_LEVEL=${LOG_LEVEL:-info}
-      - DOCKFLARE_MASTER_URL=${DOCKFLARE_MASTER_URL}
-      - DOCKFLARE_API_KEY=${DOCKFLARE_API_KEY}
-      - CLOUDFLARED_IMAGE=cloudflare/cloudflared:2025.9.0
-      - CLOUDFLARED_NETWORK_NAME=${CLOUDFLARED_NETWORK_NAME:-host}
-      - TUNNEL_NAME=${CFTUNNELNAME}
+      - CF_API_TOKEN=$CFAPITOKEN
+      - CF_ACCOUNT_ID=$CFACCOUNTID
+      #- CF_ZONE_ID=$CFZONEID
+      - TUNNEL_NAME=${CFTUNNELNAME:-MissingTunnelName}
       - LABEL_PREFIX=dockflare
       - GRACE_PERIOD_SECONDS=28800
       - CLEANUP_INTERVAL_SECONDS=900
-      - AGENT_STATUS_UPDATE_INTERVAL_SECONDS=60
+      - AGENT_STATUS_UPDATE_INTERVAL_SECONDS=30
       - SCAN_ALL_NETWORKS=true
-      - MAX_CONCURRENT_DNS_OPS=1
-    depends_on:
-      - docker-socket-proxy
+      - MAX_CONCURRENT_DNS_OPS=2
+      - TUNNEL_DNS_SCAN_ZONE_NAMES=${DNSSCANZONES:-}
+      - CLOUDFLARED_NETWORK_NAME=${CLOUDFLARED_NETWORK_NAME:-host}
+      - DOCKFLARE_PASSWORD=${DOCKFLAREPASSWORD}
+      - SECRET_KEY=${DOCKFLAREKEY}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - dockflare_data:/app/data
+    labels:
+      - autoheal=true
+      - dockflare.enable=true
+      - dockflare.0.hostname=${CFTUNNELNAME:-MissingHostname}-tunnel.$URLTLD
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${DOCKLAREPORT:-5000}
+      - dockflare.0.access.policy=default_tld
+      - dockflare.0.zonename=$URLTLD
+      #- cloudflare.tunnel.path=${URLPATH:-}
       
   portracker:
     image: mostafawahied/portracker:1.2.0@sha256:36e0987b1bf449a3762c24f0c62d28b5b9b5b61fd7524015a6a4d6e5a38067c5
@@ -114,8 +126,10 @@ services:
       - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORTACKERPORT:-4999}
       - dockflare.0.access.policy=default_tld
       - dockflare.0.zonename=$URLTLD
+      #- cloudflare.tunnel.path=${URLPATH:-}
 
 volumes:
+  dockflare_data:
   portacker_data:
 
 networks:
