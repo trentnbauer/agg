@@ -92,8 +92,6 @@ services:
       - AGENT_STATUS_UPDATE_INTERVAL_SECONDS=60
       - SCAN_ALL_NETWORKS=true
       - MAX_CONCURRENT_DNS_OPS=1
-    volumes:
-      - data:/app/data
     depends_on:
       - docker-socket-proxy
       
@@ -117,7 +115,6 @@ services:
       - dockflare.0.zonename=$URLTLD
 
 volumes:
-  dockflare_data:
   portacker_data:
 
 networks:
