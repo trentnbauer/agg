@@ -81,9 +81,8 @@ services:
       - DOCKER_HOST=${DOCKER_HOST:-tcp://localhost:2375}
       - TZ=${TZ:-Australia/Melbourne}
       - LOG_LEVEL=${LOG_LEVEL:-info}
-      - DOCKFLARE_MASTER_URL=http://espresso.agg.local
+      - DOCKFLARE_MASTER_URL=${DOCKFLARE_MASTER_URL}
       - DOCKFLARE_API_KEY=${DOCKFLARE_API_KEY}
-      - DOCKER_HOST=tcp://docker-socket-proxy:2375
       - CLOUDFLARED_IMAGE=cloudflare/cloudflared:2025.9.0
       - CLOUDFLARED_NETWORK_NAME=${CLOUDFLARED_NETWORK_NAME:-host}
       - TUNNEL_NAME=${CFTUNNELNAME}
