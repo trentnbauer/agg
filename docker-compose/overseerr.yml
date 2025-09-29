@@ -8,7 +8,7 @@ services:
       - app:/config
       #- www:/app/overseerr/public #rebrand overseerr https://github.com/sct/overseerr/issues/404#issuecomment-1659795118
     ports:
-      - ${PORT:-5055}:5055
+      - ${WEBPORT:-5055}:5055
     restart: unless-stopped
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail http://localhost:5055/api/v1/status
@@ -20,7 +20,7 @@ services:
       - autoheal=true
       - cloudflare.tunnel.enable=true
       - cloudflare.tunnel.hostname=${SUBDOMAIN}.${DOMAIN}
-      - cloudflare.tunnel.service=http://${HOSTNAME:-localhost}:${PORT:-5055}
+      - cloudflare.tunnel.service=http://${HOSTNAME:-localhost}:${WEBPORT:-5055}
       - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
       - cloudflare.tunnel.zonename=${DOMAIN}
       - cloudflare.tunnel.path=${URLPATH:-}
@@ -32,3 +32,4 @@ services:
 volumes:
   app:
   #www:
+
