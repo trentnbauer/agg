@@ -48,7 +48,7 @@ services:
       - WATCHTOWER_LABEL_ENABLE=true
 
   beszel-agent:
-    image: ghcr.io/henrygd/beszel/beszel-agent:0.12.12@sha256:a8953c1c0cc409462ef8e4fa4350473a91dee6537c1f0aad6337f175fb6e4ab5
+    image: ghcr.io/henrygd/beszel/beszel-agent:0.13.0@sha256:8c6da54714989ec62db9d8b14ebfad74e2091e91a346cf6eec3e5b6c802dc563
     restart: unless-stopped
     network_mode: host
     volumes:
