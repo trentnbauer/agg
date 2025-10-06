@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: ghcr.io/henrygd/beszel/beszel:0.13.0@sha256:9b21b24d0f0eed0759e611eead99b501f61dd05f7f127e9dde973d3b9b24788a
+    image: ghcr.io/henrygd/beszel/beszel:0.13.1@sha256:6901ce3c18cae5178bb6ee2526dc9defbb6dc1dabdfc94b3fdd3551d1cb55de3
     restart: unless-stopped
     networks:
       - cloudflare-net
