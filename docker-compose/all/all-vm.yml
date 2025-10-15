@@ -10,7 +10,7 @@ services:
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 60
       AUTOHEAL_ONLY_MONITOR_RUNNING: true
       WEBHOOK_URL: ${PUSHOVER_WEBHOOK:-""}
-    image: willfarrell/autoheal@sha256:7e2c60675f48e8413c2e86958463bbedacb26e28d5034375a5d25cfbd84d9187
+    image: willfarrell/autoheal@sha256:40d1621891adfdc0e31f946f20499cf584217c1f4bf658eb424e5c430a2e9067
     network_mode: none
     restart: always
     volumes:
