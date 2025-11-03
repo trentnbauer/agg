@@ -13,7 +13,7 @@ services:
     environment:
       - TZ=$TZ
     ports:
-      - ${WEBPORT:-8080}:8080
+      - ${WEBPORTQB:-8080}:8080
       - ${PORTFORWARD:-6881}:${PORTFORWARD:-6881}/tcp #Torrent Traffic
       - ${PORTFORWARD:-6881}:${PORTFORWARD:-6881}/udp #Torrent Traffic
     volumes:
@@ -28,21 +28,37 @@ services:
       timeout: 20s
     labels:
       - autoheal=true  
-      - cloudflare.tunnel.enable=true
-      - cloudflare.tunnel.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - cloudflare.tunnel.service=HTTP://${HOSTNAME:-localhost}:${WEBPORT:-8080}
-      - cloudflare.tunnel.access.policy=${CFPOLICY:-default_tld}
-      - cloudflare.tunnel.zonename=${CFDOMAIN}
-      - cloudflare.tunnel.path=${CFURLPATH:-}      
     logging:
       driver: "json-file"
       options:
         max-size: "5m"
         max-file: "3"
-
-
+  qui:
+    image: ghcr.io/autobrr/qui:v1.6.1@sha256:331a5c8f5b3efc1fb76b3aa61abe2c24b953846780cdc78990146c3c7eec4304
+    restart: unless-stopped
+    ports:
+      - ${WEBPORT:-7476}:${WEBPORT:-7476}
+    volumes:
+      - qui:/config
+    environment:
+      QUI__PORT: ${WEBPORT:-7476}
+      QUI__BASE_URL: ${CFURLPATH:-}/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 
+    labels:
+      - autoheal=true
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${WEBPORT:-7476}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld} #default_tld, authenticate, bypass
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}
       
        
 volumes:
   config:
   data:
+  qui:
