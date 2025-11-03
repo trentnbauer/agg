@@ -1,0 +1,45 @@
+services:
+  app:
+    image: ghcr.io/dispatcharr/dispatcharr:0.11.1
+    ports:
+      - ${WEBPORT:-9191}:9191
+    volumes:
+      - data:/data
+    environment:
+      - DISPATCHARR_ENV=aio
+      - REDIS_HOST=localhost
+      - CELERY_BROKER_URL=redis://localhost:6379/0
+      - DISPATCHARR_LOG_LEVEL=info
+      # Process Priority Configuration (Optional)
+      # Lower values = higher priority. Range: -20 (highest) to 19 (lowest)
+      # Negative values require cap_add: SYS_NICE (uncomment below)
+      #- UWSGI_NICE_LEVEL=-5   # uWSGI/FFmpeg/Streaming (default: 0, recommended: -5 for high priority)
+      #- CELERY_NICE_LEVEL=5   # Celery/EPG/Background tasks (default: 5, low priority)
+    cap_add:
+      - SYS_NICE
+    devices:
+      - /dev/dri:/dev/dri
+    deploy:
+      resources:
+          reservations:
+              devices:
+                  - driver: nvidia
+                    count: all
+                    capabilities: [gpu]
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://LOCALHOST:9191 -O /dev/null || exit 1
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+    labels:
+      - autoheal=true
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${WEBPORT:-9191}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld} #default_tld, authenticate, bypass
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}
+      
+volumes:
+  data:

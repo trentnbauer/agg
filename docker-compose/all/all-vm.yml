@@ -10,7 +10,7 @@ services:
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 60
       AUTOHEAL_ONLY_MONITOR_RUNNING: true
       WEBHOOK_URL: ${PUSHOVER_WEBHOOK:-""}
-    image: willfarrell/autoheal@sha256:0fb537d9c8e0f4a0b39802f25bd50509c5da4771fa2336eb2bd803ef818931bf
+    image: willfarrell/autoheal@sha256:6e30afe7a2a7d7f758c6d28869256fb58c90396c3986c7e290e88ace2da1e1d8
     network_mode: none
     restart: always
     volumes:
@@ -48,7 +48,7 @@ services:
       - WATCHTOWER_LABEL_ENABLE=true
 
   beszel-agent:
-    image: ghcr.io/henrygd/beszel/beszel-agent:0.13.2@sha256:5ab1268e72987b0d658a8a7e70845810a09e931ee1e8ee56feb2c3cc3ceaf6eb
+    image: ghcr.io/henrygd/beszel/beszel-agent:0.15.2@sha256:55753afdb745ae4787cd1eda64f9b73f0e7099adffc090ada09b5e836fda7f34
     restart: unless-stopped
     network_mode: host
     volumes:

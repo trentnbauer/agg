@@ -1,22 +1,20 @@
 version: '2.3'
 services:
   app:
-    image: ghcr.io/linuxserver/bazarr:1.5.3@sha256:750251d7dcf245d05ad6b2b0c39685282df43a8582875fa31ab2a9328af64e26
+    image: ghcr.io/linuxserver/bazarr:1.5.3@sha256:a42fef2a5ffa1dca8714e12892ba0b8de5c6c513f1bcdb1ffe4143e715cffb45
     healthcheck:
       test: curl --connect-timeout 15 --silent --show-error --fail -k http://LOCALHOST:6767
       interval: 30s
       retries: 3
       start_period: 30s
       timeout: 20s
-    networks:
-      - cloudflare-net
     environment:
       - TZ=Australia/Melbourne
     volumes:
       - config:/config
       - media:/media
     ports:
-      - ${PORT:-6767}:6767
+      - ${WEBPORT:-6767}:6767
     restart: unless-stopped
     logging:
       driver: "json-file"
@@ -27,7 +25,7 @@ services:
       - autoheal=true
       - dockflare.enable=${CFTUNNEL:-true}
       - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
-      - dockflare.0.service=http://${HOSTNAME:-localhost}:${PORT:-6767}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${WEBPORT:-6767}
       - dockflare.0.access.policy=${CFPOLICY:-default_tld}
       - dockflare.0.zonename=${CFDOMAIN}
       - dockflare.0.path=${CFURLPATH:-}
@@ -38,7 +36,3 @@ volumes:
       type: "nfs"
       o: addr=$MEDIASERV,nfsvers=4
       device: $MEDIAPATH
-networks:
-  cloudflare-net:
-    name: cloudflare-net
-    external: true
