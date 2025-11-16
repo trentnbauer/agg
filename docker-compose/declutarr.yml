@@ -36,7 +36,8 @@ services:
         "was not found in the grabbed release",
         "was unexpected considering the",
         "Found potentially dangerous file with extension",
-        "Invalid video file, unsupported extension"
+        "Invalid video file, unsupported extension",
+        "Invalid season or episode"
         ]'
       ## Radarr
       RADARR_URL: $RADARRURL
