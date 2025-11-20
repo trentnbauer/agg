@@ -10,7 +10,7 @@ services:
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 60
       AUTOHEAL_ONLY_MONITOR_RUNNING: true
       WEBHOOK_URL: ${PUSHOVER_WEBHOOK:-""}
-    image: willfarrell/autoheal@sha256:ec0d671917b4d1ade58f216a3485f0ad440c0f77a25505b3cf986515a0ab493e
+    image: willfarrell/autoheal@sha256:7e9546592fd057f5d092443bd6209bed0d959f00843442573cf1c32254401809
     network_mode: none
     restart: always
     volumes:
@@ -110,7 +110,7 @@ services:
       - dockflare.1.no_tls_verify=true
       
   portracker:
-    image: mostafawahied/portracker:1.2.0@sha256:36e0987b1bf449a3762c24f0c62d28b5b9b5b61fd7524015a6a4d6e5a38067c5
+    image: mostafawahied/portracker:1.2.0@sha256:1184a16e3f0daeba13dd616b59aa0df679880d52bf9ca5b1db610cf4ec2b3b1b
     restart: unless-stopped
     network_mode: "host"
     pid: "host"
