@@ -110,7 +110,7 @@ services:
       - dockflare.1.no_tls_verify=true
       
   portracker:
-    image: mostafawahied/portracker:1.2.0@sha256:1184a16e3f0daeba13dd616b59aa0df679880d52bf9ca5b1db610cf4ec2b3b1b
+    image: mostafawahied/portracker:1.2.1@sha256:15be162ed55f24fae729a9fe85dc90b886e4cdbca148447d7bfa577de1b1c48d
     restart: unless-stopped
     network_mode: "host"
     pid: "host"
