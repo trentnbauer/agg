@@ -27,7 +27,7 @@ services:
       - autoheal=true
 
   autowol:
-    image: ghcr.io/trentnbauer/upsnap-autowol:latest
+    image: ghcr.io/trentnbauer/upsnap-autowol:0.1.5
     restart: always
     network_mode: host
     environment:
