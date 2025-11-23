@@ -35,13 +35,5 @@ services:
       - UPSNAP_USERNAME=${USERNAME}
       - UPSNAP_PASSWORD=${PASSWORD}
       - UPSNAP_DELAY=${DELAY:-15} # Time in minutes to wait before sending WOL packets
-    healthcheck:
-      # Check if we can reach the UpSnap server
-      test: ["CMD", "curl", "-f", "${UPSNAP_URL}"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-
 volumes:
   app:
