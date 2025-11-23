@@ -35,5 +35,12 @@ services:
       - UPSNAP_USERNAME=${USERNAME}
       - UPSNAP_PASSWORD=${PASSWORD}
       - UPSNAP_DELAY=${DELAY:-15} # Time in minutes to wait before sending WOL packets
+    healthcheck:
+      # Tries to reach UPSNAP_URL. If variable is unset, defaults to localhost:8090.
+      test: ["CMD-SHELL", "curl -f ${UPSNAP_URL:-http://localhost:8090} || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 volumes:
   app:
