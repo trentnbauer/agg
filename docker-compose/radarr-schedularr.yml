@@ -1,0 +1,36 @@
+services:
+  christmas:
+    image: ghcr.io/trentnbauer/radarr-schedularr:0.1.42
+    restart: unless-stopped
+    environment:
+      - RADARR_URL=${RADARRURL:-http://localhost:7878}
+      - RADARR_API_KEY=${APIKEY}
+      - LIST_NAME=Christmas
+      - TZ=${TZ:-Australia/Melbourne}  
+      - START_DATE=01/11 #29th of November
+      - END_DATE=01/01 #1st of January
+    labels:
+      - autoheal=true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"     
+      
+  halloween:
+    image: ghcr.io/trentnbauer/radarr-schedularr:0.1.42
+    restart: unless-stopped
+    environment:
+      - RADARR_URL=${RADARRURL:-http://localhost:7878}
+      - RADARR_API_KEY=${APIKEY}
+      - LIST_NAME=Halloween
+      - TZ=${TZ:-Australia/Melbourne}  
+      - START_DATE=01/09
+      - END_DATE=01/11
+    labels:
+      - autoheal=true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 
