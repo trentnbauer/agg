@@ -34,7 +34,7 @@ services:
         max-size: "5m"
         max-file: "3"
   qui:
-    image: ghcr.io/autobrr/qui:v1.7.0@sha256:cea707c0254b3afbce24a91350d771123ad769b4e66b30b7e651c78f0b350951
+    image: ghcr.io/autobrr/qui:v1.8.1@sha256:50baeb397f5807be0c2e9b7089eae6ffd60e0e2ee303e1da7188d9cffde9e99f
     restart: unless-stopped
     ports:
       - ${WEBPORT:-7476}:${WEBPORT:-7476}
