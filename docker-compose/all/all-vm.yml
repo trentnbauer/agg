@@ -116,7 +116,7 @@ services:
       #- cloudflare.tunnel.path=${URLPATH:-}
       
   portracker:
-    image: mostafawahied/portracker:1.2.1@sha256:15be162ed55f24fae729a9fe85dc90b886e4cdbca148447d7bfa577de1b1c48d
+    image: mostafawahied/portracker:1.2.2@sha256:4464bc74d909f54cf29df5f4d44f8e2190e589219b9d092b48ba054077ab4582
     restart: unless-stopped
     network_mode: "host"
     pid: "host"
