@@ -1,0 +1,26 @@
+services:
+  app:
+    image: iib0011/omni-tools:0.6.0@sha256:ceb5acc317daf387634f7f212cefe4722fd1243ad1cba74203f25254195b6c69
+    restart: unless-stopped
+    ports:
+      - ${WEBPORT:-8080}:80
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 
+    labels:
+      - dockflare.enable=${CFTUNNEL:-true}
+      - dockflare.0.hostname=${CFSUBDOMAIN}${CFDOMAIN}
+      - dockflare.0.service=http://${HOSTNAME:-localhost}:${WEBPORT:-8080}
+      - dockflare.0.access.policy=${CFPOLICY:-default_tld}
+      - dockflare.0.zonename=${CFDOMAIN}
+      - dockflare.0.path=${CFURLPATH:-}
+      - autoheal=true
+    healthcheck:
+      test: curl --connect-timeout 15 --silent --show-error --fail -k http://LOCALHOST:80
+      interval: 30s
+      retries: 3
+      start_period: 30s
+      timeout: 20s
+      
